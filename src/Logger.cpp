@@ -5,24 +5,41 @@ Logger *Logger::instance = nullptr;
 Logger::Logger() {}
 
 Logger::~Logger() {
-    if (file.is_open()) file.close();
+    if (output.is_open())
+        output.close();
 }
 
 void Logger::openLog(const std::string &saveDirectory) {
-    std::string filePath = saveDirectory + DIR_LOGS + FILE_LOG;
-    CreateDirectory(filePath.c_str(), NULL);
-    file.open(filePath, std::iostream::app);
+    std::string logDirectory = saveDirectory + DIR_LOGS;
+    std::string logFile = logDirectory + FILE_LOG;
+    FileSystem::createDirectory(logDirectory);
+    output.open(logFile, std::iostream::app);
 
-    ASSERT(file.good(),
-           "Log file couldn't be opened.");
+    if (!output.good()) {
+        std::ifstream input(logFile);
+        output.open(logFile, std::iostream::app);
+    }
+
+    ASSERT(output.good(),
+           std::string("Log file couldn't be opened at ") + logFile);
 }
 
 void Logger::write(const std::string &message) {
-    if (!file.good())
+    if (!output.good())
         throw IOException("Log file is not open.");
 
     // TODO: Add time of error.
-    file << message << std::endl;
+    output << "Message: " << message << std::endl;
+}
+
+void Logger::write(const std::string &file, const int &line, const std::string &message) {
+    if (!output.good())
+        throw IOException("Log file is not open.");
+
+    // TODO: Add time of error.
+    output << "In file: " << file << std::endl
+           << "In line: " << line << std::endl
+           << "Message: " << message << std::endl;
 }
 
 Logger *Logger::createInstance() {

@@ -4,7 +4,7 @@
 *                               GLFWException
 ******************************************************************************/
 const std::string GLFWException::DEFAULT_MESSAGE =
-                    "A GLFW exception occured. ";
+                    "A GLFW exception occurred. ";
 
 GLFWException::GLFWException() :
     std::runtime_error(DEFAULT_MESSAGE) {}
@@ -19,7 +19,7 @@ GLFWException::~GLFWException() throw() {}
 *                               GLEWException
 ******************************************************************************/
 const std::string GLEWException::DEFAULT_MESSAGE =
-                    "A GLEW exception occured. ";
+                    "A GLEW exception occurred. ";
 
 GLEWException::GLEWException() :
     std::runtime_error(DEFAULT_MESSAGE) {}
@@ -34,7 +34,7 @@ GLEWException::~GLEWException() throw() {}
 *                               IOException
 ******************************************************************************/
 const std::string IOException::DEFAULT_MESSAGE =
-                    "An IO exception occured. ";
+                    "An IO exception occurred. ";
 
 IOException::IOException() :
     std::runtime_error(DEFAULT_MESSAGE) {}
@@ -49,7 +49,7 @@ IOException::~IOException() throw() {}
 *                               GLException
 ******************************************************************************/
 const std::string GLException::DEFAULT_MESSAGE =
-                    "A GL exception occured. ";
+                    "A GL exception occurred. ";
 
 GLException::GLException() :
     std::runtime_error(DEFAULT_MESSAGE) {}

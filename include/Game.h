@@ -5,6 +5,7 @@
 #include "Exception.h"
 #include "ResourceManager.h"
 #include "Logger.h"
+#include "World.h"
 
 class Game {
 public:
@@ -14,6 +15,11 @@ public:
     void init(const std::string &save);
     void run();
     void quit();
+
+    World *world = nullptr;
+    // Graphics *graphics = nullptr;
+    // Physics *physics = nullptr;
+    //
 
     static Game *const &createInstance();
     static Game *const &getInstance();

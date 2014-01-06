@@ -8,9 +8,12 @@ int main() {
     try {
         Logger::createInstance();
         ResourceManager::createInstance();
-        Game::createInstance()->run();
+        Game *game = Game::createInstance();
+        game->init("test");
+        game->run();
+        game->quit();
     } catch (const std::exception &e) {
-        Logger::getInstance()->write(DETAILS + e.what());
+        Logger::getInstance()->write(DETAILS, e.what());
         return -1;
     }
 

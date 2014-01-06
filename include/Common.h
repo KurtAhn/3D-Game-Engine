@@ -17,19 +17,19 @@
     #define ASSERT(c, m)
 #endif
 
-//#define STACK_TRACE
+#define DETAILS __FILE__, __LINE__
+
+#define STACK_TRACE
 
 #ifdef STACK_TRACE
     #define RETHROW throw
-    #define DETAILS \
-        "File: " + __FILE__
 #else
     #define RETHROW
-    #define DETAILS std::string("")
 #endif
 
 #include <cstdlib>
 #include <stdexcept>
+#include <initializer_list>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -40,10 +40,8 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 #include "glm/glm.hpp"
+#include "glm/gtx/quaternion.hpp"
 #include "Directories.h"
-
-#if defined(_WIN32) || defined(_WIN64)
-    #include <windows.h>
-#endif
+#include "boost/lexical_cast.hpp"
 
 #endif // COMMON_H
