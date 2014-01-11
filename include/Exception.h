@@ -35,4 +35,12 @@ public:
     virtual ~GLException() throw();
 };
 
+class NullPointerException : public std::runtime_error {
+    static const std::string DEFAULT_MESSAGE;
+public:
+    NullPointerException();
+    explicit NullPointerException(const std::string &message);
+    virtual ~NullPointerException() throw();
+};
+
 #endif // EXCEPTION_H

@@ -8,12 +8,12 @@ Graphics::~Graphics() {
 //    delete lighting;
 }
 
-const Graphics::ProgramMap &Graphics::getPrograms() {
+const ProgramMap &Graphics::getPrograms() {
     return programs;
 }
 
-void Graphics::setPrograms(const Graphics::ProgramMap &_programs) {
-    programs = _programs;
+void Graphics::setPrograms(const ProgramMap &programs) {
+    this->programs = programs;
 }
 
 ShaderProgram *&Graphics::getProgram(const std::string &key) {
@@ -21,7 +21,7 @@ ShaderProgram *&Graphics::getProgram(const std::string &key) {
         if (programs.find(key) == programs.end())
             throw std::runtime_error("No corresponding value exists.");
     } catch (const std::runtime_error &e) {
-        Logger::getInstance()->write(DETAILS, e.what());
+        LOG_ERROR(e);
         RETHROW;
     }
 
@@ -41,15 +41,15 @@ void Graphics::setActiveProgram(const std::string &key) {
     throw std::logic_error("No corresponding value exists.");
 }
 
-const Graphics::MeshMap &Graphics::getMeshes() {
+const MeshMap &Graphics::getMeshes() {
     return meshes;
 }
 
-void Graphics::setMeshes(const Graphics::MeshMap &_meshes) {
-    meshes = _meshes;
+void Graphics::setMeshes(const MeshMap &meshes) {
+    this->meshes = meshes;
 }
 
-Mesh *&Graphics::getMesh(const std::string &key) {
+Mesh *const &Graphics::getMesh(const std::string &key) const {
     return meshes.find(key)->second;
 }
 
@@ -67,7 +67,7 @@ void Graphics::init() {
 
 
 
-void Graphics::render(GLFWwindow *const &window, World *const &world) {
+void Graphics::render(GLFWwindow *const &window, World *const &world) const {
     ASSERT(glfwGetCurrentContext(),
            "GL context not set.");
 

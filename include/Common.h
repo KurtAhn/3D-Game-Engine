@@ -1,8 +1,9 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#define DEBUG
+#define LOG_ERROR(e) Logger::getInstance()->write(__FILE__, __LINE__, e.what())
 
+#define DEBUG
 #ifdef DEBUG
     #define ASSERT(c, m)\
         if (!(c)) {\
@@ -17,10 +18,7 @@
     #define ASSERT(c, m)
 #endif
 
-#define DETAILS __FILE__, __LINE__
-
 #define STACK_TRACE
-
 #ifdef STACK_TRACE
     #define RETHROW throw
 #else
@@ -41,7 +39,13 @@
 #include "GLFW/glfw3.h"
 #include "glm/glm.hpp"
 #include "glm/gtx/quaternion.hpp"
-#include "Directories.h"
 #include "boost/lexical_cast.hpp"
+#include "rapidxml/rapidxml.hpp"
+//#include "rapidxml/rapidxml_iterators.hpp"
+//#include "rapidxml/rapidxml_print.hpp"
+//#include "rapidxml/rapidxml_utils.hpp"
+
+#include "Declarations.h"
+#include "Directories.h"
 
 #endif // COMMON_H

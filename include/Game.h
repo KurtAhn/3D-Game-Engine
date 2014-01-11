@@ -2,10 +2,14 @@
 #define GAME_H
 
 #include "Common.h"
+#include "Logger.h"
 #include "Exception.h"
 #include "ResourceManager.h"
-#include "Logger.h"
 #include "World.h"
+#include "Graphics.h"
+//
+#include "Keyboard.h"
+//
 
 class Game {
 public:
@@ -14,18 +18,23 @@ public:
 
     void init(const std::string &save);
     void run();
+    void save();
     void quit();
 
-    World *world = nullptr;
-    // Graphics *graphics = nullptr;
-    // Physics *physics = nullptr;
-    //
-
-    static Game *const &createInstance();
-    static Game *const &getInstance();
+    const bool &isPaused();
+    void setPaused(const bool &paused);
+    GLFWwindow *const &getWindow();
+    World *const &getWorld();
 private:
-    static Game *instance;
+    bool paused = false;
     GLFWwindow *window = nullptr;
+    World *world = nullptr;
+    Graphics *graphics = nullptr;
+    // Physics *physics = nullptr;
+    Keyboard *keyboard = nullptr;
+    // Mouse *mouse = nullptr;
+
+    void input();
 };
 
 #endif // GAME_H

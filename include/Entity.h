@@ -8,6 +8,11 @@ class Entity {
 public:
     Entity();
     virtual ~Entity();
+
+    void render() const;
+
+    Mesh *const &getMesh() const;
+    void setMesh(Mesh *const &mesh);
 protected:
     Mesh *mesh = nullptr;
     //Material *material = nullptr;

@@ -11,22 +11,20 @@
 
 class ResourceManager {
 public:
-    using Shader = std::pair<GLuint, GLenum>;
-    using ShaderMap = std::unordered_map<std::string, Shader>;
-    using ProgramMap = std::unordered_map<std::string, ShaderProgram*>;
-    using MeshMap = std::unordered_map<std::string, Mesh*>;
-
     ResourceManager();
     ~ResourceManager();
 
-    void setSaveDirectory(const std::string &_saveDirectory);
+    void setSaveDirectory(const std::string &saveDirectory);
 
     static ResourceManager *createInstance();
     static ResourceManager *getInstance();
     static void destroy();
 
     World *loadWorld();
+    void saveWorld(World *const &world);
+
     Graphics *loadGraphics();
+    //Physics *loadPhysics();
 private:
     static ResourceManager *instance;
 

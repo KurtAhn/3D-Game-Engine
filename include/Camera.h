@@ -8,32 +8,32 @@ class Camera {
 
 public:
     Camera();
-    Camera(const float &_zNear,
-           const float &_zFar,
-           const float &_fov,
-           const float &_aspect);
+    Camera(const float &zNear,
+           const float &zFar,
+           const float &fov,
+           const float &aspect);
 
     virtual ~Camera();
 
     const float &getZNear() const;
-    void setZNear(const float &_zNear);
+    void setZNear(const float &zNear);
     const float &getZFar() const;
-    void setZFar(const float &_zFar);
+    void setZFar(const float &zFar);
     const float &getFov() const;
-    void setFov(const float &_fov);
+    void setFov(const float &fov);
     const float &getAspect() const;
-    void setAspect(const float &_aspect);
+    void setAspect(const float &aspect);
 
     const float &getScale() const;
-    void setScale(const float &_scale) const;
+    void setScale(const float &scale) const;
     const glm::vec3 &getPosition() const;
-    void setPosition(const glm::vec3 &_position) const;
+    void setPosition(const glm::vec3 &position) const;
     const glm::vec3 &getLateral() const;
-    void setLateral(const glm::vec3 &_lateral) const;
+    void setLateral(const glm::vec3 &lateral) const;
     const glm::vec3 &getNormal() const;
-    void setNormal(const glm::vec3 &_normal) const;
+    void setNormal(const glm::vec3 &normal) const;
     const glm::vec3 &getLongitudinal() const;
-    void setLongitudinal(const glm::vec3 &_longitudinal) const;
+    void setLongitudinal(const glm::vec3 &longitudinal) const;
     glm::mat4 getTransform() const;
 
     void translate(const glm::vec3 &direction, const float &distance) const;

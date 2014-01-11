@@ -8,17 +8,16 @@ int main() {
     try {
         Logger::createInstance();
         ResourceManager::createInstance();
-        Game *game = Game::createInstance();
-        game->init("test");
-        game->run();
-        game->quit();
+        Game game;
+        game.init("test");
+        game.run();
+        game.quit();
+        ResourceManager::destroy();
+        Logger::destroy();
     } catch (const std::exception &e) {
-        Logger::getInstance()->write(DETAILS, e.what());
+        LOG_ERROR(e);
         return -1;
     }
-
-    ResourceManager::destroy();
-    Logger::destroy();
 
     return 0;
 }

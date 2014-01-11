@@ -12,11 +12,11 @@ const glm::vec3 Camera::DEFAULT_LONGITUDINAL = glm::vec3(0.0f, 0.0f, 1.0f);
 
 Camera::Camera() = default;
 
-Camera::Camera(const float &_zNear,
-               const float &_zFar,
-               const float &_fov,
-               const float &_aspect) :
-            zNear(_zNear), zFar(_zFar), fov(_fov), aspect(_aspect) {}
+Camera::Camera(const float &zNear,
+               const float &zFar,
+               const float &fov,
+               const float &aspect) :
+            zNear(zNear), zFar(zFar), fov(fov), aspect(aspect) {}
 
 Camera::~Camera() {
     //dtor
@@ -27,91 +27,91 @@ const float &Camera::getZNear() const {
     return zNear;
 }
 
-void Camera::setZNear(const float &_zNear) {
-    if (_zNear > zFar)
-        zNear = zFar;
-    else if (_zNear < 0.0f)
-        zNear = 0.0f;
+void Camera::setZNear(const float &zNear) {
+    if (zNear > zFar)
+        this->zNear = zFar;
+    else if (zNear < 0.0f)
+        this->zNear = 0.0f;
     else
-        zNear = _zNear;
+        this->zNear = zNear;
 }
 
 const float &Camera::getZFar() const {
     return zFar;
 }
 
-void Camera::setZFar(const float &_zFar) {
-    if (_zFar < zNear)
-        zFar = zNear;
-    else if (_zFar < 0.0f)
-        zFar = 0.0f;
+void Camera::setZFar(const float &zFar) {
+    if (zFar < zNear)
+        this->zFar = zNear;
+    else if (zFar < 0.0f)
+        this->zFar = 0.0f;
     else
-        zFar = _zFar;
+        this->zFar = zFar;
 }
 
 const float &Camera::getFov() const {
     return fov;
 }
 
-void Camera::setFov(const float &_fov) {
-    if (_fov < 0.0f)
-        fov = 0.0f;
+void Camera::setFov(const float &fov) {
+    if (fov < 0.0f)
+        this->fov = 0.0f;
     else
-        fov = _fov;
+        this->fov = fov;
 }
 
 const float &Camera::getAspect() const {
     return aspect;
 }
 
-void Camera::setAspect(const float &_aspect) {
-    if (_aspect < 0.0f)
-        aspect = 0.0f;
+void Camera::setAspect(const float &aspect) {
+    if (aspect < 0.0f)
+        this->aspect = 0.0f;
     else
-        aspect = _aspect;
+        this->aspect = aspect;
 }
 
 const float &Camera::getScale() const {
     return scale;
 }
 
-void Camera::setScale(const float &_scale) const {
-    if (_scale < 0.0f)
-        scale = 0.0f;
+void Camera::setScale(const float &scale) const {
+    if (scale < 0.0f)
+        this->scale = 0.0f;
     else
-        scale = _scale;
+        this->scale = scale;
 }
 
 const glm::vec3 &Camera::getPosition() const {
     return position;
 }
 
-void Camera::setPosition(const glm::vec3 &_position) const {
-    position = _position;
+void Camera::setPosition(const glm::vec3 &position) const {
+    this->position = position;
 }
 
 const glm::vec3 &Camera::getLateral() const {
     return lateral;
 }
 
-void Camera::setLateral(const glm::vec3 &_lateral) const {
-    lateral = _lateral;
+void Camera::setLateral(const glm::vec3 &lateral) const {
+    this->lateral = lateral;
 }
 
 const glm::vec3 &Camera::getNormal() const {
     return normal;
 }
 
-void Camera::setNormal(const glm::vec3 &_normal) const {
-    normal = _normal;
+void Camera::setNormal(const glm::vec3 &normal) const {
+    this->normal = normal;
 }
 
 const glm::vec3 &Camera::getLongitudinal() const {
     return longitudinal;
 }
 
-void Camera::setLongitudinal(const glm::vec3 &_longitudinal) const {
-    longitudinal = _longitudinal;
+void Camera::setLongitudinal(const glm::vec3 &longitudinal) const {
+    this->longitudinal = longitudinal;
 }
 
 glm::mat4 Camera::getTransform() const {

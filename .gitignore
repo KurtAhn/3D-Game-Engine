@@ -3,5 +3,10 @@ include/boost/
 include/GL/
 include/GLFW/
 include/glm/
+include/rapidxml/
 lib/
 obj/
+
+.gitattributes
+3D Game Engine.cbp
+3D Game Engine.depend

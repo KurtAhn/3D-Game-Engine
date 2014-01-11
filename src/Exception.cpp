@@ -58,3 +58,18 @@ GLException::GLException(const std::string &message) :
     std::runtime_error(DEFAULT_MESSAGE + message) {}
 
 GLException::~GLException() throw() {}
+
+
+/******************************************************************************
+*                               NullPointerException
+******************************************************************************/
+const std::string NullPointerException::DEFAULT_MESSAGE =
+                    "A null pointer exception occurred. ";
+
+NullPointerException::NullPointerException() :
+    std::runtime_error(DEFAULT_MESSAGE) {}
+
+NullPointerException::NullPointerException(const std::string &message) :
+    std::runtime_error(DEFAULT_MESSAGE + message) {}
+
+NullPointerException::~NullPointerException() throw() {}

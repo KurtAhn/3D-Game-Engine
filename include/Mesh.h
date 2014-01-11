@@ -22,6 +22,10 @@ public:
                      const std::vector<unsigned> &indices);
 
     void render() const;
+
+    const GLuint &getVao() const;
+    const GLuint &getVbo() const;
+    const GLuint &getIbo() const;
 private:
     unsigned numIndices;
     GLuint vao, vbo, ibo;

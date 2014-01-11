@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1388987619 source:c:\users\kurt ahn\documents\github\3d-game-engine\main.cpp
+1389401712 source:c:\users\kurt ahn\documents\github\3d-game-engine\main.cpp
 	"Common.h"
 	"Logger.h"
 	"ResourceManager.h"
 	"Game.h"
 
-1388995178 c:\users\kurt ahn\documents\github\3d-game-engine\include\common.h
+1389401663 c:\users\kurt ahn\documents\github\3d-game-engine\include\common.h
 	<cstdlib>
 	<stdexcept>
 	<initializer_list>
@@ -19,8 +19,10 @@
 	"GLFW/glfw3.h"
 	"glm/glm.hpp"
 	"glm/gtx/quaternion.hpp"
-	"Directories.h"
 	"boost/lexical_cast.hpp"
+	"rapidxml/rapidxml.hpp"
+	"Declarations.h"
+	"Directories.h"
 
 1374502400 c:\users\kurt ahn\documents\github\3d-game-engine\include\gl\glew.h
 	<stddef.h>
@@ -363,19 +365,21 @@
 
 1388010805 c:\users\kurt ahn\documents\github\3d-game-engine\include\glm\detail\_noise.hpp
 
-1388993950 c:\users\kurt ahn\documents\github\3d-game-engine\include\directories.h
+1389036049 c:\users\kurt ahn\documents\github\3d-game-engine\include\directories.h
 
-1388988660 c:\users\kurt ahn\documents\github\3d-game-engine\include\game.h
+1389404308 c:\users\kurt ahn\documents\github\3d-game-engine\include\game.h
 	"Common.h"
+	"Logger.h"
 	"Exception.h"
 	"ResourceManager.h"
-	"Logger.h"
 	"World.h"
+	"Graphics.h"
+	"Keyboard.h"
 
-1388941686 c:\users\kurt ahn\documents\github\3d-game-engine\include\exception.h
+1389203173 c:\users\kurt ahn\documents\github\3d-game-engine\include\exception.h
 	"Common.h"
 
-1388994950 c:\users\kurt ahn\documents\github\3d-game-engine\include\resourcemanager.h
+1389403677 c:\users\kurt ahn\documents\github\3d-game-engine\include\resourcemanager.h
 	"Common.h"
 	"FileSystem.h"
 	"Logger.h"
@@ -389,10 +393,10 @@
 	"FileSystem.h"
 	"Exception.h"
 
-1388992024 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\exception.cpp
+1389203173 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\exception.cpp
 	"Exception.h"
 
-1388987619 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\game.cpp
+1389403713 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\game.cpp
 	"Game.h"
 
 1388986959 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\logger.cpp
@@ -405,7 +409,7 @@
 1388982720 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\entity.cpp
 	"Entity.h"
 
-1388984356 c:\users\kurt ahn\documents\github\3d-game-engine\include\entity.h
+1389404118 c:\users\kurt ahn\documents\github\3d-game-engine\include\entity.h
 	"Common.h"
 	"Mesh.h"
 
@@ -422,7 +426,7 @@
 1388982953 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\mesh.cpp
 	"Mesh.h"
 
-1388994751 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\resourcemanager.cpp
+1389403677 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\resourcemanager.cpp
 	"ResourceManager.h"
 
 1388982544 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\time.cpp
@@ -491,16 +495,16 @@
 1388010810 c:\users\kurt ahn\documents\github\3d-game-engine\include\glm\gtx\quaternion.inl
 	<limits>
 
-1388989407 c:\users\kurt ahn\documents\github\3d-game-engine\include\camera.h
+1389403489 c:\users\kurt ahn\documents\github\3d-game-engine\include\camera.h
 	"Common.h"
 
-1388989407 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\camera.cpp
+1389403489 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\camera.cpp
 	"Camera.h"
 
-1388989932 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\graphics.cpp
+1389403617 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\graphics.cpp
 	"Graphics.h"
 
-1389004963 c:\users\kurt ahn\documents\github\3d-game-engine\include\graphics.h
+1389403620 c:\users\kurt ahn\documents\github\3d-game-engine\include\graphics.h
 	"Common.h"
 	"ShaderProgram.h"
 	"Mesh.h"
@@ -3944,4 +3948,38 @@
 	<boost/config.hpp>
 	<boost/limits.hpp>
 	<boost/cstdint.hpp>
+
+1242207978 c:\users\kurt ahn\documents\github\3d-game-engine\include\rapidxml\rapidxml.hpp
+	<cstdlib>
+	<cassert>
+	<new>
+	<exception>
+
+1242456556 c:\users\kurt ahn\documents\github\3d-game-engine\include\rapidxml\rapidxml_iterators.hpp
+	"rapidxml.hpp"
+
+1242456560 c:\users\kurt ahn\documents\github\3d-game-engine\include\rapidxml\rapidxml_print.hpp
+	"rapidxml.hpp"
+	<ostream>
+	<iterator>
+
+1242456562 c:\users\kurt ahn\documents\github\3d-game-engine\include\rapidxml\rapidxml_utils.hpp
+	"rapidxml.hpp"
+	<vector>
+	<string>
+	<fstream>
+	<stdexcept>
+
+1389404152 c:\users\kurt ahn\documents\github\3d-game-engine\include\keyboard.h
+	"Common.h"
+	"Logger.h"
+	"Exception.h"
+	"Game.h"
+	"World.h"
+	"Camera.h"
+
+1389385269 c:\users\kurt ahn\documents\github\3d-game-engine\include\declarations.h
+
+1389384429 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\keyboard.cpp
+	"Keyboard.h"
 

@@ -1,11 +1,13 @@
 #include "Game.h"
 
-Game *Game::instance = nullptr;
-
 Game::Game() = default;
 
 Game::~Game() {
+    delete world;
+    delete graphics;
+    delete keyboard;
 
+    //delete physics;
 }
 
 void Game::init(const std::string &save) {
@@ -25,8 +27,20 @@ void Game::init(const std::string &save) {
 
         if (glewInit() != GLEW_OK)
             throw GLEWException("GLEW initialization failed.");
+
+        // init keyboard
+        KeyMap keyMap;
+        keyMap.insert(KeyPair("forward", GLFW_KEY_W));
+        keyMap.insert(KeyPair("back", GLFW_KEY_S));
+        keyMap.insert(KeyPair("left", GLFW_KEY_A));
+        keyMap.insert(KeyPair("right", GLFW_KEY_D));
+        keyMap.insert(KeyPair("up", GLFW_KEY_SPACE));
+        keyMap.insert(KeyPair("down", GLFW_KEY_LEFT_SHIFT));
+
+        keyboard = new Keyboard(keyMap);
+
     } catch (const std::runtime_error &e) {
-        Logger::getInstance()->write(DETAILS, e.what());
+        LOG_ERROR(e);
     }
 }
 
@@ -35,29 +49,43 @@ void Game::run() {
            "'window' member is null.");
 
     while (!glfwWindowShouldClose(window)) {
-        std::cout << "running" << std::endl;
+        try {
+            input();
+            if (!paused) {
+                graphics->render(window, world);
+            }
+        } catch (const std::exception &e) {
+            LOG_ERROR(e);
+            RETHROW;
+        }
     }
+}
+
+void Game::input() {
+    glfwPollEvents();
+    keyboard->performAction(this);
+}
+
+void Game::save() {
+//    ResourceManager::getInstance()->saveWorld(world);
 }
 
 void Game::quit() {
-    delete instance;
-    instance = nullptr;
     glfwTerminate();
 }
 
-Game *const &Game::createInstance() {
-    try {
-        if (instance)
-            throw std::runtime_error("'instance' member already exists.");
-        instance = new Game;
-    } catch (const std::runtime_error &e) {
-        Logger::getInstance()->write(DETAILS, e.what());
-        RETHROW;
-    }
-
-    return instance;
+const bool &Game::isPaused() {
+    return paused;
 }
 
-Game *const &Game::getInstance() {
-    return instance;
+void Game::setPaused(const bool &paused) {
+    this->paused = paused;
+}
+
+GLFWwindow *const &Game::getWindow() {
+    return window;
+}
+
+World *const &Game::getWorld() {
+    return world;
 }

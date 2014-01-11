@@ -11,6 +11,7 @@ ResourceManager::ResourceManager() {
     createDirectory(DIR_MATERIALS);
     createDirectory(DIR_PHYSICS);
     createDirectory(DIR_SOUNDS);
+    createDirectory(DIR_WORLD);
     createDirectory(DIR_SETTINGS);
     createDirectory(DIR_SAVES);
 }
@@ -23,7 +24,7 @@ ResourceManager *ResourceManager::createInstance() {
             throw std::runtime_error("'instance' member already exists.");
         instance = new ResourceManager;
     } catch (const std::runtime_error &e) {
-        Logger::getInstance()->write(DETAILS, e.what());
+        LOG_ERROR(e);
         RETHROW;
     }
 
@@ -38,8 +39,8 @@ void ResourceManager::destroy() {
     delete instance;
 }
 
-void ResourceManager::setSaveDirectory(const std::string &_saveDirectory) {
-    saveDirectory = _saveDirectory;
+void ResourceManager::setSaveDirectory(const std::string &saveDirectory) {
+    this->saveDirectory = saveDirectory;
     FileSystem::createDirectory(saveDirectory);
 }
 
@@ -50,6 +51,8 @@ World *ResourceManager::loadWorld() {
 
     return world;
 }
+
+
 
 Graphics *ResourceManager::loadGraphics() {
     Graphics *graphics = new Graphics;
@@ -65,8 +68,6 @@ Graphics *ResourceManager::loadGraphics() {
  * the active shader program for the "graphics" object.
  */
 void ResourceManager::loadPrograms(Graphics *const &graphics) {
-    using ProgramPair = std::pair<std::string, ShaderProgram*>;
-
     ShaderMap shaders = loadShaders();
     ProgramMap programs;
 
@@ -109,7 +110,7 @@ void ResourceManager::loadPrograms(Graphics *const &graphics) {
     graphics->setActiveProgram(activeProgram);
 }
 
-ResourceManager::ShaderMap ResourceManager::loadShaders() {
+ShaderMap ResourceManager::loadShaders() {
     using ShaderPair = std::pair<std::string, Shader>;
 
     ShaderMap shaders;
@@ -162,11 +163,12 @@ ResourceManager::ShaderMap ResourceManager::loadShaders() {
 
                     if (status == GL_FALSE)
                         throw GLException("Shader compilation failed.");
-                } catch (GLException e) {
+                } catch (const GLException &e) {
                     glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &status);
                     GLchar *infoLog = new GLchar[status];
                     glGetShaderInfoLog(shader, status, nullptr, infoLog);
                     std::cerr << infoLog << std::endl;
+                    LOG_ERROR(e);
                     delete[] infoLog;
                     exit(EXIT_FAILURE);
                 } // END try
@@ -180,7 +182,6 @@ ResourceManager::ShaderMap ResourceManager::loadShaders() {
 
 
 void ResourceManager::loadMeshes(Graphics *const &graphics) {
-    using MeshPair = std::pair<std::string, Mesh*>;
     MeshMap meshes;
 
     std::ifstream file(FILE_MESH_LIST);
@@ -198,13 +199,12 @@ void ResourceManager::loadMeshes(Graphics *const &graphics) {
     //    std::cout << mp.first << std::endl;
 }
 
-void ResourceManager::loadShapesFromObj(ResourceManager::MeshMap &meshes, const std::string &obj) {
-    using MeshPair = std::pair<std::string, Mesh*>;
+void ResourceManager::loadShapesFromObj(MeshMap &meshes, const std::string &obj) {
     try {
         if (obj.substr(obj.find(".")) != ".obj")
             throw IOException("Mesh file must end with extension '.obj'");
-    } catch (IOException e) {
-        std::cerr << e.what() << std::endl;
+    } catch (const IOException &e) {
+        LOG_ERROR(e);
         return;
     }
 

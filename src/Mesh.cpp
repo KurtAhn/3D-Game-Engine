@@ -7,16 +7,22 @@ Mesh::Mesh() {
 }
 
 Mesh::Mesh(const Mesh &m) {
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ibo);
-
-    /*
-    Copy content of buffers
-    */
+    *this = m;
 }
 
 Mesh &Mesh::operator=(const Mesh &m) {
+    glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
+    glGenBuffers(1, &ibo);
+    /*
+    Copy content of buffers
+    */
+    /*glBindVertexArray(vao);
+    ;glBindBuffer(GL_COPY_READ_BUFFER, m.getVbo());
+    ;glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, );
+    glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
+    */
 
     return *this;
 }
@@ -104,4 +110,16 @@ void Mesh::render() const {
     glBindVertexArray(vao);
     glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, BUFFER_OFFSET(0));
     glBindVertexArray(0);
+}
+
+const GLuint &Mesh::getVao() const {
+    return vao;
+}
+
+const GLuint &Mesh::getVbo() {
+    return vbo;
+}
+
+const GLuint &Mesh::getIbo() {
+    return ibo;
 }
