@@ -14,16 +14,26 @@ Mesh &Mesh::operator=(const Mesh &m) {
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ibo);
-    /*
-    Copy content of buffers
-    */
-    /*glBindVertexArray(vao);
-    ;glBindBuffer(GL_COPY_READ_BUFFER, m.getVbo());
-    ;glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, );
-    glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
-    */
 
+    glBindVertexArray(vao);
+
+    void *data = nullptr;
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+    glBindBuffer(GL_COPY_READ_BUFFER, m.getVbo());
+    data = glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * m.getVertexCount(),
+                 data, GL_STATIC_DRAW);
+
+
+    glBindBuffer(GL_COPY_READ_BUFFER, m.getIbo());
+    data = glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * m.getIndexCount(),
+                 data, GL_STATIC_DRAW);
+
+    glBindVertexArray(0);
     return *this;
 }
 
@@ -34,20 +44,21 @@ Mesh::~Mesh() {
 }
 
 void Mesh::addVertices(Vertex *vertices,
-                       const unsigned &numVertices,
+                       const unsigned &vertexCount,
                        unsigned *indices,
-                       const unsigned &_numIndices) {
+                       const unsigned &indexCount) {
     ASSERT(glIsVertexArray(vao) == GL_TRUE,
            "'vao' member is not a valid vertex array object.");
 
     auto vSize = sizeof(Vertex);
 
-    numIndices = _numIndices;
+    this->vertexCount = vertexCount;
+    this->indexCount = indexCount;
 
     glBindVertexArray(vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, vSize * numVertices,
+    glBufferData(GL_ARRAY_BUFFER, vSize * vertexCount,
                  vertices, GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
@@ -63,7 +74,7 @@ void Mesh::addVertices(Vertex *vertices,
                           BUFFER_OFFSET(24)); // texCoord
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * numIndices,
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * indexCount,
                  indices, GL_STATIC_DRAW);
 
     glBindVertexArray(0);
@@ -76,12 +87,13 @@ void Mesh::addVertices(const std::vector<Vertex> &vertices,
 
     auto vSize = sizeof(Vertex);
 
-    numIndices = indices.size();
+    vertexCount = vertices.size();
+    indexCount = indices.size();
 
     glBindVertexArray(vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, vSize * vertices.size(),
+    glBufferData(GL_ARRAY_BUFFER, vSize * vertexCount,
                  &vertices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
@@ -97,7 +109,7 @@ void Mesh::addVertices(const std::vector<Vertex> &vertices,
                           BUFFER_OFFSET(24)); // texCoord
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * numIndices,
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * indexCount,
                  &indices[0], GL_STATIC_DRAW);
 
     glBindVertexArray(0);
@@ -108,7 +120,7 @@ void Mesh::render() const {
            "'vao' member is not a valid vertex array object.");
 
     glBindVertexArray(vao);
-    glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, BUFFER_OFFSET(0));
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, BUFFER_OFFSET(0));
     glBindVertexArray(0);
 }
 
@@ -116,10 +128,18 @@ const GLuint &Mesh::getVao() const {
     return vao;
 }
 
-const GLuint &Mesh::getVbo() {
+const GLuint &Mesh::getVbo() const {
     return vbo;
 }
 
-const GLuint &Mesh::getIbo() {
+const GLuint &Mesh::getIbo() const {
     return ibo;
+}
+
+const unsigned &Mesh::getVertexCount() const {
+    return vertexCount;
+}
+
+const unsigned &Mesh::getIndexCount() const {
+    return indexCount;
 }

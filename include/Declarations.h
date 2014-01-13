@@ -13,6 +13,7 @@ class Graphics;
 class Keyboard;
 class Logger;
 class Mesh;
+class Physics;
 class ResourceManager;
 class ShaderProgram;
 struct Vertex;
@@ -31,5 +32,7 @@ using ProgramMap = std::unordered_map<std::string, ShaderProgram*>;
 using ProgramPair = std::pair<std::string, ShaderProgram*>;
 using MeshMap = std::unordered_map<std::string, Mesh*>;
 using MeshPair = std::pair<std::string, Mesh*>;
+using EntityMap = std::unordered_map<std::string, Entity*>;
+using EntityPair = std::pair<std::string, Entity*>;
 
 #endif // DECLARATIONS_H

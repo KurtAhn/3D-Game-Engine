@@ -4,9 +4,11 @@ include/GL/
 include/GLFW/
 include/glm/
 include/rapidxml/
+include/bullet/
 lib/
 obj/
 
 .gitattributes
-3D Game Engine.cbp
-3D Game Engine.depend
+3D\ Game\ Engine.cbp
+3D\ Game\ Engine.depend
+3D\ Game\ Engine.layout

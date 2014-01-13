@@ -52,7 +52,11 @@ World *ResourceManager::loadWorld() {
     return world;
 }
 
+void ResourceManager::loadEntities(World *const &world) {
+    EntityMap entities;
 
+    world->setEntities(entities);
+}
 
 Graphics *ResourceManager::loadGraphics() {
     Graphics *graphics = new Graphics;

@@ -9,18 +9,18 @@
  * Container for objects related to game logic.
  */
 class World {
-    using EntityMap = std::unordered_map<std::string, Entity*>;
 public:
     World();
     virtual ~World();
 
-    const EntityMap &getEntities();
-    Entity *const &getEntity(const std::string &key);
+    const EntityMap &getEntities() const;
+    Entity *const &getEntity(const std::string &key) const;
+    void setEntities(const EntityMap &entities);
     void insertEntity(const std::string &key, Entity *const &entity);
     void deleteEntity(const std::string &key);
 
-    Camera *const &getCamera();
-    void setCamera(Camera *const &_camera);
+    Camera *const &getCamera() const;
+    void setCamera(Camera *const &camera);
 protected:
     EntityMap entities;
     Camera *camera = nullptr;

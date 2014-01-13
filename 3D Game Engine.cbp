@@ -38,6 +38,7 @@
 		</Compiler>
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/Common.h" />
+		<Unit filename="include/Declarations.h" />
 		<Unit filename="include/Directories.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Exception.h" />

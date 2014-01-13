@@ -1,7 +1,6 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#define LOG_ERROR(e) Logger::getInstance()->write(__FILE__, __LINE__, e.what())
 
 #define DEBUG
 #ifdef DEBUG
@@ -14,8 +13,13 @@
                       << "Details: " << (m) << std::endl;\
             exit(EXIT_FAILURE);\
         }
+
+    #define LOG_ERROR(e) std::cerr << __FILE__ << std::endl\
+                                   << __LINE__ << std::endl\
+                                   << e.what() << std::endl << std::endl;
 #else
     #define ASSERT(c, m)
+    #define LOG_ERROR(e) Logger::getInstance()->write(__FILE__, __LINE__, e.what())
 #endif
 
 #define STACK_TRACE
@@ -44,6 +48,8 @@
 //#include "rapidxml/rapidxml_iterators.hpp"
 //#include "rapidxml/rapidxml_print.hpp"
 //#include "rapidxml/rapidxml_utils.hpp"
+#include "btBulletCollisionCommon.h"
+#include "btBulletDynamicsCommon.h"
 
 #include "Declarations.h"
 #include "Directories.h"

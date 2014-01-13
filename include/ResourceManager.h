@@ -30,6 +30,8 @@ private:
 
     std::string saveDirectory;
 
+    void loadEntities(World *const &world);
+
     void loadPrograms(Graphics *const &graphics);
     ShaderMap loadShaders();
 

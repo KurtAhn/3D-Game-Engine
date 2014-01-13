@@ -39,7 +39,7 @@ void Logger::write(const std::string &file, const int &line, const std::string &
     // TODO: Add time of error.
     output << "In file: " << file << std::endl
            << "In line: " << line << std::endl
-           << "Message: " << message << std::endl;
+           << "Message: " << message << std::endl << std::endl;
 }
 
 Logger *Logger::createInstance() {

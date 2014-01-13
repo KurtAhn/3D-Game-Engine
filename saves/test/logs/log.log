@@ -4,3 +4,12 @@ Message: A GLEW exception occured. GLEW initialization failed.
 In file: C:\Users\Kurt Ahn\Documents\GitHub\3D-Game-Engine\src\Game.cpp
 In line: 29
 Message: A GLEW exception occured. GLEW initialization failed.
+In file: C:\Users\Kurt Ahn\Documents\GitHub\3D-Game-Engine\src\Keyboard.cpp
+In line: 49
+Message: A null pointer exception occurred. 'world' is null.
+In file: C:\Users\Kurt Ahn\Documents\GitHub\3D-Game-Engine\src\Game.cpp
+In line: 58
+Message: A null pointer exception occurred. 'world' is null.
+In file: C:\Users\Kurt Ahn\Documents\GitHub\3D-Game-Engine\main.cpp
+In line: 18
+Message: A null pointer exception occurred. 'world' is null.

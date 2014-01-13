@@ -26,9 +26,11 @@ public:
     const GLuint &getVao() const;
     const GLuint &getVbo() const;
     const GLuint &getIbo() const;
+    const unsigned &getVertexCount() const;
+    const unsigned &getIndexCount() const;
 private:
-    unsigned numIndices;
     GLuint vao, vbo, ibo;
+    unsigned vertexCount, indexCount;
 };
 
 #endif // MESH_H
