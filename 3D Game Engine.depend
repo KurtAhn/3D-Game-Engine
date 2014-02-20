@@ -5,7 +5,7 @@
 	"ResourceManager.h"
 	"Game.h"
 
-1389642902 c:\users\kurt ahn\documents\github\3d-game-engine\include\common.h
+1392626355 c:\users\kurt ahn\documents\github\3d-game-engine\include\common.h
 	<cstdlib>
 	<stdexcept>
 	<initializer_list>
@@ -20,11 +20,10 @@
 	"glm/glm.hpp"
 	"glm/gtx/quaternion.hpp"
 	"boost/lexical_cast.hpp"
+	"boost/filesystem.hpp"
 	"rapidxml/rapidxml.hpp"
 	"btBulletCollisionCommon.h"
 	"btBulletDynamicsCommon.h"
-	"Declarations.h"
-	"Directories.h"
 
 1374502400 c:\users\kurt ahn\documents\github\3d-game-engine\include\gl\glew.h
 	<stddef.h>
@@ -367,55 +366,59 @@
 
 1388010805 c:\users\kurt ahn\documents\github\3d-game-engine\include\glm\detail\_noise.hpp
 
-1389036049 c:\users\kurt ahn\documents\github\3d-game-engine\include\directories.h
+1389652360 c:\users\kurt ahn\documents\github\3d-game-engine\include\directories.h
 
-1389404308 c:\users\kurt ahn\documents\github\3d-game-engine\include\game.h
+1390697498 c:\users\kurt ahn\documents\github\3d-game-engine\include\game.h
 	"Common.h"
 	"Logger.h"
 	"Exception.h"
 	"ResourceManager.h"
 	"World.h"
 	"Graphics.h"
-	"Keyboard.h"
+	"Physics.h"
+	"InputManager.h"
 
 1389203173 c:\users\kurt ahn\documents\github\3d-game-engine\include\exception.h
 	"Common.h"
 
-1389641747 c:\users\kurt ahn\documents\github\3d-game-engine\include\resourcemanager.h
+1390697350 c:\users\kurt ahn\documents\github\3d-game-engine\include\resourcemanager.h
 	"Common.h"
+	"Directories.h"
 	"FileSystem.h"
 	"Logger.h"
 	"World.h"
 	"Graphics.h"
 	"Mesh.h"
 	"ShaderProgram.h"
+	"InputManager.h"
 
-1388986959 c:\users\kurt ahn\documents\github\3d-game-engine\include\logger.h
+1390675118 c:\users\kurt ahn\documents\github\3d-game-engine\include\logger.h
 	"Common.h"
+	"Directories.h"
 	"FileSystem.h"
 	"Exception.h"
 
 1389203173 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\exception.cpp
 	"Exception.h"
 
-1389404308 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\game.cpp
+1390697498 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\game.cpp
 	"Game.h"
 
-1389639288 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\logger.cpp
+1390675118 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\logger.cpp
 	"Logger.h"
 
-1388984662 c:\users\kurt ahn\documents\github\3d-game-engine\include\filesystem.h
+1390675137 c:\users\kurt ahn\documents\github\3d-game-engine\include\filesystem.h
 	"Common.h"
 	<windows.h>
 
 1389404118 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\entity.cpp
 	"Entity.h"
 
-1389404118 c:\users\kurt ahn\documents\github\3d-game-engine\include\entity.h
+1390675374 c:\users\kurt ahn\documents\github\3d-game-engine\include\entity.h
 	"Common.h"
 	"Mesh.h"
 
-1389638772 c:\users\kurt ahn\documents\github\3d-game-engine\include\mesh.h
+1390675540 c:\users\kurt ahn\documents\github\3d-game-engine\include\mesh.h
 	"Common.h"
 	"Vertex.h"
 
@@ -428,7 +431,7 @@
 1389638877 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\mesh.cpp
 	"Mesh.h"
 
-1389643211 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\resourcemanager.cpp
+1392626323 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\resourcemanager.cpp
 	"ResourceManager.h"
 
 1388982544 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\time.cpp
@@ -439,7 +442,7 @@
 1388982855 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\vertex.cpp
 	"Vertex.h"
 
-1388989951 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\world.cpp
+1389643230 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\world.cpp
 	"World.h"
 
 1389641094 c:\users\kurt ahn\documents\github\3d-game-engine\include\world.h
@@ -503,10 +506,10 @@
 1389403489 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\camera.cpp
 	"Camera.h"
 
-1389404608 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\graphics.cpp
+1390687686 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\graphics.cpp
 	"Graphics.h"
 
-1389404608 c:\users\kurt ahn\documents\github\3d-game-engine\include\graphics.h
+1390687686 c:\users\kurt ahn\documents\github\3d-game-engine\include\graphics.h
 	"Common.h"
 	"ShaderProgram.h"
 	"Mesh.h"
@@ -514,7 +517,7 @@
 	"World.h"
 	"Logger.h"
 
-1388989471 c:\users\kurt ahn\documents\github\3d-game-engine\include\shaderprogram.h
+1390675598 c:\users\kurt ahn\documents\github\3d-game-engine\include\shaderprogram.h
 	"Common.h"
 	"Exception.h"
 	"Camera.h"
@@ -3960,7 +3963,7 @@
 1242456556 c:\users\kurt ahn\documents\github\3d-game-engine\include\rapidxml\rapidxml_iterators.hpp
 	"rapidxml.hpp"
 
-1242456560 c:\users\kurt ahn\documents\github\3d-game-engine\include\rapidxml\rapidxml_print.hpp
+1392677889 c:\users\kurt ahn\documents\github\3d-game-engine\include\rapidxml\rapidxml_print.hpp
 	"rapidxml.hpp"
 	<ostream>
 	<iterator>
@@ -3972,7 +3975,7 @@
 	<fstream>
 	<stdexcept>
 
-1389404152 c:\users\kurt ahn\documents\github\3d-game-engine\include\keyboard.h
+1389830257 c:\users\kurt ahn\documents\github\3d-game-engine\include\keyboard.h
 	"Common.h"
 	"Logger.h"
 	"Exception.h"
@@ -3980,9 +3983,9 @@
 	"World.h"
 	"Camera.h"
 
-1389642920 c:\users\kurt ahn\documents\github\3d-game-engine\include\declarations.h
+1389829765 c:\users\kurt ahn\documents\github\3d-game-engine\include\declarations.h
 
-1389404152 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\keyboard.cpp
+1389830453 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\keyboard.cpp
 	"Keyboard.h"
 
 1343755071 c:\users\kurt ahn\documents\github\3d-game-engine\include\bullet\btbulletcollisioncommon.h
@@ -4510,4 +4513,685 @@
 1389642953 c:\users\kurt ahn\documents\github\3d-game-engine\include\physics.h
 	"Common.h"
 	"World.h"
+
+1389827960 c:\users\kurt ahn\documents\github\3d-game-engine\include\mouse.h
+	"Common.h"
+	"Logger.h"
+	"Exception.h"
+	"Game.h"
+	"World.h"
+	"Camera.h"
+
+1389827960 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\mouse.cpp
+	"Mouse.h"
+
+1389832097 c:\users\kurt ahn\documents\github\3d-game-engine\include\windowlistener.h
+	"Common.h"
+	"Logger.h"
+	"Exception.h"
+	"Game.h"
+
+1389829639 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\windowlistener.cpp
+	"WindowListener.h"
+
+1392625945 c:\users\kurt ahn\documents\github\3d-game-engine\include\inputmanager.h
+	"Common.h"
+
+1392625980 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\inputmanager.cpp
+	"InputManager.h"
+
+1379794620 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\filesystem.hpp
+	<boost/filesystem/config.hpp>
+	<boost/filesystem/path.hpp>
+	<boost/filesystem/operations.hpp>
+	<boost/filesystem/convenience.hpp>
+
+1337607883 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\filesystem\config.hpp
+	<boost/config.hpp>
+	<boost/system/api_config.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/config/auto_link.hpp>
+
+1278413250 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\system\api_config.hpp
+
+1379436951 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\config\auto_link.hpp
+	<boost/config.hpp>
+	<boost/version.hpp>
+
+1379794620 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\version.hpp
+
+1337607883 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\filesystem\path.hpp
+	<boost/config.hpp>
+	<boost/filesystem/config.hpp>
+	<boost/filesystem/path_traits.hpp>
+	<boost/system/error_code.hpp>
+	<boost/system/system_error.hpp>
+	<boost/iterator/iterator_facade.hpp>
+	<boost/shared_ptr.hpp>
+	<boost/io/detail/quoted_manip.hpp>
+	<boost/static_assert.hpp>
+	<boost/functional/hash_fwd.hpp>
+	<boost/type_traits/is_integral.hpp>
+	<string>
+	<iterator>
+	<cstring>
+	<iosfwd>
+	<stdexcept>
+	<cassert>
+	<locale>
+	<algorithm>
+	<boost/config/abi_prefix.hpp>
+	<boost/config/abi_suffix.hpp>
+
+1337607883 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\filesystem\path_traits.hpp
+	<boost/config.hpp>
+	<boost/filesystem/config.hpp>
+	<boost/utility/enable_if.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/decay.hpp>
+	<boost/system/error_code.hpp>
+	<cwchar>
+	<string>
+	<vector>
+	<list>
+	<iterator>
+	<locale>
+	<boost/assert.hpp>
+	<boost/config/abi_prefix.hpp>
+	<boost/config/abi_suffix.hpp>
+
+1206222355 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\type_traits\decay.hpp
+	<boost/type_traits/config.hpp>
+	<boost/type_traits/is_array.hpp>
+	<boost/type_traits/is_function.hpp>
+	<boost/type_traits/remove_bounds.hpp>
+	<boost/type_traits/add_pointer.hpp>
+	<boost/type_traits/remove_reference.hpp>
+	<boost/mpl/eval_if.hpp>
+	<boost/mpl/identity.hpp>
+
+1364156429 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\system\error_code.hpp
+	<boost/system/config.hpp>
+	<boost/cstdint.hpp>
+	<boost/assert.hpp>
+	<boost/operators.hpp>
+	<boost/noncopyable.hpp>
+	<boost/utility/enable_if.hpp>
+	<ostream>
+	<string>
+	<stdexcept>
+	<functional>
+	<boost/cerrno.hpp>
+	<boost/config/abi_prefix.hpp>
+	<boost/config/abi_suffix.hpp>
+	<boost/../libs/system/src/error_code.cpp>
+
+1337607598 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\system\config.hpp
+	<boost/config.hpp>
+	<boost/system/api_config.hpp>
+	<boost/config/auto_link.hpp>
+
+1301000496 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\operators.hpp
+	<boost/config.hpp>
+	<boost/iterator.hpp>
+	<boost/detail/workaround.hpp>
+
+1365860992 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\noncopyable.hpp
+	<boost/config.hpp>
+
+1195144266 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\cerrno.hpp
+	<cerrno>
+
+1216118512 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\config\abi_prefix.hpp
+	<boost/config.hpp>
+
+1216118512 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\config\abi_suffix.hpp
+
+1364156429 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\system\system_error.hpp
+	<string>
+	<stdexcept>
+	<cassert>
+	<boost/system/error_code.hpp>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\shared_ptr.hpp
+	<boost/smart_ptr/shared_ptr.hpp>
+
+1361035283 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\shared_ptr.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/shared_ptr_nmt.hpp>
+	<boost/config/no_tr1/memory.hpp>
+	<boost/assert.hpp>
+	<boost/checked_delete.hpp>
+	<boost/throw_exception.hpp>
+	<boost/smart_ptr/detail/shared_count.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/smart_ptr/detail/sp_convertible.hpp>
+	<boost/smart_ptr/detail/sp_nullptr_t.hpp>
+	<boost/smart_ptr/detail/spinlock_pool.hpp>
+	<boost/memory_order.hpp>
+	<algorithm>
+	<functional>
+	<typeinfo>
+	<cstddef>
+	<iosfwd>
+	<ostream>
+	<boost/smart_ptr/detail/operator_bool.hpp>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\shared_ptr_nmt.hpp
+	<boost/assert.hpp>
+	<boost/checked_delete.hpp>
+	<boost/throw_exception.hpp>
+	<boost/smart_ptr/detail/atomic_count.hpp>
+	<memory>
+	<algorithm>
+	<functional>
+	<new>
+
+1092330787 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\checked_delete.hpp
+
+1240136270 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\atomic_count.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/sp_has_sync.hpp>
+	<boost/smart_ptr/detail/atomic_count_pthreads.hpp>
+	<boost/smart_ptr/detail/atomic_count_gcc_x86.hpp>
+	<boost/smart_ptr/detail/atomic_count_win32.hpp>
+	<boost/smart_ptr/detail/atomic_count_sync.hpp>
+	<boost/smart_ptr/detail/atomic_count_gcc.hpp>
+	<boost/smart_ptr/detail/atomic_count_pthreads.hpp>
+
+1352894278 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_has_sync.hpp
+
+1240136270 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\atomic_count_pthreads.hpp
+	<pthread.h>
+
+1240136270 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\atomic_count_gcc_x86.hpp
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\atomic_count_win32.hpp
+	<boost/detail/interlocked.hpp>
+
+1382623313 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\detail\interlocked.hpp
+	<boost/config.hpp>
+	<windows.h>
+	<intrin.h>
+	<intrin.h>
+	<intrin.h>
+
+1240136270 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\atomic_count_sync.hpp
+	<ia64intrin.h>
+
+1240136270 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\atomic_count_gcc.hpp
+	<ext/atomicity.h>
+	<bits/atomicity.h>
+
+1129739920 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\config\no_tr1\memory.hpp
+	<memory>
+
+1362644328 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\shared_count.hpp
+	<boost/config.hpp>
+	<boost/checked_delete.hpp>
+	<boost/throw_exception.hpp>
+	<boost/smart_ptr/bad_weak_ptr.hpp>
+	<boost/smart_ptr/detail/sp_counted_base.hpp>
+	<boost/smart_ptr/detail/sp_counted_impl.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/config/no_tr1/memory.hpp>
+	<functional>
+	<new>
+	<boost/utility/addressof.hpp>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\bad_weak_ptr.hpp
+	<exception>
+
+1355410389 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/sp_has_sync.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_nt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_spin.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_pt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_nt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_snc_ps3.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_x86.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_acc_ia64.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_ia64.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_vacpp_ppc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_cw_ppc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_ppc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_mips.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_sync.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_gcc_sparc.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_w32.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_aix.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_nt.hpp>
+	<boost/smart_ptr/detail/sp_counted_base_spin.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_nt.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1287959094 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\detail\sp_typeinfo.hpp
+	<boost/config.hpp>
+	<boost/current_function.hpp>
+	<functional>
+	<typeinfo>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_spin.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<boost/smart_ptr/detail/spinlock_pool.hpp>
+
+1300836575 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\spinlock_pool.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/spinlock.hpp>
+	<cstddef>
+
+1300839234 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\spinlock.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/sp_has_sync.hpp>
+	<boost/smart_ptr/detail/spinlock_pt.hpp>
+	<boost/smart_ptr/detail/spinlock_gcc_arm.hpp>
+	<boost/smart_ptr/detail/spinlock_sync.hpp>
+	<boost/smart_ptr/detail/spinlock_w32.hpp>
+	<boost/smart_ptr/detail/spinlock_pt.hpp>
+	<boost/smart_ptr/detail/spinlock_nt.hpp>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\spinlock_pt.hpp
+	<pthread.h>
+
+1352891868 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\spinlock_gcc_arm.hpp
+	<boost/smart_ptr/detail/yield_k.hpp>
+
+1382623526 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\yield_k.hpp
+	<boost/config.hpp>
+	<windows.h>
+	<sched.h>
+	<time.h>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\spinlock_sync.hpp
+	<boost/smart_ptr/detail/yield_k.hpp>
+	<ia64intrin.h>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\spinlock_w32.hpp
+	<boost/detail/interlocked.hpp>
+	<boost/smart_ptr/detail/yield_k.hpp>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\spinlock_nt.hpp
+	<boost/assert.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_pt.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<pthread.h>
+
+1356278847 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_snc_ps3.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<inttypes.h>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_gcc_x86.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_acc_ia64.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<machine/sys/inline.h>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_gcc_ia64.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_vacpp_ppc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_cw_ppc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_gcc_ppc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_gcc_mips.hpp
+	<boost/detail/sp_typeinfo.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_sync.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<limits.h>
+	<ia64intrin.h>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_gcc_sparc.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<inttypes.h>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_w32.hpp
+	<boost/detail/interlocked.hpp>
+	<boost/detail/workaround.hpp>
+	<boost/detail/sp_typeinfo.hpp>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_base_aix.hpp
+	<boost/detail/sp_typeinfo.hpp>
+	<builtins.h>
+	<sys/atomic_op.h>
+
+1355410632 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_counted_impl.hpp
+	<boost/config.hpp>
+	<boost/checked_delete.hpp>
+	<boost/smart_ptr/detail/sp_counted_base.hpp>
+	<boost/smart_ptr/detail/quick_allocator.hpp>
+	<memory>
+	<cstddef>
+
+1260812659 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\quick_allocator.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/lightweight_mutex.hpp>
+	<boost/type_traits/type_with_alignment.hpp>
+	<boost/type_traits/alignment_of.hpp>
+	<new>
+	<cstddef>
+
+1236011851 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\lightweight_mutex.hpp
+	<boost/config.hpp>
+	<boost/smart_ptr/detail/lwm_nop.hpp>
+	<boost/smart_ptr/detail/lwm_pthreads.hpp>
+	<boost/smart_ptr/detail/lwm_win32_cs.hpp>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\lwm_nop.hpp
+
+1259612701 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\lwm_pthreads.hpp
+	<boost/assert.hpp>
+	<pthread.h>
+
+1236010936 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\lwm_win32_cs.hpp
+	<windows.h>
+
+1325956680 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\type_traits\type_with_alignment.hpp
+	<boost/mpl/if.hpp>
+	<boost/preprocessor/list/for_each_i.hpp>
+	<boost/preprocessor/tuple/to_list.hpp>
+	<boost/preprocessor/cat.hpp>
+	<boost/preprocessor/list/transform.hpp>
+	<boost/preprocessor/list/append.hpp>
+	<boost/type_traits/alignment_of.hpp>
+	<boost/type_traits/is_pod.hpp>
+	<boost/static_assert.hpp>
+	<boost/config.hpp>
+	<boost/type_traits/detail/bool_trait_def.hpp>
+	<cstddef>
+	<boost/type_traits/detail/bool_trait_undef.hpp>
+
+1095090689 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\preprocessor\list\transform.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/list/fold_right.hpp>
+	<boost/preprocessor/tuple/elem.hpp>
+	<boost/preprocessor/tuple/rem.hpp>
+
+1095090689 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\preprocessor\list\append.hpp
+	<boost/preprocessor/config/config.hpp>
+	<boost/preprocessor/list/fold_right.hpp>
+
+1303734408 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\type_traits\alignment_of.hpp
+	<boost/config.hpp>
+	<cstddef>
+	<boost/type_traits/intrinsics.hpp>
+	<boost/type_traits/detail/size_t_trait_def.hpp>
+	<boost/type_traits/detail/size_t_trait_undef.hpp>
+
+1303734408 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\type_traits\detail\size_t_trait_def.hpp
+	<boost/type_traits/detail/template_arity_spec.hpp>
+	<boost/type_traits/integral_constant.hpp>
+	<boost/mpl/aux_/lambda_support.hpp>
+	<boost/mpl/size_t.hpp>
+	<cstddef>
+
+1223705942 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\mpl\size_t.hpp
+	<boost/mpl/size_t_fwd.hpp>
+	<boost/mpl/aux_/integral_wrapper.hpp>
+
+1223705942 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\mpl\size_t_fwd.hpp
+	<boost/mpl/aux_/adl_barrier.hpp>
+	<boost/config.hpp>
+	<cstddef>
+
+1094139697 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\type_traits\detail\size_t_trait_undef.hpp
+
+1352901131 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_convertible.hpp
+	<boost/config.hpp>
+
+1357774891 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\sp_nullptr_t.hpp
+	<boost/config.hpp>
+	<cstddef>
+
+1259862637 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\memory_order.hpp
+
+1355250921 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\smart_ptr\detail\operator_bool.hpp
+
+1295032915 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\io\detail\quoted_manip.hpp
+	<iosfwd>
+	<ios>
+	<string>
+	<iterator>
+	<boost/io/ios_state.hpp>
+
+1262768123 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\io\ios_state.hpp
+	<boost/io_fwd.hpp>
+	<boost/detail/workaround.hpp>
+	<ios>
+	<locale>
+	<ostream>
+	<streambuf>
+	<string>
+
+1092564829 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\io_fwd.hpp
+	<iosfwd>
+
+1337607883 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\filesystem\operations.hpp
+	<boost/config.hpp>
+	<boost/filesystem/config.hpp>
+	<boost/filesystem/path.hpp>
+	<boost/detail/scoped_enum_emulation.hpp>
+	<boost/detail/bitmask.hpp>
+	<boost/system/error_code.hpp>
+	<boost/system/system_error.hpp>
+	<boost/shared_ptr.hpp>
+	<boost/utility/enable_if.hpp>
+	<boost/type_traits/is_same.hpp>
+	<boost/iterator.hpp>
+	<boost/cstdint.hpp>
+	<boost/assert.hpp>
+	<string>
+	<utility>
+	<ctime>
+	<vector>
+	<stack>
+	<fstream>
+	<boost/config/abi_prefix.hpp>
+	<boost/config/abi_suffix.hpp>
+
+1379794620 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\detail\scoped_enum_emulation.hpp
+	<boost/config.hpp>
+	<boost/detail/workaround.hpp>
+
+1297779522 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\detail\bitmask.hpp
+	<boost/cstdint.hpp>
+
+1337607883 c:\users\kurt ahn\documents\github\3d-game-engine\include\boost\filesystem\convenience.hpp
+	<boost/config.hpp>
+	<boost/filesystem/operations.hpp>
+	<boost/system/error_code.hpp>
+	<boost/config/abi_prefix.hpp>
+	<boost/config/abi_suffix.hpp>
+
+1389203173 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exception.cpp
+	"Exception.h"
+
+1389203173 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exception.h
+	"Common.h"
+
+1392749953 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\common.h
+	<cstdlib>
+	<stdexcept>
+	<initializer_list>
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+	<vector>
+	<unordered_map>
+	<set>
+	"GL/glew.h"
+	"GLFW/glfw3.h"
+	"glm/glm.hpp"
+	"glm/gtx/quaternion.hpp"
+	"boost/lexical_cast.hpp"
+	"boost/filesystem.hpp"
+	"rapidxml/rapidxml.hpp"
+	"rapidxml/rapidxml_print.hpp"
+	"btBulletCollisionCommon.h"
+	"btBulletDynamicsCommon.h"
+
+1392892248 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\camera.cpp
+	"Camera.h"
+
+1392783408 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\camera.h
+	"Common.h"
+
+1392896037 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphics.cpp
+	"Graphics.h"
+
+1392782259 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphics.h
+	"Common.h"
+	"ShaderProgram.h"
+	"ShaderProgramCache.h"
+	"Mesh.h"
+	"MeshCache.h"
+	"Camera.h"
+	"World.h"
+	"Logger.h"
+
+1392723080 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\shaderprogram.h
+	"Common.h"
+	"Exception.h"
+	"Camera.h"
+
+1390675540 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\mesh.h
+	"Common.h"
+	"Vertex.h"
+
+1388982832 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\vertex.h
+	"Common.h"
+
+1392783306 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logic\world.h
+	"Common.h"
+	"Entity.h"
+	"Camera.h"
+
+1390675374 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logic\entity.h
+	"Common.h"
+	"Mesh.h"
+
+1392627566 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logger.h
+	"Common.h"
+	"Directories.h"
+	"Exception.h"
+
+1392897188 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\directories.h
+
+1389638877 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\mesh.cpp
+	"Mesh.h"
+
+1392780642 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogram.cpp
+	"ShaderProgram.h"
+
+1388982855 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\vertex.cpp
+	"Vertex.h"
+
+1392625980 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\inputmanager.cpp
+	"InputManager.h"
+
+1392625945 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputmanager.h
+	"Common.h"
+
+1392723236 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\resourcemanager.cpp
+	"ResourceManager.h"
+
+1392723159 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\resourcemanager.h
+	"Common.h"
+	"Directories.h"
+	"Logger.h"
+	"World.h"
+	"Graphics.h"
+	"Mesh.h"
+	"ShaderProgram.h"
+	"InputManager.h"
+
+1392627624 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logger.cpp
+	"Logger.h"
+
+1389404118 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logic\entity.cpp
+	"Entity.h"
+
+1392783306 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logic\game.cpp
+	"Game.h"
+
+1390697498 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logic\game.h
+	"Common.h"
+	"Logger.h"
+	"Exception.h"
+	"ResourceManager.h"
+	"World.h"
+	"Graphics.h"
+	"Physics.h"
+	"InputManager.h"
+
+1389642953 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physics.h
+	"Common.h"
+	"World.h"
+
+1392783306 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logic\world.cpp
+	"World.h"
+
+1389643195 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physics.cpp
+	"Physics.h"
+
+1392780705 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\main.cpp
+	"Common.h"
+	"Logger.h"
+	"ResourceManager.h"
+	"Game.h"
+	"XMLParser.h"
+	"ShaderProgramCache.h"
+
+1392780147 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\cache.cpp
+	"Cache.h"
+
+1392713045 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\cache.h
+	"Common.h"
+	"Directories.h"
+	"Mesh.h"
+	"ShaderProgram.h"
+
+1392700768 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\xmlparser.h
+	"Common.h"
+
+1392700768 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\xmlparser.cpp
+	"XMLParser.h"
+
+1392713210 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\meshcache.h
+	"Common.h"
+	"Exception.h"
+	"Cache.h"
+	"Mesh.h"
+
+1392783973 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\meshcache.cpp
+	"MeshCache.h"
+
+1392713489 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\shaderprogramcache.h
+	"Common.h"
+	"Exception.h"
+	"Cache.h"
+	"ShaderProgram.h"
+
+1392713539 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogramcache.cpp
+	"ShaderProgramCache.h"
+
+1392782404 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\shaderprogramcache.h
+	"Common.h"
+	"Exception.h"
+	"Cache.h"
+	"ShaderProgram.h"
+	"XMLParser.h"
+
+1392895758 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\shaderprogramcache.cpp
+	"ShaderProgramCache.h"
 

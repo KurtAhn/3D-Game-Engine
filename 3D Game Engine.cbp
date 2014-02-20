@@ -14,9 +14,19 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include" />
+					<Add directory="include/engine" />
+					<Add directory="include/bullet" />
+					<Add directory="include/engine/graphics" />
+					<Add directory="include/engine/physics" />
+					<Add directory="include/engine/logic" />
+					<Add directory="include/engine/io" />
+					<Add directory="include/engine/gui" />
+					<Add directory="include/engine/audio" />
+					<Add directory="include/engine/input" />
 				</Compiler>
 				<Linker>
 					<Add option="-lglew32s -lglfw3 -lopengl32 -lbullet -lglm" />
+					<Add option="-lboost_system -lboost_filesystem" />
 					<Add directory="lib" />
 				</Linker>
 			</Target>
@@ -36,36 +46,44 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="include/Camera.h" />
-		<Unit filename="include/Common.h" />
-		<Unit filename="include/Declarations.h" />
-		<Unit filename="include/Directories.h" />
-		<Unit filename="include/Entity.h" />
-		<Unit filename="include/Exception.h" />
-		<Unit filename="include/FileSystem.h" />
-		<Unit filename="include/Game.h" />
-		<Unit filename="include/Graphics.h" />
-		<Unit filename="include/Keyboard.h" />
-		<Unit filename="include/Logger.h" />
-		<Unit filename="include/Mesh.h" />
-		<Unit filename="include/ResourceManager.h" />
-		<Unit filename="include/ShaderProgram.h" />
-		<Unit filename="include/Vertex.h" />
-		<Unit filename="include/World.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="src/Camera.cpp" />
-		<Unit filename="src/Entity.cpp" />
-		<Unit filename="src/Exception.cpp" />
-		<Unit filename="src/FileSystem.cpp" />
-		<Unit filename="src/Game.cpp" />
-		<Unit filename="src/Graphics.cpp" />
-		<Unit filename="src/Keyboard.cpp" />
-		<Unit filename="src/Logger.cpp" />
-		<Unit filename="src/Mesh.cpp" />
-		<Unit filename="src/ResourceManager.cpp" />
-		<Unit filename="src/ShaderProgram.cpp" />
-		<Unit filename="src/Vertex.cpp" />
-		<Unit filename="src/World.cpp" />
+		<Unit filename="include/engine/Common.h" />
+		<Unit filename="include/engine/Declarations.h" />
+		<Unit filename="include/engine/Directories.h" />
+		<Unit filename="include/engine/Exception.h" />
+		<Unit filename="include/engine/Logger.h" />
+		<Unit filename="include/engine/graphics/Camera.h" />
+		<Unit filename="include/engine/graphics/Graphics.h" />
+		<Unit filename="include/engine/graphics/Mesh.h" />
+		<Unit filename="include/engine/graphics/ShaderProgram.h" />
+		<Unit filename="include/engine/graphics/Vertex.h" />
+		<Unit filename="include/engine/input/InputManager.h" />
+		<Unit filename="include/engine/io/Cache.h" />
+		<Unit filename="include/engine/io/MeshCache.h" />
+		<Unit filename="include/engine/io/ResourceManager.h" />
+		<Unit filename="include/engine/io/ShaderProgramCache.h" />
+		<Unit filename="include/engine/io/XMLParser.h" />
+		<Unit filename="include/engine/logic/Entity.h" />
+		<Unit filename="include/engine/logic/Game.h" />
+		<Unit filename="include/engine/logic/World.h" />
+		<Unit filename="include/engine/physics/Physics.h" />
+		<Unit filename="src/engine/Exception.cpp" />
+		<Unit filename="src/engine/Logger.cpp" />
+		<Unit filename="src/engine/graphics/Camera.cpp" />
+		<Unit filename="src/engine/graphics/Graphics.cpp" />
+		<Unit filename="src/engine/graphics/Mesh.cpp" />
+		<Unit filename="src/engine/graphics/ShaderProgram.cpp" />
+		<Unit filename="src/engine/graphics/Vertex.cpp" />
+		<Unit filename="src/engine/input/InputManager.cpp" />
+		<Unit filename="src/engine/io/Cache.cpp" />
+		<Unit filename="src/engine/io/MeshCache.cpp" />
+		<Unit filename="src/engine/io/ResourceManager.cpp" />
+		<Unit filename="src/engine/io/ShaderProgramCache.cpp" />
+		<Unit filename="src/engine/io/XMLParser.cpp" />
+		<Unit filename="src/engine/logic/Entity.cpp" />
+		<Unit filename="src/engine/logic/Game.cpp" />
+		<Unit filename="src/engine/logic/World.cpp" />
+		<Unit filename="src/engine/physics/Physics.cpp" />
+		<Unit filename="src/test/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
