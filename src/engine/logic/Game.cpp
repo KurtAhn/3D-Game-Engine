@@ -5,7 +5,7 @@ Game::Game() = default;
 Game::~Game() {
     delete world;
     delete graphics;
-    delete physics;
+    //delete physics;
     delete inputManager;
 }
 
@@ -28,6 +28,7 @@ void Game::init(const std::string &save) {
 
         world = new World;
         graphics = new Graphics;
+        inputManager = InputManager::createInstance(window);
     } catch (const std::runtime_error &e) {
         LOG_ERROR(e);
         RETHROW;
@@ -37,9 +38,13 @@ void Game::init(const std::string &save) {
 void Game::run() {
     ASSERT(window,
            "'window' member is null.");
+    ASSERT(graphics,
+           "'graphics' member is null.");
+    ASSERT(inputManager,
+           "'inputManager' member is null.");
 
     while (!glfwWindowShouldClose(window)) {
-        inputManager->handleInputs();
+        inputManager->process();
         if (!paused) {
             graphics->render(window, world);
         }

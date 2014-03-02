@@ -20,6 +20,7 @@ public:
 
 private:
     xml_document<> *document;
+    std::string source;
 };
 
 #endif // XMLPARSER_H

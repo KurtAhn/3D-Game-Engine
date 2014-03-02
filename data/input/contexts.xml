@@ -1,0 +1,48 @@
+<contexts>
+	<context name="normal">
+		<events>
+			<key_event key="w" action="press">
+				<activity name="move_forward"/>
+				<transition/>
+			</key_event>
+			
+			<key_event key="s" action="press">
+				<activity name="move_backward"/>
+				<transition/>
+			</key_event>
+			
+			<key_event key="a" action="press">
+				<activity name="move_left"/>
+				<transition/>
+			</key_event>
+			
+			<key_event key="d" action="press">
+				<activity name="move_right"/>
+				<transition/>
+			</key_event>
+			
+			<key_event key="" action="press">
+				<activity/>
+				<transition to="holding_item"/>
+			</key_event>
+		</events>
+	
+		<contexts>
+			<context name="holding_item">
+				<events>
+					<mouse_button_event button="left" action="press">
+						<activity name="select_item"/>
+						<transition/>
+					</mouse_button_event>
+				</events>
+				
+				<contexts/>
+			</context>
+		</contexts>
+	</context>
+	
+	<context name="paused">
+		<events/>
+		<contexts/>
+	</context>
+</contexts>

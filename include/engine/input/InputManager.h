@@ -2,66 +2,83 @@
 #define INPUTMANAGER_H
 
 #include "Common.h"
+#include "Event.h"
+#include "Interactable.h"
+#include "Actor.h"
+#include "Context.h"
+
 class Game;
 
-struct Input{};
+/**
+ * A singleton input management module based on event callbacks.
+ *
+ * The module is initialized with an external input configuration xml file.
+ * Prior to every frame, GLFW event callbacks are called when user inputs are
+ * fired. These events are stored in an event queue. The queue is polled when
+ * handleInputs() is called. As the queue is being polled, each event is mapped
+ * to an activity in the event map of the lowest relevant current context.
+ * If the event is successfully mapped to an existing activity, the activity is
+ * dipatched.
+ */
 
-struct KeyEvent : Input {
-    unsigned key;
-    unsigned event;
-};
-
-struct KeyState : Input {
-    unsigned key;
-    bool state;
-};
-
-struct MouseEvent : Input {
-    unsigned button;
-    unsigned event;
-};
-
-struct MouseState : Input {
-    unsigned button;
-    bool state;
-};
-
-struct MouseMotion : Input {
-    double sensitivity;
-};
-
-struct MouseWheelMotion : Input {
-    double sensitivity;
-};
-
-struct Activity {
-    void (*action) (Game *const &game);
-    Input input;
-};
-
-using Context = std::unordered_map<std::string, Activity>;
-
-//struct Context {
- //   std::string name;
-  //  std::vector<Activity> activities;
-//};
+using EventQueue = std::deque<Event *>;
 
 class InputManager {
+// Singleton instance
+private:
+    static InputManager *instance;
 public:
-    InputManager();
+    static InputManager *const &getInstance();
+    static InputManager *const &createInstance(GLFWwindow *const &window);
+
+// Static callbacks
+public:
+    static void keyPressed(GLFWwindow *window, int key, int scancode, int action, int mods);
+    static void mouseEntered(GLFWwindow *window, int entered);
+    static void mouseMoved(GLFWwindow *window, double xpos, double ypos);
+    static void mouseButtonPressed(GLFWwindow *window, int button, int action, int mods);
+    static void mouseWheelMoved(GLFWwindow *window, double xoffset, double yoffset);
+    static void windowClosing(GLFWwindow *window);
+    static void windowFocused(GLFWwindow *window, int focused);
+    static void windowIconified(GLFWwindow *window, int iconified);
+    static void windowMoved(GLFWwindow *window, int xpos, int ypos);
+    static void windowRefreshed(GLFWwindow *window);
+    static void windowResized(GLFWwindow *window, int width, int height);
+
+// Constructor, destructor, copy control
+public:
     virtual ~InputManager();
 
-    void handleInputs();
+private:
+    InputManager() = delete;
+    explicit InputManager(GLFWwindow *const &window);
+    InputManager(const InputManager &src) = delete;
+    InputManager &operator=(const InputManager &src) = delete;
 
-    Context *const &getCurrentContext();
-    void setCurrentContext(Context *const &context);
 
-protected:
-    std::vector<Context> contexts;
-    Context *currentContext;
+// Member data and getters/setters
+private:
+    Actor *actor = nullptr;
+    Context *currentContext = nullptr;
+    ContextMap contexts;
+    EventQueue requests;
+public:
+    Actor *const &getActor() const;
+    void setActor(Actor *const &actor);
 
-    void initContexts();
-    void dispatchActivities();
+    Context *const &getCurrentContext() const;
+    void setCurrentContext(const std::string &key);
+
+    const ContextMap &getContexts() const;
+    void setContexts(const ContextMap &contexts);
+
+    const EventQueue &getRequests() const;
+    void setRequests(const EventQueue &requests);
+    void pushRequest(Event *const &request);
+
+// Other interfaces
+public:
+    void process();
 };
 
 #endif // INPUTMANAGER_H

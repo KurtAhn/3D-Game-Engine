@@ -39,6 +39,8 @@
 #include <vector>
 #include <unordered_map>
 #include <set>
+//#include <queue>
+#include <deque>
 
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"

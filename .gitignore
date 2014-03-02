@@ -5,6 +5,8 @@ include/GLFW/
 include/glm/
 include/rapidxml/
 include/bullet/
+include/ignore/
+src/ignore/
 lib/
 obj/
 

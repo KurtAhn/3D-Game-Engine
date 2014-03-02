@@ -47,7 +47,6 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="include/engine/Common.h" />
-		<Unit filename="include/engine/Declarations.h" />
 		<Unit filename="include/engine/Directories.h" />
 		<Unit filename="include/engine/Exception.h" />
 		<Unit filename="include/engine/Logger.h" />
@@ -56,10 +55,13 @@
 		<Unit filename="include/engine/graphics/Mesh.h" />
 		<Unit filename="include/engine/graphics/ShaderProgram.h" />
 		<Unit filename="include/engine/graphics/Vertex.h" />
+		<Unit filename="include/engine/input/Actor.h" />
+		<Unit filename="include/engine/input/Context.h" />
+		<Unit filename="include/engine/input/Event.h" />
 		<Unit filename="include/engine/input/InputManager.h" />
+		<Unit filename="include/engine/input/Interactable.h" />
 		<Unit filename="include/engine/io/Cache.h" />
 		<Unit filename="include/engine/io/MeshCache.h" />
-		<Unit filename="include/engine/io/ResourceManager.h" />
 		<Unit filename="include/engine/io/ShaderProgramCache.h" />
 		<Unit filename="include/engine/io/XMLParser.h" />
 		<Unit filename="include/engine/logic/Entity.h" />
@@ -73,10 +75,13 @@
 		<Unit filename="src/engine/graphics/Mesh.cpp" />
 		<Unit filename="src/engine/graphics/ShaderProgram.cpp" />
 		<Unit filename="src/engine/graphics/Vertex.cpp" />
+		<Unit filename="src/engine/input/Actor.cpp" />
+		<Unit filename="src/engine/input/Context.cpp" />
+		<Unit filename="src/engine/input/Event.cpp" />
 		<Unit filename="src/engine/input/InputManager.cpp" />
+		<Unit filename="src/engine/input/Interactable.cpp" />
 		<Unit filename="src/engine/io/Cache.cpp" />
 		<Unit filename="src/engine/io/MeshCache.cpp" />
-		<Unit filename="src/engine/io/ResourceManager.cpp" />
 		<Unit filename="src/engine/io/ShaderProgramCache.cpp" />
 		<Unit filename="src/engine/io/XMLParser.cpp" />
 		<Unit filename="src/engine/logic/Entity.cpp" />

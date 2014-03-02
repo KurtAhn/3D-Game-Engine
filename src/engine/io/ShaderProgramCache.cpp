@@ -19,37 +19,45 @@ void ShaderProgramCache::load(const std::string &path) {
     xml_document<> *document = parser.getDocument();
     print(std::cout, *document);
 
-    for (xml_node<> *programNode = document->first_node("programs")->first_node("program");
+    xml_node<> *programsNode = document->first_node("programs");
+
+    for (xml_node<> *programNode = programsNode->first_node("program");
             programNode != nullptr;
-            programNode = programNode->next_sibling()) {
+            programNode = programNode->next_sibling("program")) {
+
         std::string programName = programNode->first_attribute("name")->value();
-        std::string programActive =
-            programNode->first_attribute("active")->value();
-        //temp
-        std::cout << programName << std::endl;
+        std::string programActive = programNode->first_attribute("active")->value();
+
+        std::cout << "Program name: " << programName << " Active? " << programActive << std::endl;
 
         ShaderProgram *program = new ShaderProgram;
         cache.emplace(programName, program);
 
+        //xml_node<> *shaderNode;
         for (xml_node<> *shaderNode = programNode->first_node("shader");
                 shaderNode != nullptr;
-                shaderNode = shaderNode->next_sibling()) {
-            std::string shaderFileName = shaderNode->value();
-            //temp
-            std::cout << shaderFileName << std::endl;
+                shaderNode = shaderNode->next_sibling("shader")) {
+            std::string shaderName = shaderNode->value();
+            std::string shaderType = shaderNode->first_attribute("type")->value();
 
-            auto type = getShaderType(shaderNode->first_attribute("type")->value());
+            std::cout << "  Shader name: " << shaderName << " Type: " << shaderType << std::endl;
+
+            auto type = getShaderType(shaderType);
+
             GLuint shader;
 
-            if (shaderFileNames.insert(shaderFileName).second) {
+            if (shaderFileNames.insert(shaderName).second) {
                 shader = glCreateShader(type);
-                shaders.emplace(shaderFileName, shader);
-                loadAndCompileShader(shader, path + shaderFileName);
+                shaders.emplace(shaderName, shader);
+                loadAndCompileShader(shader, path + shaderName);
+                //std::cout << shaderNode->next_sibling("shader") << std::endl;
+                print(std::cout, *document);
             } else {
-                shader = shaders.find(shaderFileName)->second;
+                shader = shaders.find(shaderName)->second;
             }
 
             program->addShader(shader, type);
+
         }
 
         program->link();
@@ -97,14 +105,10 @@ void ShaderProgramCache::loadAndCompileShader(
         if (!file)
             throw IOException(path + " is not a valid file.");
 
-        // load source line by line
-        std::string source;
-        std::string line;
-        while (getline(file, line))
-            source += line + "\n";
-
-        auto sourceCstr = source.c_str();
-        glShaderSource(shader, 1, &sourceCstr, nullptr);
+        std::ostringstream buffer;
+        buffer << file.rdbuf();
+        auto cstr = buffer.str().c_str();
+        glShaderSource(shader, 1, &cstr, nullptr);
 
         // compile shader
         glCompileShader(shader);
@@ -112,6 +116,7 @@ void ShaderProgramCache::loadAndCompileShader(
         if (status == GL_FALSE)
             throw GLException("Shader compilation failed.");
 
+        file.close();
     } catch (IOException &e) {
         LOG_ERROR(e);
         RETHROW;

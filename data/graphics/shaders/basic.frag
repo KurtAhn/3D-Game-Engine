@@ -9,4 +9,5 @@ in Fragment {
 void main() {
 	//fColor = vColor;
 	gl_FragColor = vec4(clamp(mod(f.position, 1), 0, 1), 1);
+	//gl_FragColor = vec4(1, 1, 1, 1);
 }
