@@ -17,7 +17,7 @@ void ShaderProgramCache::load(const std::string &path) {
     std::unordered_map<std::string, GLuint> shaders;
 
     xml_document<> *document = parser.getDocument();
-    print(std::cout, *document);
+    //print(std::cout, *document);
 
     xml_node<> *programsNode = document->first_node("programs");
 
@@ -28,7 +28,7 @@ void ShaderProgramCache::load(const std::string &path) {
         std::string programName = programNode->first_attribute("name")->value();
         std::string programActive = programNode->first_attribute("active")->value();
 
-        std::cout << "Program name: " << programName << " Active? " << programActive << std::endl;
+        //std::cout << "Program name: " << programName << " Active? " << programActive << std::endl;
 
         ShaderProgram *program = new ShaderProgram;
         cache.emplace(programName, program);
@@ -40,7 +40,7 @@ void ShaderProgramCache::load(const std::string &path) {
             std::string shaderName = shaderNode->value();
             std::string shaderType = shaderNode->first_attribute("type")->value();
 
-            std::cout << "  Shader name: " << shaderName << " Type: " << shaderType << std::endl;
+            //std::cout << "  Shader name: " << shaderName << " Type: " << shaderType << std::endl;
 
             auto type = getShaderType(shaderType);
 
@@ -51,7 +51,7 @@ void ShaderProgramCache::load(const std::string &path) {
                 shaders.emplace(shaderName, shader);
                 loadAndCompileShader(shader, path + shaderName);
                 //std::cout << shaderNode->next_sibling("shader") << std::endl;
-                print(std::cout, *document);
+                //print(std::cout, *document);
             } else {
                 shader = shaders.find(shaderName)->second;
             }
@@ -62,11 +62,11 @@ void ShaderProgramCache::load(const std::string &path) {
 
         program->link();
         //temp
-        std::cout << "program linked correctly." << std::endl;
+        //std::cout << "program linked correctly." << std::endl;
 
         if (programActive.compare("true") == 0) {
             activeProgram = program;
-            std::cout << "program active." << std::endl;
+            //std::cout << "program active." << std::endl;
         } if (!activeProgram)
             activeProgram = program;
     }

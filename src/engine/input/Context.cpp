@@ -1,9 +1,10 @@
 #include "Context.h"
 
-Context::Context(rapidxml::xml_node<> *const &node) {
-    using xml_node = rapidxml::xml_node<>;
+using namespace rapidxml;
 
-    // implement this
+Context::Context(xml_node<> *const &node) {
+    loadEvents(node->first_node("events"));
+    loadContexts(node->first_node("contexts"));
 }
 
 Context::~Context() {}
@@ -37,8 +38,16 @@ void Context::setEvents(const ReactionMap &events) {
 }
 
 Context *Context::findContext(const std::string &key) const {
-    // implement
-    return nullptr;
+    Context *value = nullptr;
+    auto index = contexts.find(key);
+
+    if (index == contexts.cend()) {
+        for (auto c : contexts)
+            if ((value = c.second->findContext(key)))
+                return value;
+    }
+
+    return value;
 }
 
 Reaction *Context::findReaction(Event *const &key) const {
@@ -46,4 +55,42 @@ Reaction *Context::findReaction(Event *const &key) const {
 
     if (v == events.cend()) return nullptr;
     return v->second;
+}
+
+inline
+void Context::loadEvents(xml_node<> *const &node) {
+//    rapidxml::print(std::cout, *node);
+
+    std::string eventType;
+
+    xml_node<> *eventNode = node->first_node();
+    print(std::cout, *eventNode);
+
+    while (eventNode) {
+        eventType = eventNode->name();
+
+        //if (eventNode->name().compare("key_event") == 0) {
+            // key event
+            events.emplace(new KeyEvent(eventNode),
+                           new Reaction(eventNode));
+
+            findReaction(new KeyEvent(eventNode));
+        //} else if (eventType.compare("mouse_button_event") == 0) {
+            // mouse button event
+        //}
+
+        eventNode = eventNode->next_sibling();
+    }
+}
+
+inline
+void Context::loadContexts(xml_node<> *const &node) {
+    xml_node<> *contextNode = node->first_node("context");
+
+    while (contextNode) {
+        contexts.emplace(contextNode->first_attribute("name")->value(),
+                         new Context(contextNode));
+
+        contextNode = contextNode->next_sibling("context");
+    }
 }

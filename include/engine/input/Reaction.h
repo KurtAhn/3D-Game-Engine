@@ -2,17 +2,15 @@
 #define REACTION_H
 
 #include "Common.h"
-
+#include "InputDeclaration.h"
+#include "InputManager.h"
 #include "Actor.h"
-
-class Context;
-
-using Activity = Context *(Actor::*)();
 
 struct Reaction {
 // Constructor, destructor, copy control
 public:
     explicit Reaction(Activity activity, Context *const &transition);
+    explicit Reaction(rapidxml::xml_node<> *const &node);
     virtual ~Reaction();
 private:
     Reaction() = delete;
@@ -21,8 +19,8 @@ private:
 
 // Member data
 public:
-    const Activity activity;
-    const Context *transition;
+    Activity activity;
+    Context *transition;
 
 // Other interfaces
 public:

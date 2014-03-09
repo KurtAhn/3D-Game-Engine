@@ -6,41 +6,49 @@
 class GLFWException : public std::runtime_error {
     static const std::string DEFAULT_MESSAGE;
 public:
-    GLFWException();
-    explicit GLFWException(const std::string &message);
+    GLFWException() = delete;
+    explicit GLFWException(const std::string &message = "");
     virtual ~GLFWException() throw();
 };
 
 class GLEWException : public std::runtime_error {
     static const std::string DEFAULT_MESSAGE;
 public:
-    GLEWException();
-    explicit GLEWException(const std::string &message);
+    GLEWException() = delete;
+    explicit GLEWException(const std::string &message = "");
     virtual ~GLEWException() throw();
 };
 
 class IOException : public std::runtime_error {
     static const std::string DEFAULT_MESSAGE;
 public:
-    IOException();
-    explicit IOException(const std::string &message);
+    IOException() = delete;
+    explicit IOException(const std::string &message = "");
     virtual ~IOException() throw();
 };
 
 class GLException : public std::runtime_error {
     static const std::string DEFAULT_MESSAGE;
 public:
-    GLException();
-    explicit GLException(const std::string &message);
+    GLException() = delete;
+    explicit GLException(const std::string &message = "");
     virtual ~GLException() throw();
 };
 
 class NullPointerException : public std::runtime_error {
     static const std::string DEFAULT_MESSAGE;
 public:
-    NullPointerException();
-    explicit NullPointerException(const std::string &message);
+    NullPointerException() = delete;
+    explicit NullPointerException(const std::string &message = "");
     virtual ~NullPointerException() throw();
+};
+
+class NoSuchEntryException : public std::runtime_error {
+    static const std::string DEFAULT_MESSAGE;
+public:
+    NoSuchEntryException() = delete;
+    explicit NoSuchEntryException(const std::string &message = "");
+    virtual ~NoSuchEntryException() throw();
 };
 
 #endif // EXCEPTION_H

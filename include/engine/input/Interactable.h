@@ -1,7 +1,12 @@
 #ifndef INTERACTABLE_H
 #define INTERACTABLE_H
 
+#include "Common.h"
+#include "InputDeclaration.h"
 
+/**
+ * Base class for interactable game objects.
+ */
 class Interactable
 {
     public:

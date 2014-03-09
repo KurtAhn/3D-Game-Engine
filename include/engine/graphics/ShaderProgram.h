@@ -16,6 +16,8 @@ using ShaderMap = std::unordered_map<std::string, Shader>;
 class ShaderProgram {
 public:
     ShaderProgram();
+    ShaderProgram(const ShaderProgram &src) = delete;
+    ShaderProgram &operator=(const ShaderProgram &p) = delete;
     virtual ~ShaderProgram();
 
     bool isLinked();

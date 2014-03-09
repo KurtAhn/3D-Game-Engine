@@ -2,6 +2,9 @@
 #define INPUTMANAGER_H
 
 #include "Common.h"
+#include "Exception.h"
+#include "InputDeclaration.h"
+#include "XMLParser.h"
 #include "Event.h"
 #include "Interactable.h"
 #include "Actor.h"
@@ -15,10 +18,9 @@ class Game;
  * The module is initialized with an external input configuration xml file.
  * Prior to every frame, GLFW event callbacks are called when user inputs are
  * fired. These events are stored in an event queue. The queue is polled when
- * handleInputs() is called. As the queue is being polled, each event is mapped
- * to an activity in the event map of the lowest relevant current context.
- * If the event is successfully mapped to an existing activity, the activity is
- * dipatched.
+ * process() is called. As the queue is being polled, each event is mapped to
+ * a corresponding reaction. If the event successfully maps to an existing
+ * reaction within the current context, the reaction is executed.
  */
 
 using EventQueue = std::deque<Event *>;
@@ -61,6 +63,7 @@ private:
     Actor *actor = nullptr;
     Context *currentContext = nullptr;
     ContextMap contexts;
+    ActivityMap activities;
     EventQueue requests;
 public:
     Actor *const &getActor() const;
@@ -78,7 +81,16 @@ public:
 
 // Other interfaces
 public:
+    void init(Actor *const &actor);
     void process();
+    Context *findContext(const std::string &key) const;
+    Activity findActivity(const std::string &key) const;
+
+// Hidden methods
+private:
+    inline void loadActivities();
+    inline void loadContexts(const std::string &path="data/input/contexts.xml");
+
 };
 
 #endif // INPUTMANAGER_H

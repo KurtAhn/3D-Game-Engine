@@ -24,8 +24,9 @@ ShaderProgram *&Graphics::getShaderProgram(const std::string &key) {
 
     try {
         if (program == programs.cache.end())
-            throw std::runtime_error("No corresponding value exists.");
-    } catch (const std::runtime_error &e) {
+            throw NoSuchEntryException(
+                "Key: '" + key + "' not found in 'programs.cache'");
+    } catch (const NoSuchEntryException &e) {
         LOG_ERROR(e);
         RETHROW;
     }
@@ -42,10 +43,11 @@ void Graphics::setActiveShaderProgram(const std::string &key) {
         auto program = programs.cache.find(key);
 
         if (program == programs.cache.end())
-            throw std::runtime_error("No corresponding value exists.");
+            throw NoSuchEntryException(
+                "Key: '" + key + "' not found in 'programs.cache'");
 
         programs.activeProgram = program->second;
-    } catch (const std::runtime_error &e) {
+    } catch (const NoSuchEntryException &e) {
         LOG_ERROR(e);
         RETHROW;
     }
@@ -64,8 +66,9 @@ Mesh *const &Graphics::getMesh(const std::string &key) const {
 
     try {
         if (mesh == meshes.cache.end())
-            throw std::runtime_error("No corresponding value exists.");
-    } catch (const std::runtime_error &e) {
+            throw NoSuchEntryException(
+                "Key: '" + key + "' not found in 'meshes.cache'");
+    } catch (const NoSuchEntryException &e) {
         LOG_ERROR(e);
         RETHROW;
     }
@@ -90,12 +93,23 @@ void Graphics::init() {
 void Graphics::render(GLFWwindow *const &window, World *const &world) const {
     ASSERT(glfwGetCurrentContext(),
            "GL context not set.");
-
+    ASSERT(programs.activeProgram,
+           "'this->programs.activeProgram' is null.");
+    ASSERT(world,
+           "'world' is null.");
+    ASSERT(world->getActor(),
+           "'world->actor' is null.");
+    ASSERT(world->getActor()->getCamera(),
+           "'world->actor->camera' is null.");
+/*
     try {
         if (!programs.activeProgram)
             throw NullPointerException("'programs.activeProgram' member is null.");
         if (!world)
             throw NullPointerException("'world' argument is null.");
+        if (world->getActor()) {
+
+        }
         if (!window)
             throw NullPointerException("'window' argument is null.");
         if (glfwGetCurrentContext() != window)
@@ -107,11 +121,13 @@ void Graphics::render(GLFWwindow *const &window, World *const &world) const {
         LOG_ERROR(e);
         glfwMakeContextCurrent(window);
     }
+*/
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     programs.activeProgram->use();
-    programs.activeProgram->setUniform("c", *(world->getCamera()));
+    //programs.activeProgram->setUniform("c", *(world->getCamera()));
+    programs.activeProgram->setUniform("c", *(world->getActor()->getCamera()));
 
     //for (const auto &e : world->getEntities())
     //    e.second->render();

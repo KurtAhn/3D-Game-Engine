@@ -58,8 +58,10 @@
 		<Unit filename="include/engine/input/Actor.h" />
 		<Unit filename="include/engine/input/Context.h" />
 		<Unit filename="include/engine/input/Event.h" />
+		<Unit filename="include/engine/input/InputDeclaration.h" />
 		<Unit filename="include/engine/input/InputManager.h" />
 		<Unit filename="include/engine/input/Interactable.h" />
+		<Unit filename="include/engine/input/Reaction.h" />
 		<Unit filename="include/engine/io/Cache.h" />
 		<Unit filename="include/engine/io/MeshCache.h" />
 		<Unit filename="include/engine/io/ShaderProgramCache.h" />
@@ -80,6 +82,7 @@
 		<Unit filename="src/engine/input/Event.cpp" />
 		<Unit filename="src/engine/input/InputManager.cpp" />
 		<Unit filename="src/engine/input/Interactable.cpp" />
+		<Unit filename="src/engine/input/Reaction.cpp" />
 		<Unit filename="src/engine/io/Cache.cpp" />
 		<Unit filename="src/engine/io/MeshCache.cpp" />
 		<Unit filename="src/engine/io/ShaderProgramCache.cpp" />
@@ -94,6 +97,15 @@
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

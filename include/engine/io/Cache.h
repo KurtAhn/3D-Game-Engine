@@ -5,6 +5,7 @@
 #include "Directories.h"
 #include "Mesh.h"
 #include "ShaderProgram.h"
+#include "Reaction.h"
 
 template <class T> class Cache {
 public:

@@ -2,15 +2,15 @@
 #define CONTEXT_H
 
 #include "Common.h"
+#include "InputDeclaration.h"
 #include "Event.h"
 #include "Reaction.h"
 #include "Interactable.h"
 
-class Context;
-
-using ReactionMap = std::unordered_map<Event *, Reaction *, std::hash<Event *>>;
-using ContextMap = std::unordered_map<std::string, Context *>;
-
+/**
+ * Input context object. Different contexts map raw user inputs
+ * to different reactions.
+ */
 class Context {
 // Constructor, destructor, copy control
 public:
@@ -41,6 +41,11 @@ public:
 public:
     Context *findContext(const std::string &key) const;
     Reaction *findReaction(Event *const &key) const;
+
+// Hidden functions
+private:
+    inline void loadEvents(rapidxml::xml_node<> *const &node);
+    inline void loadContexts(rapidxml::xml_node<> *const &node);
 };
 
 #endif // CONTEXT_H

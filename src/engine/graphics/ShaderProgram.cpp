@@ -21,37 +21,42 @@ void ShaderProgram::addShader(GLuint shader, GLenum type) {
     ASSERT(glIsShader(shader) == GL_TRUE,
            "Argument 'shader' is not an existing shader object.");
 
-    switch (type) {
-    case GL_VERTEX_SHADER:
-        if (vert) throw GLException("Vertex shader already exists.");
-        vert = shader;
-        ASSERT(vert,
-               "'vert' member of the ShaderProgram is null.");
-        break;
-    case GL_FRAGMENT_SHADER:
-        if (frag) throw GLException("Fragment shader already exists.");
-        frag = shader;
-        ASSERT(frag,
-               "'frag' member of the ShaderProgram is null.");
-        break;
-    case GL_GEOMETRY_SHADER:
-        if (geom) throw GLException("Geometry shader already exists.");
-        geom = shader;
-        ASSERT(geom,
-               "'geom' member of the ShaderProgram is null.");
-        break;
-    case GL_TESS_CONTROL_SHADER:
-        if (geom) throw GLException("Geometry shader already exists.");
-        tesc = shader;
-        ASSERT(vert,
-               "'tesc' member of the ShaderProgram is not set.");
-        break;
-    case GL_TESS_EVALUATION_SHADER:
-        if (tese) throw GLException("Tessellation evaluation shader already exists.");
-        tese = shader;
-        ASSERT(tese,
-               "'tese' member of the ShaderProgram is null.");
-        break;
+    try {
+        switch (type) {
+        case GL_VERTEX_SHADER:
+            if (vert) throw GLException("Vertex shader already exists.");
+            vert = shader;
+            ASSERT(vert,
+                   "'vert' member of the ShaderProgram is null.");
+            break;
+        case GL_FRAGMENT_SHADER:
+            if (frag) throw GLException("Fragment shader already exists.");
+            frag = shader;
+            ASSERT(frag,
+                   "'frag' member of the ShaderProgram is null.");
+            break;
+        case GL_GEOMETRY_SHADER:
+            if (geom) throw GLException("Geometry shader already exists.");
+            geom = shader;
+            ASSERT(geom,
+                   "'geom' member of the ShaderProgram is null.");
+            break;
+        case GL_TESS_CONTROL_SHADER:
+            if (geom) throw GLException("Geometry shader already exists.");
+            tesc = shader;
+            ASSERT(vert,
+                   "'tesc' member of the ShaderProgram is not set.");
+            break;
+        case GL_TESS_EVALUATION_SHADER:
+            if (tese) throw GLException("Tessellation evaluation shader already exists.");
+            tese = shader;
+            ASSERT(tese,
+                   "'tese' member of the ShaderProgram is null.");
+            break;
+        }
+    } catch (GLException &e) {
+        LOG_ERROR(e);
+        RETHROW;
     }
 
     glAttachShader(program, shader);

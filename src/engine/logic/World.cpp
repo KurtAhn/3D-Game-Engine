@@ -1,7 +1,8 @@
 #include "World.h"
 
 World::World() :
-    camera(new Camera){}
+    actor(new Actor) {}
+//:camera(new Camera) {}
 
 World::~World() {}
 
@@ -25,10 +26,18 @@ void World::deleteEntity(const std::string &key) {
     entities.erase(key);
 }
 
-Camera *const &World::getCamera() const {
-    return camera;
+Actor *const &World::getActor() const {
+    return actor;
 }
 
-void World::setCamera(Camera *const &camera) {
-    this->camera = camera;
+void World::setActor(Actor *const &actor) {
+    this->actor = actor;
 }
+
+//Camera *const &World::getCamera() const {
+//    return camera;
+//}
+
+//void World::setCamera(Camera *const &camera) {
+//    this->camera = camera;
+//}

@@ -22,7 +22,7 @@ void MeshCache::load(const std::string &path) {
         for (fs::directory_iterator it(path); it != last; ++it) {
             if (fs::is_regular_file(it->status())) {
                 loadObj(it->path().string());
-                std::cout << it->path().string() + " loaded." << std::endl;
+                //std::cout << it->path().string() + " loaded." << std::endl;
             }
         }
     } catch (IOException &e) {

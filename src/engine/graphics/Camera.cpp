@@ -10,17 +10,13 @@ const glm::vec3 Camera::DEFAULT_LATERAL = glm::vec3(1.0f, 0.0f, 0.0f);
 const glm::vec3 Camera::DEFAULT_NORMAL = glm::vec3(0.0f, 1.0f, 0.0f);
 const glm::vec3 Camera::DEFAULT_LONGITUDINAL = glm::vec3(0.0f, 0.0f, 1.0f);
 
-Camera::Camera() = default;
-
 Camera::Camera(const float &zNear,
                const float &zFar,
                const float &fov,
                const float &aspect) :
             zNear(zNear), zFar(zFar), fov(fov), aspect(aspect) {}
 
-Camera::~Camera() {
-    //dtor
-}
+Camera::~Camera() {}
 
 
 const float &Camera::getZNear() const {
