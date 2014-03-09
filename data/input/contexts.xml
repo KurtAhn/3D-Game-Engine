@@ -5,19 +5,51 @@
 				<activity name="move_forward"/>
 			</key_event>
 			
+			<key_event key="87" action="0">
+				<activity name="stop_forward"/>
+			</key_event>
+			
 			<key_event key="83" action="1">
 				<activity name="move_backward"/>
+			</key_event>
+			
+			<key_event key="83" action="0">
+				<activity name="stop_backward"/>
 			</key_event>
 			
 			<key_event key="65" action="1">
 				<activity name="move_left"/>
 			</key_event>
 			
+			<key_event key="65" action="0">
+				<activity name="stop_left"/>
+			</key_event>
+			
 			<key_event key="68" action="1">
 				<activity name="move_right"/>
 			</key_event>
+			
+			<key_event key="68" action="0">
+				<activity name="stop_right"/>
+			</key_event>
+			
+			<key_event key="32" action="1">
+				<activity name="move_up"/>
+			</key_event>
+			
+			<key_event key="32" action="0">
+				<activity name="stop_up"/>
+			</key_event>
+			
+			<key_event key="340" action="1">
+				<activity name="move_down"/>
+			</key_event>
+			
+			<key_event key="340" action="0">
+				<activity name="stop_down"/>
+			</key_event>
+
 		</events>
-	
 		<contexts/>
 	</context>
 </contexts>

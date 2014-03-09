@@ -26,12 +26,14 @@ void Game::init(const std::string &save) {
         if (glewInit() != GLEW_OK)
             throw GLEWException("GLEW initialization failed.");
 
+        Actor *actor = new Actor;
+
         inputManager = InputManager::createInstance(window);
-        inputManager->init(new Actor);
+        inputManager->init(actor);
         inputManager->setCurrentContext("normal");
         graphics = new Graphics;
 
-        world = new World;
+        world = new World(actor);
     } catch (const std::runtime_error &e) {
         LOG_ERROR(e);
         RETHROW;
@@ -51,6 +53,7 @@ void Game::run() {
         if (!paused) {
             graphics->render(window, world);
         }
+        world->update();
     }
 }
 

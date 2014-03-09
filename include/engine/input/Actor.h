@@ -26,6 +26,13 @@ public:
 // Member data, getters/setters
 private:
     Camera *camera;
+
+    bool movingForward = false;
+    bool movingBackward = false;
+    bool movingLeft = false;
+    bool movingRight = false;
+    bool movingUp = false;
+    bool movingDown = false;
 public:
     Camera *const &getCamera() const;
     void setCamera(Camera *const &camera);
@@ -33,11 +40,21 @@ public:
 // Activity functions
 public:
     Context *moveForward();
+    Context *stopForward();
     Context *moveBackward();
+    Context *stopBackward();
     Context *moveLeft();
+    Context *stopLeft();
     Context *moveRight();
+    Context *stopRight();
     Context *moveUp();
+    Context *stopUp();
     Context *moveDown();
+    Context *stopDown();
+
+// Other interfaces
+public:
+    void update();
 };
 
 #endif // ACTOR_H

@@ -21,7 +21,7 @@ struct Event {
 	Event &operator=(const Event &e) = delete;
 	virtual ~Event();
 
-	virtual bool operator==(const Event &e) const = 0;
+	virtual bool operator==(const Event &e);
 };
 
 struct KeyEvent : public Event {
@@ -44,18 +44,23 @@ struct KeyEvent : public Event {
 namespace std {
 	template<>
 	struct hash<Event *> {
-	    size_t operator()(const Event *const &e) const {
+	    size_t operator()(Event *const &e) const {
             switch (e->type) {
             case KEY_EVENT:
-                std::cout << operator()(static_cast<const KeyEvent *const>(e)) << std::endl;
-                return operator()(static_cast<const KeyEvent *const>(e));
+                //std::cout << operator()(static_cast<KeyEvent *const>(e)) << std::endl;
+                return operator()(static_cast<KeyEvent *const>(e));
             default: return 0;
             }
 	    }
 
-		size_t operator()(const KeyEvent *const &e) const {
-			return hash<int>()(e->key) + hash<int>()(e->action);
+		size_t operator()(KeyEvent *const &e) const {
+			return e->key + e->action;
 		}
+	};
+
+	template<>
+	struct equal_to<Event *> {
+        bool operator() (Event *const &x, Event *const &y) const {return *x == *y;}
 	};
 }
 

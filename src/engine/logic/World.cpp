@@ -1,7 +1,7 @@
 #include "World.h"
 
-World::World() :
-    actor(new Actor) {}
+World::World(Actor *const &actor) :
+    actor(actor) {}
 //:camera(new Camera) {}
 
 World::~World() {}
@@ -41,3 +41,7 @@ void World::setActor(Actor *const &actor) {
 //void World::setCamera(Camera *const &camera) {
 //    this->camera = camera;
 //}
+
+void World::update() {
+    actor->update();
+}

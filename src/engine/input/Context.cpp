@@ -51,6 +51,9 @@ Context *Context::findContext(const std::string &key) const {
 }
 
 Reaction *Context::findReaction(Event *const &key) const {
+
+    //std::cout << (events.find(key)!=events.cend() ? "Found" : "Not found") << std::endl;
+
     auto v = events.find(key);
 
     if (v == events.cend()) return nullptr;
@@ -64,20 +67,21 @@ void Context::loadEvents(xml_node<> *const &node) {
     std::string eventType;
 
     xml_node<> *eventNode = node->first_node();
-    print(std::cout, *eventNode);
+    //print(std::cout, *eventNode);
 
     while (eventNode) {
         eventType = eventNode->name();
 
-        //if (eventNode->name().compare("key_event") == 0) {
+        if (eventType.compare("key_event") == 0) {
+            //std::cout << eventType << std::endl;
             // key event
             events.emplace(new KeyEvent(eventNode),
                            new Reaction(eventNode));
 
             findReaction(new KeyEvent(eventNode));
-        //} else if (eventType.compare("mouse_button_event") == 0) {
+        } else if (eventType.compare("mouse_button_event") == 0) {
             // mouse button event
-        //}
+        }
 
         eventNode = eventNode->next_sibling();
     }

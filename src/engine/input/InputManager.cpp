@@ -27,8 +27,6 @@ void InputManager::keyPressed(GLFWwindow *window,
 
 
 InputManager::InputManager(GLFWwindow *const &window) {
-    //setCurrentContext("normal");// TEMPORARY
-
     // set glfw call-back functions
     glfwSetKeyCallback(window, keyPressed);
     //glfwSetMouseButtonCallback(window, mouseButtonPressed);
@@ -157,18 +155,24 @@ Activity InputManager::findActivity(const std::string &key) const {
 inline
 void InputManager::loadActivities() {
     activities.emplace("move_forward", &Actor::moveForward);
+    activities.emplace("stop_forward", &Actor::stopForward);
     activities.emplace("move_backward", &Actor::moveBackward);
+    activities.emplace("stop_backward", &Actor::stopBackward);
     activities.emplace("move_left", &Actor::moveLeft);
+    activities.emplace("stop_left", &Actor::stopLeft);
     activities.emplace("move_right", &Actor::moveRight);
+    activities.emplace("stop_right", &Actor::stopRight);
     activities.emplace("move_up", &Actor::moveUp);
+    activities.emplace("stop_up", &Actor::stopUp);
     activities.emplace("move_down", &Actor::moveDown);
+    activities.emplace("stop_down", &Actor::stopDown);
 }
 
 inline
 void InputManager::loadContexts(const std::string &path) {
     using namespace rapidxml;
 
-    xml_document<> *doc = XMLParser(path).getDocument();
+    xml_document<> *doc = parser.loadDocument(path);
 
     xml_node<> *contextNode =
         doc->first_node("contexts")->first_node("context");

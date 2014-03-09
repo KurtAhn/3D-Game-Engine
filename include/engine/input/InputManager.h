@@ -23,8 +23,6 @@ class Game;
  * reaction within the current context, the reaction is executed.
  */
 
-using EventQueue = std::deque<Event *>;
-
 class InputManager {
 // Singleton instance
 private:
@@ -65,6 +63,7 @@ private:
     ContextMap contexts;
     ActivityMap activities;
     EventQueue requests;
+    XMLParser parser;
 public:
     Actor *const &getActor() const;
     void setActor(Actor *const &actor);

@@ -9,6 +9,14 @@ Event::Event(const EventType &type) :
     type(type) {}
 Event::~Event() {}
 
+bool Event::operator==(const Event &e) {
+    switch (type) {
+    case KEY_EVENT:
+        return dynamic_cast<const KeyEvent &>(e).operator==(e);
+    default: return false;
+    }
+}
+
 /******************************************************************************
 *                                   KeyEvent
 ******************************************************************************/
@@ -36,7 +44,7 @@ KeyEvent &KeyEvent::operator=(const KeyEvent &e) {
 KeyEvent::~KeyEvent() {}
 
 bool KeyEvent::operator==(const KeyEvent &e) const {
-    std::cout << ((key == e.key && action == e.action) ? "true" : "false") << std::endl;
+    //std::cout << ((key == e.key && action == e.action) ? "true" : "false") << std::endl;
     return key == e.key && action == e.action;
 }
 

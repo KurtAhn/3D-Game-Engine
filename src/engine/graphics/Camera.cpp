@@ -122,6 +122,7 @@ void Camera::translate(const glm::vec3 &direction, const float &distance) const 
     float d = glm::length(direction);
     if (d)
         position += direction * distance / d;
+    std::cout << position.x << " " << position.y << " " << position.z << std::endl;
 }
 
 void Camera::rotate(const glm::vec3 &axis, const float &deg) const {

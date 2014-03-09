@@ -11,7 +11,8 @@
  */
 class World {
 public:
-    World();
+    World() = delete;
+    World(Actor *const &actor);
     virtual ~World();
 
 // Data/Access
@@ -32,6 +33,10 @@ public:
 
     Actor *const &getActor() const;
     void setActor(Actor *const &actor);
+
+// Other interfaces
+public:
+    void update();
 };
 
 #endif // WORLD_H
