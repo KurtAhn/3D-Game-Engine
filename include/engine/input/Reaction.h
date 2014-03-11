@@ -5,7 +5,7 @@
 #include "InputDeclaration.h"
 #include "InputManager.h"
 #include "Actor.h"
-
+/*
 struct Reaction {
 // Constructor, destructor, copy control
 public:
@@ -26,5 +26,5 @@ public:
 public:
     bool operator==(const Reaction &r);
 };
-
+*/
 #endif // REACTION_H

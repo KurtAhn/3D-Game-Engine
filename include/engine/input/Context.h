@@ -11,6 +11,7 @@
  * Input context object. Different contexts map raw user inputs
  * to different reactions.
  */
+ /*
 class Context {
 // Constructor, destructor, copy control
 public:
@@ -47,5 +48,5 @@ private:
     inline void loadEvents(rapidxml::xml_node<> *const &node);
     inline void loadContexts(rapidxml::xml_node<> *const &node);
 };
-
+*/
 #endif // CONTEXT_H

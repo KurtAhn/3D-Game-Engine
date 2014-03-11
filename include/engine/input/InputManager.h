@@ -3,12 +3,13 @@
 
 #include "Common.h"
 #include "Exception.h"
-#include "InputDeclaration.h"
-#include "XMLParser.h"
+//#include "InputDeclaration.h"
+//#include "XMLParser.h"
 #include "Event.h"
-#include "Interactable.h"
-#include "Actor.h"
-#include "Context.h"
+#include "EventListener.h"
+//#include "Interactable.h"
+//#include "Actor.h"
+//#include "Context.h"
 
 class Game;
 
@@ -33,62 +34,58 @@ public:
 
 // Static callbacks
 public:
-    static void keyPressed(GLFWwindow *window, int key, int scancode, int action, int mods);
-    static void mouseEntered(GLFWwindow *window, int entered);
-    static void mouseMoved(GLFWwindow *window, double xpos, double ypos);
-    static void mouseButtonPressed(GLFWwindow *window, int button, int action, int mods);
-    static void mouseWheelMoved(GLFWwindow *window, double xoffset, double yoffset);
-    static void windowClosing(GLFWwindow *window);
-    static void windowFocused(GLFWwindow *window, int focused);
-    static void windowIconified(GLFWwindow *window, int iconified);
-    static void windowMoved(GLFWwindow *window, int xpos, int ypos);
-    static void windowRefreshed(GLFWwindow *window);
-    static void windowResized(GLFWwindow *window, int width, int height);
+	static void fireKeyEvent(GLFWwindow *window, int key, int action, int scancode, int mods);
+	static void fireCharEvent(GLFWwindow *window, unsigned codepoint);
+	static void fireMouseButtonEvent(GLFWwindow *window, int button, int action, int mods);
+	static void fireMouseMotionEvent(GLFWwindow *window, double xpos, double ypos);
+	static void fireMouseEnterEvent(GLFWwindow *window, int entered);
+	static void fireMouseScrollEvent(GLFWwindow *window, double xoffset, double yoffset);
+	static void fireWindowMotionEvent(GLFWwindow *window, int xpos, int ypos);
+	static void fireWindowResizeEvent(GLFWwindow *window, int width, int height);
+	static void fireWindowCloseEvent(GLFWwindow *window);
+	static void fireWindowRefreshEvent(GLFWwindow* window);
+	static void fireWindowIconifyEvent(GLFWwindow *window, int iconified);
+	static void fireWindowFocusEvent(GLFWwindow *window, int focused);
+	static void fireFrameBufferResizeEvent(GLFWwindow *window, int width, int height);
 
 // Constructor, destructor, copy control
+private:
+    InputManager() = delete;
+    InputManager(GLFWwindow *const &window);
+    InputManager(const InputManager &src) = delete;
+    InputManager &operator=(const InputManager &src) = delete;
 public:
     virtual ~InputManager();
 
-private:
-    InputManager() = delete;
-    explicit InputManager(GLFWwindow *const &window);
-    InputManager(const InputManager &src) = delete;
-    InputManager &operator=(const InputManager &src) = delete;
-
-
 // Member data and getters/setters
 private:
-    Actor *actor = nullptr;
-    Context *currentContext = nullptr;
-    ContextMap contexts;
-    ActivityMap activities;
-    EventQueue requests;
-    XMLParser parser;
+	std::vector<KeyListener *> keyListeners;
+	std::vector<MouseListener *> mouseListeners;
+	std::vector<WindowListener *> windowListeners;
+
+	std::deque<KeyEvent *> keyEventRequests;
+	std::deque<CharEvent *> charEventRequests;
+	std::deque<MouseButtonEvent *> mouseButtonEventRequests;
+	std::deque<MouseMotionEvent *> mouseMotionEventRequests;
+	std::deque<MouseEnterEvent *> mouseEnterEventRequests;
+	std::deque<MouseScrollEvent *> mouseScrollEventRequests;
+	std::deque<WindowMotionEvent *> windowMotionEventRequests;
+	std::deque<WindowResizeEvent *> windowResizeEventRequests;
+	std::deque<WindowCloseEvent *> windowCloseEventRequests;
+	std::deque<WindowRefreshEvent *> windowRefreshEventRequests;
+	std::deque<WindowFocusEvent *> windowFocusEventRequests;
+	std::deque<WindowIconifyEvent *> windowIconifyEventRequests;
+	std::deque<FrameBufferResizeEvent *> frameBufferResizeEventRequests;
 public:
-    Actor *const &getActor() const;
-    void setActor(Actor *const &actor);
-
-    Context *const &getCurrentContext() const;
-    void setCurrentContext(const std::string &key);
-
-    const ContextMap &getContexts() const;
-    void setContexts(const ContextMap &contexts);
-
-    const EventQueue &getRequests() const;
-    void setRequests(const EventQueue &requests);
-    void pushRequest(Event *const &request);
-
+	void addKeyListener(KeyListener *const &l);
+	void removeKeyListener(const std::size_t &index);
+	void addMouseListener(MouseListener *const &l);
+	void removeMouseListener(const std::size_t &index);
+	void addWindowListener(WindowListener *const &l);
+	void removeWindowListener(const std::size_t &index);
 // Other interfaces
 public:
-    void init(Actor *const &actor);
     void process();
-    Context *findContext(const std::string &key) const;
-    Activity findActivity(const std::string &key) const;
-
-// Hidden methods
-private:
-    inline void loadActivities();
-    inline void loadContexts(const std::string &path="data/input/contexts.xml");
 
 };
 

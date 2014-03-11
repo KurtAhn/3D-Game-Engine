@@ -15,6 +15,7 @@ void Game::init(const std::string &save) {
     try {
         if (!glfwInit())
             throw GLFWException("GLFW initialization failed.");
+
         window = glfwCreateWindow(800, 800,
                                   (std::string("Application :: ") + save).c_str(),
                                   nullptr, nullptr);
@@ -26,14 +27,14 @@ void Game::init(const std::string &save) {
         if (glewInit() != GLEW_OK)
             throw GLEWException("GLEW initialization failed.");
 
-        Actor *actor = new Actor;
+
 
         inputManager = InputManager::createInstance(window);
-        inputManager->init(actor);
-        inputManager->setCurrentContext("normal");
+        //inputManager->init(actor);
+        //inputManager->setCurrentContext("normal");
         graphics = new Graphics;
 
-        world = new World(actor);
+        world = new World(new Actor);
     } catch (const std::runtime_error &e) {
         LOG_ERROR(e);
         RETHROW;

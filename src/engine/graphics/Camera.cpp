@@ -122,7 +122,7 @@ void Camera::translate(const glm::vec3 &direction, const float &distance) const 
     float d = glm::length(direction);
     if (d)
         position += direction * distance / d;
-    std::cout << position.x << " " << position.y << " " << position.z << std::endl;
+    //std::cout << position.x << " " << position.y << " " << position.z << std::endl;
 }
 
 void Camera::rotate(const glm::vec3 &axis, const float &deg) const {
@@ -137,6 +137,13 @@ void Camera::rotate(const glm::vec3 &axis, const float &deg) const {
     glm::quat q_nor = q * glm::quat(0, normal) * q_;
     normal = glm::vec3(q_nor.x, q_nor.y, q_nor.z);
 
+    glm::quat q_lon = q * glm::quat(0, longitudinal) * q_;
+    longitudinal = glm::vec3(q_lon.x, q_lon.y, q_lon.z);
+
+    lateral = glm::normalize(lateral);
+    normal = glm::normalize(normal);
+    longitudinal = glm::normalize(longitudinal);
+/*
     if (normal.y >= 0) {
         glm::quat q_lon = q * glm::quat(0, longitudinal) * q_;
         longitudinal = glm::vec3(q_lon.x, q_lon.y, q_lon.z);
@@ -149,7 +156,7 @@ void Camera::rotate(const glm::vec3 &axis, const float &deg) const {
         normal = glm::normalize(normal);
         lateral = glm::normalize(lateral);
         longitudinal = glm::cross(lateral, normal);
-    }
+    }*/
 }
 
 void Camera::zoom(const float &amount) const {

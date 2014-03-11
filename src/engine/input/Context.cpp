@@ -1,7 +1,7 @@
 #include "Context.h"
 
 using namespace rapidxml;
-
+/*
 Context::Context(xml_node<> *const &node) {
     loadEvents(node->first_node("events"));
     loadContexts(node->first_node("contexts"));
@@ -73,7 +73,6 @@ void Context::loadEvents(xml_node<> *const &node) {
         eventType = eventNode->name();
 
         if (eventType.compare("key_event") == 0) {
-            //std::cout << eventType << std::endl;
             // key event
             events.emplace(new KeyEvent(eventNode),
                            new Reaction(eventNode));
@@ -81,6 +80,12 @@ void Context::loadEvents(xml_node<> *const &node) {
             findReaction(new KeyEvent(eventNode));
         } else if (eventType.compare("mouse_button_event") == 0) {
             // mouse button event
+            events.emplace(new MouseButtonEvent(eventNode),
+                           new Reaction(eventNode));
+        } else if (eventType.compare("mouse_motion_event") == 0) {
+            // mouse motion event; consider putting at top
+            events.emplace(new MouseMotionEvent(eventNode),
+                           new Reaction(eventNode));
         }
 
         eventNode = eventNode->next_sibling();
@@ -98,3 +103,4 @@ void Context::loadContexts(xml_node<> *const &node) {
         contextNode = contextNode->next_sibling("context");
     }
 }
+*/

@@ -8,180 +8,184 @@ InputManager *const &InputManager::getInstance() {
 
 InputManager *const &InputManager::createInstance(GLFWwindow *const &window) {
     instance = new InputManager(window);
-    //instance->loadActivities();
-    //instance->loadContexts();
     return instance;
 }
 
+void InputManager::fireKeyEvent(GLFWwindow *window,
+                                int key,
+                                int action,
+                                int scancode,
+                                int mods) {
+    instance->keyEventRequests.push_back(
+        new KeyEvent(window,
+                     key,
+                     action,
+                     scancode,
+                     mods));
+}
 
+void InputManager::fireCharEvent(GLFWwindow *window,
+                                 unsigned codepoint) {
+    instance->charEventRequests.push_back(
+        new CharEvent(window,
+                      codepoint));
+}
 
-void InputManager::keyPressed(GLFWwindow *window,
-                              int key,
-                              int scancode,
-                              int action,
-                              int mods) {
-    InputManager::getInstance()->requests.push_back(
-        new KeyEvent(key, action));
+void InputManager::fireMouseButtonEvent(GLFWwindow *window,
+                                        int button,
+                                        int action,
+                                        int mods) {
+    instance->mouseButtonEventRequests.push_back(
+        new MouseButtonEvent(window,
+                             button,
+                             action,
+                             mods));
+}
+
+void InputManager::fireMouseMotionEvent(GLFWwindow *window,
+                                        double xpos,
+                                        double ypos) {
+    instance->mouseMotionEventRequests.push_back(
+        new MouseMotionEvent(window,
+                             xpos,
+                             ypos));
+}
+
+void InputManager::fireMouseEnterEvent(GLFWwindow *window,
+                                       int entered) {
+    instance->mouseEnterEventRequests.push_back(
+        new MouseEnterEvent(window,
+                            entered));
+}
+
+void InputManager::fireMouseScrollEvent(GLFWwindow *window,
+                                        double xoffset,
+                                        double yoffset) {
+    instance->mouseScrollEventRequests.push_back(
+        new MouseScrollEvent(window,
+                             xoffset,
+                             yoffset));
+}
+
+void InputManager::fireWindowMotionEvent(GLFWwindow *window,
+                                         int xpos,
+                                         int ypos) {
+    instance->windowMotionEventRequests.push_back(
+        new WindowMotionEvent(window,
+                              xpos,
+                              ypos));
+}
+
+void InputManager::fireWindowResizeEvent(GLFWwindow *window,
+                                         int width,
+                                         int height) {
+    instance->windowResizeEventRequests.push_back(
+        new WindowResizeEvent(window,
+                              width,
+                              height));
+}
+
+void InputManager::fireWindowCloseEvent(GLFWwindow *window) {
+    instance->windowCloseEventRequests.push_back(
+        new WindowCloseEvent(window));
+}
+
+void InputManager::fireWindowRefreshEvent(GLFWwindow* window) {
+    instance->windowRefreshEventRequests.push_back(
+        new WindowRefreshEvent(window));
+}
+
+void InputManager::fireWindowIconifyEvent(GLFWwindow *window,
+                                          int iconified) {
+    instance->windowIconifyEventRequests.push_back(
+        new WindowIconifyEvent(window,
+                               iconified));
+}
+
+void InputManager::fireWindowFocusEvent(GLFWwindow *window,
+                                        int focused) {
+    instance->windowFocusEventRequests.push_back(
+        new WindowFocusEvent(window,
+                             focused));
+}
+
+void InputManager::fireFrameBufferResizeEvent(GLFWwindow *window,
+                                              int width,
+                                              int height) {
+    instance->frameBufferResizeEventRequests.push_back(
+        new FrameBufferResizeEvent(window,
+                                   width,
+                                   height));
 }
 
 
-
 InputManager::InputManager(GLFWwindow *const &window) {
-    // set glfw call-back functions
-    glfwSetKeyCallback(window, keyPressed);
-    //glfwSetMouseButtonCallback(window, mouseButtonPressed);
+    glfwSetKeyCallback(window, &fireKeyEvent);
+    glfwSetCharCallback(window, &fireCharEvent);
+    glfwSetMouseButtonCallback(window, &fireMouseButtonEvent);
+    glfwSetCursorPosCallback(window, &fireMouseMotionEvent);
+    glfwSetCursorEnterCallback(window, &fireMouseEnterEvent);
+    glfwSetWindowPosCallback(window, &fireWindowMotionEvent);
+    glfwSetWindowSizeCallback(window, &fireWindowResizeEvent);
+    glfwSetWindowCloseCallback(window, &fireWindowCloseEvent);
+    glfwSetWindowRefreshCallback(window, &fireWindowRefreshEvent);
+    glfwSetWindowFocusCallback(window, &fireWindowFocusEvent);
+    glfwSetWindowIconifyCallback(window, &fireWindowIconifyEvent);
+    glfwSetFramebufferSizeCallback(window, &fireFrameBufferResizeEvent);
 }
 
 InputManager::~InputManager() {}
 
-
-Actor *const &InputManager::getActor() const {
-    return actor;
+void InputManager::addKeyListener(KeyListener *const &l) {
+    keyListeners.push_back(l);
 }
 
-void InputManager::setActor(Actor *const &actor) {
-    this->actor = actor;
+void InputManager::removeKeyListener(const std::size_t &index) {
+    //
 }
 
-Context *const &InputManager::getCurrentContext() const {
-    return currentContext;
+void InputManager::addMouseListener(MouseListener *const &l) {
+    mouseListeners.push_back(l);
 }
 
-void InputManager::setCurrentContext(const std::string &key) {
-    auto index = contexts.find(key);
-
-    try {
-        if (index == contexts.cend())
-            throw NoSuchEntryException(
-                "No entry found in contexts with the key: " + key);
-    } catch (NoSuchEntryException &e) {
-        LOG_ERROR(e);
-        RETHROW;
-    }
-
-    currentContext = contexts.find(key)->second;
+void InputManager::removeMouseListener(const std::size_t &index) {
+    //
 }
 
-const ContextMap &InputManager::getContexts() const {
-    return contexts;
+void InputManager::addWindowListener(WindowListener *const &l) {
+    windowListeners.push_back(l);
 }
 
-void InputManager::setContexts(const ContextMap &contexts) {
-    this->contexts = contexts;
-}
-
-const EventQueue &InputManager::getRequests() const {
-    return requests;
-}
-
-void InputManager::setRequests(const EventQueue &requests) {
-    this->requests = requests;
-}
-
-void InputManager::pushRequest(Event *const &request) {
-    requests.push_back(request);
-}
-
-void InputManager::init(Actor *const &actor) {
-    this->actor = actor;
-    loadActivities();
-    loadContexts();
+void InputManager::removeWindowListener(const std::size_t &index) {
+    //
 }
 
 void InputManager::process() {
     glfwPollEvents();
 
-    ASSERT(currentContext,
-           "currentContext is null.");
-
-    while (!requests.empty()) {
-        auto reaction = (currentContext->findReaction(requests.front()));
-
-        if (reaction) {
-            if (reaction->activity)
-            //    setCurrentContext((actor->*(reaction->activity))());
-                (actor->*(reaction->activity))();
-            //if (reaction->transition)
-            //    setCurrentContext(transition);
-        }
-
-        requests.pop_front();
-    }
-    /*
-    for (auto e : requests) {
-        auto r = currentContext->findReaction(e);
-        if (r->activity) (actor->*(r->activity))();
-    }*/
-}
-
-Context *InputManager::findContext(const std::string &key) const {
-    Context *value = nullptr;
-    auto index = contexts.find(key);
-
-    try {
-        if (index == contexts.cend()) {
-            for (const auto &c : contexts) {
-                if ((value = c.second->findContext(key)))
-                    return value;
-            }
-
-            throw NoSuchEntryException(
-                "No entry found in 'contexts' with key: " + key);
-        }
-    } catch (NoSuchEntryException &e) {
-        LOG_ERROR(e);
-        RETHROW;
+#define PROCESS_REQUESTS(requests, listeners, method)\
+    while (!requests.empty()) {\
+        auto e = requests.front();\
+        for (const auto &l : listeners)\
+            l->method(e);\
+        requests.pop_front();\
+        delete e;\
     }
 
-    return value;
-}
+    PROCESS_REQUESTS(keyEventRequests, keyListeners, keyPressed)
+    PROCESS_REQUESTS(charEventRequests, keyListeners, keyTyped)
+    PROCESS_REQUESTS(mouseButtonEventRequests, mouseListeners, mouseButtonPressed)
+    PROCESS_REQUESTS(mouseMotionEventRequests, mouseListeners, mouseCursorMoved)
+    PROCESS_REQUESTS(mouseEnterEventRequests, mouseListeners, mouseCursorEntered)
+    PROCESS_REQUESTS(mouseScrollEventRequests, mouseListeners, mouseWheelScrolled)
+    PROCESS_REQUESTS(windowMotionEventRequests, windowListeners, windowMoved)
+    PROCESS_REQUESTS(windowResizeEventRequests, windowListeners, windowResized)
+    PROCESS_REQUESTS(windowCloseEventRequests, windowListeners, windowClosing)
+    PROCESS_REQUESTS(windowRefreshEventRequests, windowListeners, windowRefreshed)
+    PROCESS_REQUESTS(windowIconifyEventRequests, windowListeners, windowIconified)
+    PROCESS_REQUESTS(windowFocusEventRequests, windowListeners, windowFocused)
+    PROCESS_REQUESTS(frameBufferResizeEventRequests, windowListeners, frameBufferResized)
 
-Activity InputManager::findActivity(const std::string &key) const {
-    //for (const auto &a : activities)
-    //    std::cout << a.first << std::endl;
+#undef PROCESS_REQUESTS
 
-    auto value = activities.find(key);
-    try {
-        if (value == activities.cend())
-            throw NoSuchEntryException(
-                "No entry found in 'activities' with key: " + key);
-    } catch (NoSuchEntryException &e) {
-        LOG_ERROR(e);
-        RETHROW;
-    }
-    return activities.find(key)->second;
-}
-
-inline
-void InputManager::loadActivities() {
-    activities.emplace("move_forward", &Actor::moveForward);
-    activities.emplace("stop_forward", &Actor::stopForward);
-    activities.emplace("move_backward", &Actor::moveBackward);
-    activities.emplace("stop_backward", &Actor::stopBackward);
-    activities.emplace("move_left", &Actor::moveLeft);
-    activities.emplace("stop_left", &Actor::stopLeft);
-    activities.emplace("move_right", &Actor::moveRight);
-    activities.emplace("stop_right", &Actor::stopRight);
-    activities.emplace("move_up", &Actor::moveUp);
-    activities.emplace("stop_up", &Actor::stopUp);
-    activities.emplace("move_down", &Actor::moveDown);
-    activities.emplace("stop_down", &Actor::stopDown);
-}
-
-inline
-void InputManager::loadContexts(const std::string &path) {
-    using namespace rapidxml;
-
-    xml_document<> *doc = parser.loadDocument(path);
-
-    xml_node<> *contextNode =
-        doc->first_node("contexts")->first_node("context");
-
-    while (contextNode) {
-        std::string name = contextNode->first_attribute("name")->value();
-        Context *context = new Context(contextNode);
-
-        contexts.emplace(name, context);
-        contextNode = contextNode->next_sibling("context");
-    }
 }

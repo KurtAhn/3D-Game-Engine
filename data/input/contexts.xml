@@ -48,7 +48,19 @@
 			<key_event key="340" action="0">
 				<activity name="stop_down"/>
 			</key_event>
-
+			
+			<mouse_button_event button="0" action="1">
+				<activity name="zoom_in"/>
+			</mouse_button_event>
+			
+			<mouse_button_event button="0" action="0">
+				<activity name="zoom_out"/>
+			</mouse_button_event>
+			
+			<mouse_motion_event>
+				<activity name="rotate"/>
+			</mouse_motion_event>
+			
 		</events>
 		<contexts/>
 	</context>
