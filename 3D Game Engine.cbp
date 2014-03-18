@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="include" />
 					<Add directory="include/engine" />
@@ -23,6 +24,8 @@
 					<Add directory="include/engine/gui" />
 					<Add directory="include/engine/audio" />
 					<Add directory="include/engine/input" />
+					<Add directory="include/devil" />
+					<Add directory="include/engine/exceptions" />
 				</Compiler>
 				<Linker>
 					<Add option="-lglew32s -lglfw3 -lopengl32 -lbullet -lglm" />
@@ -37,6 +40,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -48,49 +52,86 @@
 		</Compiler>
 		<Unit filename="include/engine/Common.h" />
 		<Unit filename="include/engine/Directories.h" />
-		<Unit filename="include/engine/Exception.h" />
-		<Unit filename="include/engine/Logger.h" />
+		<Unit filename="include/engine/Engine.h" />
+		<Unit filename="include/engine/exceptions/Exception.h" />
+		<Unit filename="include/engine/exceptions/ExceptionCommon.h" />
+		<Unit filename="include/engine/exceptions/GLEWException.h" />
+		<Unit filename="include/engine/exceptions/GLException.h" />
+		<Unit filename="include/engine/exceptions/GLFWException.h" />
+		<Unit filename="include/engine/exceptions/ILException.h" />
+		<Unit filename="include/engine/exceptions/IOException.h" />
+		<Unit filename="include/engine/exceptions/LogException.h" />
+		<Unit filename="include/engine/exceptions/Logger.h" />
+		<Unit filename="include/engine/exceptions/NoSuchEntryException.h" />
+		<Unit filename="include/engine/exceptions/NullPointerException.h" />
 		<Unit filename="include/engine/graphics/Camera.h" />
+		<Unit filename="include/engine/graphics/Drawable.h" />
 		<Unit filename="include/engine/graphics/Graphics.h" />
+		<Unit filename="include/engine/graphics/GraphicsCommon.h" />
+		<Unit filename="include/engine/graphics/GraphicsManager.h" />
+		<Unit filename="include/engine/graphics/Material.h" />
 		<Unit filename="include/engine/graphics/Mesh.h" />
 		<Unit filename="include/engine/graphics/ShaderProgram.h" />
+		<Unit filename="include/engine/graphics/Texture.h" />
 		<Unit filename="include/engine/graphics/Vertex.h" />
 		<Unit filename="include/engine/input/Actor.h" />
 		<Unit filename="include/engine/input/Context.h" />
 		<Unit filename="include/engine/input/Event.h" />
-		<Unit filename="include/engine/input/InputDeclaration.h" />
+		<Unit filename="include/engine/input/EventListener.h" />
+		<Unit filename="include/engine/input/Input.h" />
+		<Unit filename="include/engine/input/InputCommon.h" />
 		<Unit filename="include/engine/input/InputManager.h" />
 		<Unit filename="include/engine/input/Interactable.h" />
+		<Unit filename="include/engine/input/KeyListener.h" />
+		<Unit filename="include/engine/input/MouseListener.h" />
 		<Unit filename="include/engine/input/Reaction.h" />
+		<Unit filename="include/engine/input/WindowListener.h" />
 		<Unit filename="include/engine/io/Cache.h" />
+		<Unit filename="include/engine/io/FileIO.h" />
+		<Unit filename="include/engine/io/FileIOCommon.h" />
+		<Unit filename="include/engine/io/MaterialCache.h" />
 		<Unit filename="include/engine/io/MeshCache.h" />
 		<Unit filename="include/engine/io/ShaderProgramCache.h" />
+		<Unit filename="include/engine/io/TextureCache.h" />
 		<Unit filename="include/engine/io/XMLParser.h" />
-		<Unit filename="include/engine/logic/Entity.h" />
-		<Unit filename="include/engine/logic/Game.h" />
-		<Unit filename="include/engine/logic/World.h" />
 		<Unit filename="include/engine/physics/Physics.h" />
-		<Unit filename="src/engine/Exception.cpp" />
-		<Unit filename="src/engine/Logger.cpp" />
+		<Unit filename="include/test/Game.h" />
+		<Unit filename="src/engine/Engine.cpp" />
+		<Unit filename="src/engine/exceptions/GLEWException.cpp" />
+		<Unit filename="src/engine/exceptions/GLException.cpp" />
+		<Unit filename="src/engine/exceptions/GLFWException.cpp" />
+		<Unit filename="src/engine/exceptions/ILException.cpp" />
+		<Unit filename="src/engine/exceptions/IOException.cpp" />
+		<Unit filename="src/engine/exceptions/LogException.cpp" />
+		<Unit filename="src/engine/exceptions/Logger.cpp" />
+		<Unit filename="src/engine/exceptions/NoSuchEntryException.cpp" />
+		<Unit filename="src/engine/exceptions/NullPointerException.cpp" />
 		<Unit filename="src/engine/graphics/Camera.cpp" />
-		<Unit filename="src/engine/graphics/Graphics.cpp" />
+		<Unit filename="src/engine/graphics/Drawable.cpp" />
+		<Unit filename="src/engine/graphics/GraphicsManager.cpp" />
+		<Unit filename="src/engine/graphics/Material.cpp" />
 		<Unit filename="src/engine/graphics/Mesh.cpp" />
 		<Unit filename="src/engine/graphics/ShaderProgram.cpp" />
+		<Unit filename="src/engine/graphics/Texture.cpp" />
 		<Unit filename="src/engine/graphics/Vertex.cpp" />
 		<Unit filename="src/engine/input/Actor.cpp" />
 		<Unit filename="src/engine/input/Context.cpp" />
 		<Unit filename="src/engine/input/Event.cpp" />
+		<Unit filename="src/engine/input/EventListener.cpp" />
 		<Unit filename="src/engine/input/InputManager.cpp" />
 		<Unit filename="src/engine/input/Interactable.cpp" />
+		<Unit filename="src/engine/input/KeyListener.cpp" />
+		<Unit filename="src/engine/input/MouseListener.cpp" />
 		<Unit filename="src/engine/input/Reaction.cpp" />
+		<Unit filename="src/engine/input/WindowListener.cpp" />
 		<Unit filename="src/engine/io/Cache.cpp" />
+		<Unit filename="src/engine/io/MaterialCache.cpp" />
 		<Unit filename="src/engine/io/MeshCache.cpp" />
 		<Unit filename="src/engine/io/ShaderProgramCache.cpp" />
+		<Unit filename="src/engine/io/TextureCache.cpp" />
 		<Unit filename="src/engine/io/XMLParser.cpp" />
-		<Unit filename="src/engine/logic/Entity.cpp" />
-		<Unit filename="src/engine/logic/Game.cpp" />
-		<Unit filename="src/engine/logic/World.cpp" />
 		<Unit filename="src/engine/physics/Physics.cpp" />
+		<Unit filename="src/test/Game.cpp" />
 		<Unit filename="src/test/main.cpp" />
 		<Extensions>
 			<code_completion />

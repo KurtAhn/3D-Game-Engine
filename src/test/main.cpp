@@ -4,7 +4,7 @@
 #include "Game.h"
 
 int main() {
-    try {
+/*    try {
         Logger::createInstance();
         Game game;
         game.init("test");
@@ -15,6 +15,6 @@ int main() {
         LOG_ERROR(e);
         return -1;
     }
-
+*/
     return 0;
 }

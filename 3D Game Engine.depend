@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1394017989 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exception.cpp
+1394702523 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exception.cpp
 	"Exception.h"
 
 1394016284 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exception.h
 	"Common.h"
 
-1393663301 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\common.h
+1394931121 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\common.h
 	<cstdlib>
 	<stdexcept>
 	<initializer_list>
@@ -4850,93 +4850,93 @@
 	"LinearMath/btScalar.h"
 	"btRigidBody.h"
 
-1394435815 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\camera.cpp
+1394859127 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\camera.cpp
 	"Camera.h"
 
-1394015588 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\camera.h
-	"Common.h"
+1394770854 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\camera.h
+	"GraphicsCommon.h"
 
 1394414382 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphics.cpp
 	"Graphics.h"
 
-1392785859 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphics.h
-	"Common.h"
-	"ShaderProgram.h"
-	"ShaderProgramCache.h"
+1394785336 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphics.h
+	"GraphicsCommon.h"
+	"Vertex.h"
 	"Mesh.h"
-	"MeshCache.h"
+	"Material.h"
+	"Drawable.h"
 	"Camera.h"
-	"World.h"
-	"Logger.h"
+	"ShaderProgram.h"
+	"GraphicsManager.h"
 
-1394015649 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\shaderprogram.h
-	"Common.h"
+1394867024 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\shaderprogram.h
+	"GraphicsCommon.h"
 	"Exception.h"
 	"Camera.h"
+	"Material.h"
+	"Drawable.h"
 
-1393425159 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\shaderprogramcache.h
+1394782382 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\shaderprogramcache.h
 	"Common.h"
 	"Exception.h"
 	"Cache.h"
 	"ShaderProgram.h"
 	"XMLParser.h"
 
-1393964057 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\cache.h
-	"Common.h"
-	"Directories.h"
+1394974420 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\cache.h
+	"FileIOCommon.h"
 	"Mesh.h"
 	"ShaderProgram.h"
-	"Reaction.h"
 
 1392900788 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\directories.h
 
-1390679140 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\mesh.h
-	"Common.h"
+1394931311 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\mesh.h
+	"GraphicsCommon.h"
 	"Vertex.h"
 
-1388986432 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\vertex.h
-	"Common.h"
+1394977080 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\vertex.h
+	"GraphicsCommon.h"
 
-1394513192 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\reaction.h
-	"Common.h"
-	"InputDeclaration.h"
+1394931464 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\reaction.h
+	"InputCommon.h"
 	"InputManager.h"
 	"Actor.h"
 
 1394512865 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputdeclaration.h
 
-1394514073 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputmanager.h
-	"Common.h"
-	"Exception.h"
+1395126508 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputmanager.h
+	"InputCommon.h"
 	"Event.h"
 	"EventListener.h"
+	"KeyListener.h"
+	"MouseListener.h"
+	"WindowListener.h"
 
-1393437373 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\xmlparser.h
-	"Common.h"
+1394976398 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\xmlparser.h
+	"FileIOCommon.h"
 
-1394515775 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\event.h
-	"Common.h"
-	"InputDeclaration.h"
+1394931373 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\event.h
+	"InputCommon.h"
 
-1393980976 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\interactable.h
-	"Common.h"
-	"InputDeclaration.h"
+1394931561 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\interactable.h
+	"InputCommon.h"
 
-1394516844 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\actor.h
-	"Common.h"
-	"InputDeclaration.h"
+1395126214 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\actor.h
+	"InputCommon.h"
+	"KeyListener.h"
+	"MouseListener.h"
+	"WindowListener.h"
 	"InputManager.h"
 	"Context.h"
 	"Camera.h"
 
-1394513179 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\context.h
-	"Common.h"
-	"InputDeclaration.h"
+1394931494 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\context.h
+	"InputCommon.h"
 	"Event.h"
 	"Reaction.h"
 	"Interactable.h"
 
-1392716810 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\meshcache.h
+1394782621 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\meshcache.h
 	"Common.h"
 	"Exception.h"
 	"Cache.h"
@@ -4947,7 +4947,7 @@
 	"Entity.h"
 	"Actor.h"
 
-1390678974 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logic\entity.h
+1394976420 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logic\entity.h
 	"Common.h"
 	"Mesh.h"
 
@@ -4956,31 +4956,31 @@
 	"Directories.h"
 	"Exception.h"
 
-1389642477 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\mesh.cpp
+1394931311 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\mesh.cpp
 	"Mesh.h"
 
-1394015810 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogram.cpp
+1394867457 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogram.cpp
 	"ShaderProgram.h"
 
-1388986455 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\vertex.cpp
+1394977124 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\vertex.cpp
 	"Vertex.h"
 
-1394517358 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\actor.cpp
+1394946806 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\actor.cpp
 	"Actor.h"
 
-1394513280 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\context.cpp
+1394976026 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\context.cpp
 	"Context.h"
 
 1393551877 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\interactable.cpp
 	"Interactable.h"
 
-1394513294 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\reaction.cpp
+1394976064 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\reaction.cpp
 	"Reaction.h"
 
-1393964287 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\cache.cpp
+1394864167 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\cache.cpp
 	"Cache.h"
 
-1394362959 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\meshcache.cpp
+1394977211 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\meshcache.cpp
 	"MeshCache.h"
 
 1394369153 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\shaderprogramcache.cpp
@@ -4995,10 +4995,10 @@
 1389407718 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logic\entity.cpp
 	"Entity.h"
 
-1394513979 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logic\game.cpp
+1394682974 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logic\game.cpp
 	"Game.h"
 
-1392900852 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logic\game.h
+1394576930 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\logic\game.h
 	"Common.h"
 	"Logger.h"
 	"Exception.h"
@@ -5014,23 +5014,277 @@
 1394378091 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logic\world.cpp
 	"World.h"
 
-1389646795 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physics.cpp
+1394678415 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physics.cpp
 	"Physics.h"
 
-1393772700 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\main.cpp
+1395127127 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\main.cpp
 	"Common.h"
 	"Logger.h"
 	"Game.h"
 
-1394515904 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\event.cpp
+1394976051 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\event.cpp
 	"Event.h"
 
-1394517322 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\inputmanager.cpp
+1395126471 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\inputmanager.cpp
 	"InputManager.h"
 
-1394514200 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\eventlistener.h
+1395015231 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\eventlistener.h
+	"InputCommon.h"
 	"Event.h"
 
 1394513039 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\eventlistener.cpp
 	"EventListener.h"
+
+1395015967 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\exception.h
+	"ExceptionCommon.h"
+	"GLException.h"
+	"GLEWException.h"
+	"GLFWException.h"
+	"ILException.h"
+	"IOException.h"
+	"NoSuchEntryException.h"
+	"NullPointerException.h"
+	"Logger.h"
+
+1394931147 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\exceptioncommon.h
+	"Common.h"
+	<stdexcept>
+	<string>
+	<fstream>
+	<iostream>
+	"boost/filesystem.hpp"
+
+1394768503 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\glexception.h
+	"ExceptionCommon.h"
+
+1394768404 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\glewexception.h
+	"ExceptionCommon.h"
+
+1394768552 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\glfwexception.h
+	"ExceptionCommon.h"
+
+1394768578 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\ioexception.h
+	"ExceptionCommon.h"
+
+1394768640 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\nullpointerexception.h
+	"ExceptionCommon.h"
+
+1395130213 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicscommon.h
+	<string>
+	"GL/glew.h"
+	"GLFW/glfw3.h"
+	"glm/glm.hpp"
+	"glm/gtx/quaternion.hpp"
+	"IL/il.h"
+	"IL/ilu.h"
+	"IL/ilut.h"
+	"Exception.h"
+
+1394768427 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\glewexception.cpp
+	"GLEWException.h"
+
+1394768531 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\glexception.cpp
+	"GLException.h"
+
+1394768562 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\glfwexception.cpp
+	"GLFWException.h"
+
+1394768597 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\ioexception.cpp
+	"IOException.h"
+
+1394768610 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\nullpointerexception.cpp
+	"NullPointerException.h"
+
+1394768873 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\nosuchentryexception.h
+	"ExceptionCommon.h"
+
+1394768807 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\nosuchentryexception.cpp
+	"NoSuchEntryException.h"
+
+1394816552 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\material.h
+	"GraphicsCommon.h"
+	"Texture.h"
+
+1394867485 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\texture.h
+	"GraphicsCommon.h"
+
+1394867422 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\drawable.h
+	"GraphicsCommon.h"
+	"Mesh.h"
+	"Material.h"
+
+1395126107 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicsmanager.h
+	"GraphicsCommon.h"
+	"ShaderProgram.h"
+	"ShaderProgramCache.h"
+	"Mesh.h"
+	"MeshCache.h"
+	"Drawable.h"
+
+1236506606 c:\users\kurt ahn\documents\github\3d-game-engine\include\devil\il\il.h
+	<stdio.h>
+	<limits.h>
+	<wchar.h>
+
+1394867436 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\drawable.cpp
+	"Drawable.h"
+
+1395126090 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphicsmanager.cpp
+	"GraphicsManager.h"
+
+1394780712 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\material.cpp
+	"Material.h"
+
+1394867628 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\ilexception.cpp
+	"ILException.h"
+
+1394861904 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\ilexception.h
+	"ExceptionCommon.h"
+
+1395125269 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\logger.h
+	"ExceptionCommon.h"
+	"LogException.h"
+
+1395125347 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\logger.cpp
+	"Logger.h"
+
+1394932129 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputcommon.h
+	"Common.h"
+	"GL/glew.h"
+	"GLFW/glfw3.h"
+	"Exception.h"
+
+1394976274 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\fileiocommon.h
+	"Common.h"
+	<string>
+	<unordered_map>
+	<set>
+	<sstream>
+	<fstream>
+	"boost/lexical_cast.hpp"
+	"boost/filesystem.hpp"
+	"rapidxml/rapidxml.hpp"
+	"rapidxml/rapidxml_print.hpp"
+
+1394863789 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\texture.cpp
+	"Texture.h"
+
+1394782761 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\materialcache.cpp
+	"MaterialCache.h"
+
+1394782881 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\materialcache.h
+	"FileIOCommon.h"
+	"Cache.h"
+	"Material.h"
+
+1395129203 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\texturecache.cpp
+	"TextureCache.h"
+
+1394976317 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\texturecache.h
+	"FileIO.h"
+
+1394976298 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\fileio.h
+	"FileIOCommon.h"
+	"XMLParser.h"
+	"Cache.h"
+	"MaterialCache.h"
+	"MeshCache.h"
+	"ShaderProgramCache.h"
+	"TextureCache.h"
+
+1395125943 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\logexception.h
+	"ExceptionCommon.h"
+
+1395129241 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\engine.cpp
+	"Engine.h"
+
+1395129258 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\engine.h
+	"Input.h"
+	"Graphics.h"
+
+1395015365 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\input.h
+	"InputCommon.h"
+	"Event.h"
+	"EventListener.h"
+	"KeyListener.h"
+	"MouseListener.h"
+	"WindowListener.h"
+	"InputManager.h"
+
+1395015323 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\keylistener.h
+	"EventListener.h"
+
+1395015308 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\mouselistener.h
+	"EventListener.h"
+
+1395015292 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\windowlistener.h
+	"EventListener.h"
+
+1395125917 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\logexception.cpp
+	"LogException.h"
+
+1395014988 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\keylistener.cpp
+	"KeyListener.h"
+
+1395015122 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\mouselistener.cpp
+	"MouseListener.h"
+
+1395015243 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\windowlistener.cpp
+	"WindowListener.h"
+
+1395126942 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physical.cpp
+	"Physical.h"
+
+1395126973 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physical.h
+	"PhysicsCommon.h"
+
+1395127005 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physicscommon.h
+	"btBulletCollisionCommon.h"
+	"btBulletDynamicsCommon.h"
+
+1395127050 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physicsmanager.cpp
+	"PhysicsManager.h"
+
+1395126831 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physicsmanager.h
+	"PhysicsCommon.h"
+	"Physical.h"
+
+1394977976 c:\users\kurt ahn\documents\github\3d-game-engine\include\test\game.h
+	"Engine.h"
+
+1394977991 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\game.cpp
+	"Game.h"
+
+1236506606 c:\users\kurt ahn\documents\github\3d-game-engine\include\devil\il\ilu.h
+	<IL/il.h>
+
+1236506606 c:\users\kurt ahn\documents\github\3d-game-engine\include\devil\il\ilut.h
+	<IL/il.h>
+	<IL/ilu.h>
+	"IL/config.h"
+	"IL/config.h"
+	<IL/ilut_config.h>
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+	<crtdbg.h>
+	<windows.h>
+	<d3d8.h>
+	<d3d9.h>
+	<rpcsal.h>
+	<sal.h>
+	<d3d10.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<sys/ipc.h>
+	<sys/shm.h>
+	<X11/extensions/XShm.h>
+	<allegro.h>
+
+1234945784 c:\users\kurt ahn\documents\github\3d-game-engine\include\devil\il\config.h
+
+1236016377 c:\users\kurt ahn\documents\github\3d-game-engine\include\devil\il\ilut_config.h
 

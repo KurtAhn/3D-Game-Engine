@@ -17,5 +17,7 @@ void Cache<T>::put(const std::string &key, const T &value) {
     cache.insert(std::pair<std::string, T>(key, value));
 }
 
-template class Cache<Mesh*>;
-template class Cache<ShaderProgram*>;
+template class Cache<Mesh *>;
+template class Cache<Texture *>;
+template class Cache<Material *>;
+template class Cache<ShaderProgram *>;

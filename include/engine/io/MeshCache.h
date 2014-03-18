@@ -7,15 +7,19 @@
 #include "Mesh.h"
 
 class MeshCache : public Cache<Mesh*> {
-    friend class Graphics;
+    friend class GraphicsManager;
 public:
-    MeshCache(const std::string &path);
+    MeshCache() = delete;
+    explicit MeshCache(const std::string &path);
+    MeshCache(const MeshCache &src) = delete;
+    MeshCache &operator=(const MeshCache &src) = delete;
     virtual ~MeshCache();
 
+public:
     void load(const std::string &path) override;
     void save(const std::string &path) override;
 private:
-    void loadObj(const std::string &obj);
+    void loadOBJ(const std::string &obj);
 };
 
 #endif // MESHCACHE_H

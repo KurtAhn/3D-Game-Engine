@@ -1,5 +1,7 @@
 #include "Mesh.h"
 
+#define BUFFER_OFFSET(x) (void *)(x)
+
 Mesh::Mesh() {
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);

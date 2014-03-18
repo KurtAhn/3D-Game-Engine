@@ -1,14 +1,47 @@
 #include "Vertex.h"
 
-vec2 &vec2::set(vec2 &v, const glm::vec2 &src) {
-    v.x = src.x;
-    v.y = src.y;
-    return v;
+Vertex::Vertex(const GLVector3 &position,
+               const GLVector3 &normal,
+               const GLVector2 &texCorod) :
+    position(position),
+    normal(normal),
+    texCoord(texCoord) {}
+
+Vertex::Vertex(const Vertex &src) :
+    Vertex(src.position,
+           src.normal,
+           src.texCoord) {}
+
+Vertex &Vertex::operator=(const Vertex &src) {
+    position = src.position;
+    normal = src.normal;
+    texCoord = src.texCoord;
+
+    return *this;
 }
 
-vec3 &vec3::set(vec3 &v, const glm::vec3 &src) {
-    v.x = src.x;
-    v.y = src.y;
-    v.z = src.z;
-    return v;
+Vertex::~Vertex() {}
+
+const GLVector3 &Vertex::getPosition() const {
+    return position;
+}
+
+void Vertex::setPosition(const GLVector3 &position) {
+    this->position = position;
+}
+
+const GLVector3 &Vertex::getNormal() const {
+    return normal;
+}
+
+void Vertex::setNormal(const GLVector3 &normal) {
+    this->normal = normal;
+}
+
+const GLVector2 &Vertex::getTexCoord() const {
+    return texCoord;
+}
+
+void Vertex::setTexCoord(const GLVector2 &texCorod) {
+    this->texCoord = texCoord;
 }

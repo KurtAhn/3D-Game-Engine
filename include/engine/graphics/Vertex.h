@@ -1,8 +1,8 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
-#include "Common.h"
-
+#include "GraphicsCommon.h"
+/*
 struct vec2 {
     float x , y;
 
@@ -19,5 +19,29 @@ struct Vertex {
     vec3 position;
     vec3 normal;
     vec2 texCoord;
+};
+*/
+
+class Vertex {
+public:
+    Vertex() = delete;
+    Vertex(const GLVector3 &position,
+           const GLVector3 &normal,
+           const GLVector2 &texCoord);
+    Vertex(const Vertex &src);
+    Vertex &operator=(const Vertex &src);
+    ~Vertex();
+
+private:
+    GLVector3 position;
+    GLVector3 normal;
+    GLVector2 texCoord;
+public:
+    const GLVector3 &getPosition() const;
+    void setPosition(const GLVector3 &position);
+    const GLVector3 &getNormal() const;
+    void setNormal(const GLVector3 &normal);
+    const GLVector2 &getTexCoord() const;
+    void setTexCoord(const GLVector2 &texCoord);
 };
 #endif // VERTEX_H

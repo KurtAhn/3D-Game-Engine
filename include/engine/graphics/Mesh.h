@@ -1,15 +1,13 @@
 #ifndef MESH_H
 #define MESH_H
 
-#include "Common.h"
+#include "GraphicsCommon.h"
 #include "Vertex.h"
-
-#define BUFFER_OFFSET(x) (void *)(x)
-
+/*
 class Mesh;
 using MeshMap = std::unordered_map<std::string, Mesh*>;
 using MeshPair = std::pair<std::string, Mesh*>;
-
+*/
 class Mesh {
 public:
     Mesh();

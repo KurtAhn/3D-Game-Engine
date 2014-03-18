@@ -1,7 +1,7 @@
 #ifndef XMLPARSER_H
 #define XMLPARSER_H
 
-#include "Common.h"
+#include "FileIOCommon.h"
 
 using namespace rapidxml;
 

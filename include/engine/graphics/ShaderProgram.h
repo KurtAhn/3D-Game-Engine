@@ -1,17 +1,11 @@
 #ifndef SHADERPROGRAM_H
 #define SHADERPROGRAM_H
 
-#include "Common.h"
+#include "GraphicsCommon.h"
 #include "Exception.h"
 #include "Camera.h"
-
-/*
-class ShaderProgram;
-using ShaderProgramMap = std::unordered_map<std::string, ShaderProgram*>;
-using ShaderProgramPair = std::pair<std::string, ShaderProgram*>;
-using Shader = std::pair<GLuint, GLenum>;
-using ShaderMap = std::unordered_map<std::string, Shader>;
-*/
+#include "Material.h"
+#include "Drawable.h"
 
 class ShaderProgram {
 public:
@@ -20,7 +14,7 @@ public:
     ShaderProgram &operator=(const ShaderProgram &p) = delete;
     virtual ~ShaderProgram();
 
-    bool isLinked();
+    bool isLinked() const;
 
     void addShader(GLuint shader, GLenum type);
     void link();
@@ -30,13 +24,15 @@ public:
     void setUniform(const std::string &name, const GLuint &u);
     void setUniform(const std::string &name, const GLfloat &f);
     void setUniform(const std::string &name, const GLdouble &d);
-    void setUniform(const std::string &name, const glm::vec2 &v);
-    void setUniform(const std::string &name, const glm::vec3 &v);
-    void setUniform(const std::string &name, const glm::vec4 &v);
-    void setUniform(const std::string &name, const glm::mat3 &m);
-    void setUniform(const std::string &name, const glm::mat4 &m);
-
+    void setUniform(const std::string &name, const GLVector2 &v);
+    void setUniform(const std::string &name, const GLVector3 &v);
+    void setUniform(const std::string &name, const GLVector4 &v);
+    void setUniform(const std::string &name, const GLMatrix3 &m);
+    void setUniform(const std::string &name, const GLMatrix4 &m);
     void setUniform(const std::string &name, const Camera &c);
+    void setUniform(const std::string &name, const Drawable &d);
+    void setUniform(const std::string &name, const Material &m);
+
 protected:
     bool linked;
 
@@ -46,8 +42,6 @@ protected:
     GLuint geom = 0;
     GLuint tesc = 0;
     GLuint tese = 0;
-private:
-
 };
 
 #endif // SHADERPROGRAM_H

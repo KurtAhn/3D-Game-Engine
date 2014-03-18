@@ -1,8 +1,8 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include "Common.h"
-#include "InputDeclaration.h"
+#include "InputCommon.h"
+
 /*
 enum EventType {
     KEY_EVENT,

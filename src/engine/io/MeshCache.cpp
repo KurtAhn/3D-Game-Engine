@@ -1,14 +1,12 @@
 #include "MeshCache.h"
 
 MeshCache::MeshCache(const std::string &path) :
-    Cache<Mesh*>(path) {
+    Cache<Mesh *>(path) {
 
     load(path);
 }
 
-MeshCache::~MeshCache() {
-
-}
+MeshCache::~MeshCache() {}
 
 void MeshCache::load(const std::string &path) {
     namespace fs = boost::filesystem;
@@ -21,7 +19,7 @@ void MeshCache::load(const std::string &path) {
 
         for (fs::directory_iterator it(path); it != last; ++it) {
             if (fs::is_regular_file(it->status())) {
-                loadObj(it->path().string());
+                loadOBJ(it->path().string());
                 //std::cout << it->path().string() + " loaded." << std::endl;
             }
         }
@@ -36,7 +34,7 @@ void MeshCache::save(const std::string &path) {
 
 }
 
-void MeshCache::loadObj(const std::string &obj) {
+void MeshCache::loadOBJ(const std::string &obj) {
     std::ifstream file(obj);
 
     try {
@@ -51,8 +49,8 @@ void MeshCache::loadObj(const std::string &obj) {
 
     std::vector<Vertex> vertices;
     std::vector<unsigned> indices;
-    std::vector<vec3> normals;
-    std::vector<vec2> texCoords;
+    std::vector<GLVector3> normals;
+    std::vector<GLVector2> texCoords;
 
     std::string line;
     Mesh *m = nullptr;
@@ -86,13 +84,16 @@ void MeshCache::loadObj(const std::string &obj) {
             float y = boost::lexical_cast<float>(item);
             iss >> item;
             float z = boost::lexical_cast<float>(item);
-            vertices.push_back(Vertex{x, y, z, 0, 0, 0, -1, -1});
+            vertices.push_back(
+                Vertex{GLVector3(x, y, z),
+                        GLVector3(0, 0, 0),
+                        GLVector2(-1, -1)});
         } else if (item == "vt") {
             iss >> item;
             float x = boost::lexical_cast<float>(item);
             iss >> item;
             float y = boost::lexical_cast<float>(item);
-            texCoords.push_back(vec2{x, y});
+            texCoords.push_back(GLVector2{x, y});
         } else if (item == "vn") {
             iss >> item;
             float x = boost::lexical_cast<float>(item);
@@ -100,7 +101,7 @@ void MeshCache::loadObj(const std::string &obj) {
             float y = boost::lexical_cast<float>(item);
             iss >> item;
             float z = boost::lexical_cast<float>(item);
-            normals.push_back(vec3{x, y, z});
+            normals.push_back(GLVector3(x, y, z));
         } else if (item == "f") {
             for (int i = 0; iss >> item && i != 4; ++i) {
                 //std::cout << item << std::endl;
@@ -119,7 +120,7 @@ void MeshCache::loadObj(const std::string &obj) {
                     int vn = boost::lexical_cast<unsigned>(item.substr(a + 2)) - 1;
 
                     indices.push_back(v);
-                    vertices.at(v).normal = normals.at(vn);
+                    vertices.at(v).setNormal(normals.at(vn));
                 } else {
                     a = item.find("/");
                     int v = boost::lexical_cast<unsigned>(item.substr(0, a)) - 1;
@@ -134,14 +135,14 @@ void MeshCache::loadObj(const std::string &obj) {
 
                         //std::cout << item.substr(b + 1) << std::endl;
                         int vn = boost::lexical_cast<unsigned>(item.substr(b + 1)) - 1;
-                        vertices.at(v).normal = normals.at(vn);
+                        vertices.at(v).setNormal(normals.at(vn));
                     } else {
                         //std::cout << item.substr(a + 1) << std::endl;
                         vt = boost::lexical_cast<unsigned>(item.substr(a + 1)) - 1;
                     }
 
                     indices.push_back(v);
-                    vertices.at(v).texCoord = texCoords.at(vt);
+                    vertices.at(v).setTexCoord(texCoords.at(vt));
                 } // END else
             } // END for
         } // END else if

@@ -1,76 +1,266 @@
+/*-----------------------------------------------------------------------------
+COPYRIGHT NOTICE
+
+Camera.h
+    Used as an input to a vertex shader to create the illusion of looking
+    through a camera in 3D space.
+-----------------------------------------------------------------------------*/
+
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Common.h"
+#include "GraphicsCommon.h"
 
 class Camera {
 #ifdef DEBUG
     friend std::ostream &operator<<(std::ostream &os, const Camera &camera);
 #endif
 
-// Static constants
-protected:
-    static const float DEFAULT_Z_NEAR;
-    static const float DEFAULT_Z_FAR;
-    static const float DEFAULT_FOV;
-    static const float DEFAULT_ASPECT;
-    static const float DEFAULT_SCALE;
-    static const glm::vec3 DEFAULT_POSITION;
-    static const glm::vec3 DEFAULT_LATERAL;
-    static const glm::vec3 DEFAULT_NORMAL;
-    static const glm::vec3 DEFAULT_LONGITUDINAL;
-
-// cdtor, copy
 public:
-    Camera() = default;
-    explicit Camera(const float &zNear,
+    /**
+     *
+     */
+    static const GLVector3 ORIGIN;
+
+    /**
+     *
+     */
+    static const GLVector3 X_STD;
+
+    /**
+     *
+     */
+     static const GLVector3 Y_STD;
+
+    /**
+     *
+     */
+    static const GLVector3 Z_STD;
+
+public:
+    /**
+     * Constructs a Camera with default parameters.
+     */
+    Camera();
+
+    /**
+     * Constructs a Camera with given parameters.
+     *
+     * @param zNear -
+     * @param zFar -
+     * @param fov -
+     * @param aspect -
+     */
+    Camera(const float &zNear,
            const float &zFar,
            const float &fov,
            const float &aspect);
-    Camera(const Camera &src) = delete;
-    Camera &operator=(const Camera &c) = delete;
 
+    /**
+     * Constructs a Camera with the given parameters.
+     *
+     * @param zNear -
+     * @param zFar -
+     * @param fov -
+     * @param aspect -
+     * @param position -
+     * @param xAxis -
+     * @param yAxis -
+     * @param zAxis -
+     */
+    Camera(const float &zNear,
+           const float &zFar,
+           const float &fov,
+           const float &aspect,
+           const GLVector3 &position,
+           const GLVector3 &xAxis,
+           const GLVector3 &yAxis,
+           const GLVector3 &zAxis);
+
+    /**
+     * Constructs a copy of a Camera.
+     */
+    Camera(const Camera &src);
+
+    /**
+     * Sets this Camera as a copy of the given Camera.
+     *
+     * @return This Camera after copy operation.
+     */
+    Camera &operator=(const Camera &src);
+
+    /**
+     * Destroys the Camera.
+     */
     virtual ~Camera();
 
-// Data/Access
 protected:
-    float zNear = DEFAULT_Z_NEAR;
-    float zFar = DEFAULT_Z_FAR;
-    float fov = DEFAULT_FOV;
-    float aspect = DEFAULT_ASPECT;
+    /**
+     * The near clip plane's z-coordinate.
+     * Strictly greater than zero and less than Camera::zFar.
+     */
+    float zNear;
 
-    mutable float scale = DEFAULT_SCALE;
-    mutable glm::vec3 position = DEFAULT_POSITION;
-    mutable glm::vec3 lateral = DEFAULT_LATERAL;
-    mutable glm::vec3 normal = DEFAULT_NORMAL;
-    mutable glm::vec3 longitudinal = DEFAULT_LONGITUDINAL;
+    /**
+     * The far clip plane's z-coordinate.
+     * Strictly greater than zero and greater than Camera::zNear.
+     */
+    float zFar;
+
+    /**
+     * The vertical field of view of the Camera in degrees.
+     * Greater than or equal to zero and strictly less than 180.0.
+     */
+    float fov;
+
+    /**
+     * The ratio, FOVx : FOVy, where FOVx is the horizontal field of view,
+     * and FOVy is the vertical field of view (i.e. Camera::fov).
+     * Greater than or equal to zero.
+     */
+    float aspect;
+
+    /**
+     * The zoom scale of the Camera.
+     * Greater than or equal to zero.
+     */
+    float scale;
+
+    /**
+     * The world coordinate of the Camera.
+     */
+    GLVector3 position;
+
+    /**
+     * The x rotation axis of the Camera.
+     * Positive multiples of the axis are directed to right.
+     */
+    GLVector3 xAxis;
+
+    /**
+     * The y rotation axis of the Camera.
+     * Positive multiples of the axis are directed upward.
+     */
+    GLVector3 yAxis;
+
+    /**
+     * The z rotation axis of the Camera.
+     * Positive multiples of the axis are directed out of the screen.
+     */
+    GLVector3 zAxis;
 
 public:
+    /**
+     *
+     */
     const float &getZNear() const;
+
+    /**
+     *
+     */
     void setZNear(const float &zNear);
+
+    /**
+     *
+     */
     const float &getZFar() const;
+
+    /**
+     *
+     */
     void setZFar(const float &zFar);
+
+    /**
+     *
+     */
     const float &getFov() const;
+
+    /**
+     *
+     */
     void setFov(const float &fov);
+
+    /**
+     *
+     */
     const float &getAspect() const;
+
+    /**
+     *
+     */
     void setAspect(const float &aspect);
 
 public:
+    /**
+     *
+     */
     const float &getScale() const;
-    void setScale(const float &scale) const;
-    const glm::vec3 &getPosition() const;
-    void setPosition(const glm::vec3 &position) const;
-    const glm::vec3 &getLateral() const;
-    void setLateral(const glm::vec3 &lateral) const;
-    const glm::vec3 &getNormal() const;
-    void setNormal(const glm::vec3 &normal) const;
-    const glm::vec3 &getLongitudinal() const;
-    void setLongitudinal(const glm::vec3 &longitudinal) const;
+
+    /**
+     *
+     */
+    void setScale(const float &scale);
+
+    /**
+     *
+     */
+    const GLVector3 &getPosition() const;
+
+    /**
+     *
+     */
+    void setPosition(const GLVector3 &position);
+
+    /**
+     *
+     */
+    const GLVector3 &getXAxis() const;
+
+    /**
+     *
+     */
+    void setXAxis(const GLVector3 &xAxis);
+
+    /**
+     *
+     */
+    const GLVector3 &getYAxis() const;
+
+    /**
+     *
+     */
+    void setYAxis(const GLVector3 &yAxis);
+
+    /**
+     *
+     */
+    const GLVector3 &getZAxis() const;
+
+    /**
+     *
+     */
+    void setZAxis(const GLVector3 &zAxis);
+
+    /**
+     *
+     */
     glm::mat4 getTransform() const;
 
-    void translate(const glm::vec3 &direction, const float &distance) const;
-    void rotate(const glm::vec3 &axis, const float &deg) const;
-    void zoom(const float &amount) const;
+
+    /**
+     *
+     */
+    void translate(const GLVector3 &direction, const float &distance);
+
+    /**
+     *
+     */
+    void rotate(const GLVector3 &axis, const float &deg);
+
+    /**
+     *
+     */
+    void zoom(const float &amount);
 };
 #ifdef DEBUG
 std::ostream &operator<<(std::ostream &os, const Camera &camera);

@@ -1,20 +1,59 @@
 #include "Camera.h"
 
-const float Camera::DEFAULT_Z_NEAR = 0.5f;
-const float Camera::DEFAULT_Z_FAR = 100.0f;
-const float Camera::DEFAULT_FOV = 75.0f;
-const float Camera::DEFAULT_ASPECT = 1.0f;
-const float Camera::DEFAULT_SCALE = 1.0f;
-const glm::vec3 Camera::DEFAULT_POSITION = glm::vec3(0.0f, 0.0f, 10.0f);
-const glm::vec3 Camera::DEFAULT_LATERAL = glm::vec3(1.0f, 0.0f, 0.0f);
-const glm::vec3 Camera::DEFAULT_NORMAL = glm::vec3(0.0f, 1.0f, 0.0f);
-const glm::vec3 Camera::DEFAULT_LONGITUDINAL = glm::vec3(0.0f, 0.0f, 1.0f);
+const GLVector3 Camera::ORIGIN = GLVector3(0.0f, 0.0f, 10.0f);
+const GLVector3 Camera::X_STD = GLVector3(1.0f, 0.0f, 0.0f);
+const GLVector3 Camera::Y_STD = GLVector3(0.0f, 1.0f, 0.0f);
+const GLVector3 Camera::Z_STD = GLVector3(0.0f, 0.0f, 1.0f);
+
+Camera::Camera() :
+    Camera(0.5f,
+           100.0f,
+           75.0f,
+           1.25f) {}
 
 Camera::Camera(const float &zNear,
                const float &zFar,
                const float &fov,
                const float &aspect) :
-            zNear(zNear), zFar(zFar), fov(fov), aspect(aspect) {}
+    Camera(zNear, zFar, fov, aspect,
+           GLVector3(0.0f, 0.0f, -5.0f),
+           GLVector3(1.0f, 0.0f, 0.0f),
+           GLVector3(0.0f, 1.0f, 0.0f),
+           GLVector3(0.0f, 0.0f, 1.0f)) {}
+
+Camera::Camera(const float &zNear,
+               const float &zFar,
+               const float &fov,
+               const float &aspect,
+               const GLVector3 &position,
+               const GLVector3 &xAxis,
+               const GLVector3 &yAxis,
+               const GLVector3 &zAxis) :
+    zNear(zNear),
+    zFar(zFar),
+    fov(fov),
+    aspect(aspect),
+    position(position),
+    xAxis(xAxis),
+    yAxis(yAxis),
+    zAxis(zAxis) {}
+
+Camera::Camera(const Camera &src) :
+    Camera(src.zNear, src.zFar, src.fov, src.aspect,
+           src.position, src.xAxis, src.yAxis, src.zAxis) {}
+
+Camera &Camera::operator=(const Camera &src) {
+    zNear = src.zNear;
+    zFar = src.zFar;
+    fov = src.fov;
+    aspect = src.aspect;
+    position = src.position;
+    xAxis = src.xAxis;
+    yAxis = src.yAxis;
+    zAxis = src.zAxis;
+
+    return *this;
+}
 
 Camera::~Camera() {}
 
@@ -71,82 +110,82 @@ const float &Camera::getScale() const {
     return scale;
 }
 
-void Camera::setScale(const float &scale) const {
+void Camera::setScale(const float &scale) {
     if (scale < 0.0f)
         this->scale = 0.0f;
     else
         this->scale = scale;
 }
 
-const glm::vec3 &Camera::getPosition() const {
+const GLVector3 &Camera::getPosition() const {
     return position;
 }
 
-void Camera::setPosition(const glm::vec3 &position) const {
+void Camera::setPosition(const GLVector3 &position) {
     this->position = position;
 }
 
-const glm::vec3 &Camera::getLateral() const {
-    return lateral;
+const GLVector3 &Camera::getXAxis() const {
+    return xAxis;
 }
 
-void Camera::setLateral(const glm::vec3 &lateral) const {
-    this->lateral = lateral;
+void Camera::setXAxis(const GLVector3 &xAxis) {
+    this->xAxis = xAxis;
 }
 
-const glm::vec3 &Camera::getNormal() const {
-    return normal;
+const GLVector3 &Camera::getYAxis() const {
+    return yAxis;
 }
 
-void Camera::setNormal(const glm::vec3 &normal) const {
-    this->normal = normal;
+void Camera::setYAxis(const GLVector3 &yAxis) {
+    this->yAxis = yAxis;
 }
 
-const glm::vec3 &Camera::getLongitudinal() const {
-    return longitudinal;
+const GLVector3 &Camera::getZAxis() const {
+    return zAxis;
 }
 
-void Camera::setLongitudinal(const glm::vec3 &longitudinal) const {
-    this->longitudinal = longitudinal;
+void Camera::setZAxis(const GLVector3 &zAxis) {
+    this->zAxis = zAxis;
 }
 
 glm::mat4 Camera::getTransform() const {
-    return glm::mat4(glm::vec4(lateral, position.x),
-                glm::vec4(normal, position.y),
-                glm::vec4(longitudinal, position.z),
+    return glm::mat4(glm::vec4(xAxis, position.x),
+                glm::vec4(yAxis, position.y),
+                glm::vec4(zAxis, position.z),
                 glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
 }
 
 
-void Camera::translate(const glm::vec3 &direction, const float &distance) const {
+void Camera::translate(const GLVector3 &direction, const float &distance) {
     float d = glm::length(direction);
     if (d)
         position += direction * distance / d;
     //std::cout << position.x << " " << position.y << " " << position.z << std::endl;
 }
 
-void Camera::rotate(const glm::vec3 &axis, const float &deg) const {
+void Camera::rotate(const GLVector3 &axis, const float &deg) {
     float h = glm::tan(deg / 2);
 
-    glm::quat q(1, axis.x * h, axis.y * h, axis.z * h);
-    glm::quat q_(1, -axis.x * h, -axis.y * h, -axis.z * h);
+    GLQuaternion q(1, axis.x * h, axis.y * h, axis.z * h);
+    GLQuaternion q_(1, -axis.x * h, -axis.y * h, -axis.z * h);
 
-    glm::quat q_lat = q * glm::quat(0, lateral) * q_;
-    lateral = glm::vec3(q_lat.x, q_lat.y, q_lat.z);
+    GLQuaternion q_xAxis = q * GLQuaternion(0, xAxis) * q_;
+    xAxis = GLVector3(q_xAxis.x, q_xAxis.y, q_xAxis.z);
 
-    glm::quat q_nor = q * glm::quat(0, normal) * q_;
-    normal = glm::vec3(q_nor.x, q_nor.y, q_nor.z);
+    GLQuaternion q_yAxis = q * GLQuaternion(0, yAxis) * q_;
+    yAxis = GLVector3(q_yAxis.x, q_yAxis.y, q_yAxis.z);
 
-    glm::quat q_lon = q * glm::quat(0, longitudinal) * q_;
-    longitudinal = glm::vec3(q_lon.x, q_lon.y, q_lon.z);
+    GLQuaternion q_zAxis = q * GLQuaternion(0, zAxis) * q_;
+    zAxis = GLVector3(q_zAxis.x, q_zAxis.y, q_zAxis.z);
 
-    lateral = glm::normalize(lateral);
-    normal = glm::normalize(normal);
-    longitudinal = glm::normalize(longitudinal);
+    xAxis = glm::normalize(xAxis);
+    yAxis = glm::normalize(yAxis);
+    zAxis = glm::normalize(zAxis);
 /*
     if (normal.y >= 0) {
-        glm::quat q_lon = q * glm::quat(0, longitudinal) * q_;
-        longitudinal = glm::vec3(q_lon.x, q_lon.y, q_lon.z);
+        GLQuaternion q_lon = q * GLQuaternion(0, longitudinal) * q_;
+        longitudinal = GLVector3(q_lon.x, q_lon.y, q_lon.z);
 
         lateral = glm::normalize(lateral);
         normal = glm::normalize(normal);
@@ -159,7 +198,7 @@ void Camera::rotate(const glm::vec3 &axis, const float &deg) const {
     }*/
 }
 
-void Camera::zoom(const float &amount) const {
+void Camera::zoom(const float &amount) {
     setScale(scale + amount);
 }
 

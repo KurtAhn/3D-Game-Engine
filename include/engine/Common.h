@@ -2,8 +2,7 @@
 #define COMMON_H
 
 
-#define DEBUG
-#ifdef DEBUG
+#ifndef NDEBUG
     #define ASSERT(c, m)\
         if (!(c)) {\
             std::cerr << "FAILED ASSERTION" << std::endl\
@@ -13,22 +12,10 @@
                       << "Details: " << (m) << std::endl;\
             exit(EXIT_FAILURE);\
         }
-
-    #define LOG_ERROR(e) std::cerr << __FILE__ << std::endl\
-                                   << __LINE__ << std::endl\
-                                   << e.what() << std::endl << std::endl;
 #else
     #define ASSERT(c, m)
-    #define LOG_ERROR(e) Logger::getInstance()->write(__FILE__, __LINE__, e.what())
 #endif
-
-#define STACK_TRACE
-#ifdef STACK_TRACE
-    #define RETHROW throw
-#else
-    #define RETHROW
-#endif
-
+/*
 #include <cstdlib>
 #include <stdexcept>
 #include <initializer_list>
@@ -54,4 +41,5 @@
 //#include "rapidxml/rapidxml_utils.hpp"
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"
+*/
 #endif // COMMON_H

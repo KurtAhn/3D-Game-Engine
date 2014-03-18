@@ -1,10 +1,12 @@
 bin/
+doxygen/
 include/boost/
 include/GL/
 include/GLFW/
 include/glm/
 include/rapidxml/
 include/bullet/
+include/devil/
 include/ignore/
 src/ignore/
 lib/
