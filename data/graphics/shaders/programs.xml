@@ -1,5 +1,5 @@
 <programs>
-	<program name="basic" active="true">
+	<program name="basic">
 		<shader type="vert">basic.vert</shader>
 		<shader type="frag">basic.frag</shader>
 	</program>

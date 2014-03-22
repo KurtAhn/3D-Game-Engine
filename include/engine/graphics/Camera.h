@@ -12,7 +12,7 @@ Camera.h
 #include "GraphicsCommon.h"
 
 class Camera {
-#ifdef DEBUG
+#ifndef NDEBUG
     friend std::ostream &operator<<(std::ostream &os, const Camera &camera);
 #endif
 
@@ -63,6 +63,7 @@ public:
      * @param zFar -
      * @param fov -
      * @param aspect -
+     * @param scale -
      * @param position -
      * @param xAxis -
      * @param yAxis -
@@ -72,6 +73,7 @@ public:
            const float &zFar,
            const float &fov,
            const float &aspect,
+           const float &scale,
            const GLVector3 &position,
            const GLVector3 &xAxis,
            const GLVector3 &yAxis,
@@ -262,7 +264,7 @@ public:
      */
     void zoom(const float &amount);
 };
-#ifdef DEBUG
+#ifndef NDEBUG
 std::ostream &operator<<(std::ostream &os, const Camera &camera);
 #endif
 #endif // CAMERA_H

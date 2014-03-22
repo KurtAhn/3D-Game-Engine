@@ -12,7 +12,11 @@ public:
     virtual ~Texture();
 
 private:
-    ILuint texture;
+    ILuint handle;
+
+public:
+    const ILuint &getHandle() const;
+
 
 public:
     void bind();

@@ -11,10 +11,11 @@ using MeshPair = std::pair<std::string, Mesh*>;
 class Mesh {
 public:
     Mesh();
-    Mesh(const Mesh &m);
-    Mesh &operator=(const Mesh &m);
+    Mesh(const Mesh &src);
+    Mesh &operator=(const Mesh &src);
     virtual ~Mesh();
 
+public:
     void addVertices(Vertex *vertices,
                      const unsigned &numVertices,
                      unsigned *indices,
@@ -25,14 +26,19 @@ public:
 
     void render() const;
 
-    const GLuint &getVao() const;
-    const GLuint &getVbo() const;
-    const GLuint &getIbo() const;
+private:
+    GLuint vao;
+    GLuint vbo;
+    GLuint ibo;
+    unsigned vertexCount;
+    unsigned indexCount;
+
+public:
+    const GLuint &getVAO() const;
+    const GLuint &getVBO() const;
+    const GLuint &getIBO() const;
     const unsigned &getVertexCount() const;
     const unsigned &getIndexCount() const;
-private:
-    GLuint vao, vbo, ibo;
-    unsigned vertexCount, indexCount;
 };
 
 #endif // MESH_H

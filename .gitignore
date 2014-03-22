@@ -11,6 +11,9 @@ include/ignore/
 src/ignore/
 lib/
 obj/
+data/graphics/meshes/
+data/graphics/textures/
+data/garphics/materials/
 
 .gitattributes
 3D\ Game\ Engine.cbp

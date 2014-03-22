@@ -6,105 +6,122 @@ GraphicsManager *GraphicsManager::getCurrentInstance() {
     return currentInstance;
 }
 
-void GraphicsManager::setCurrentInstance(GraphicsManager *const instance) {
+void GraphicsManager::setCurrentInstance(GraphicsManager *const &instance) {
     currentInstance = instance;
 }
 
 GraphicsManager::GraphicsManager(GLFWwindow *const &window) :
+    GraphicsManager(window,
+                    nullptr,
+                    nullptr,
+                    nullptr,
+                    nullptr,
+                    nullptr) {}
+
+GraphicsManager::GraphicsManager(GLFWwindow *const &window,
+                                 ShaderProgramCache *const &shaderPrograms,
+                                 MeshCache *const &meshes,
+                                 TextureCache *const &textures,
+                                 MaterialCache *const &materials,
+                                 Camera *const &camera) :
     window(window),
-    shaderPrograms("", ""),
-    meshes(""),
-    camera(nullptr) {
-
-
+    shaderPrograms(shaderPrograms),
+    activeShaderProgram(nullptr),
+    meshes(meshes),
+    textures(textures),
+    materials(materials),
+    camera(camera) {
 
     ASSERT(glfwGetCurrentContext(),
            "GL context not set.");
 
     glClearColor(0, 0, 0, 0);
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
-    glFrontFace(GL_CCW);
-    glCullFace(GL_BACK);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glEnable(GL_CULL_FACE);
+    //glFrontFace(GL_CCW);
+    //glCullFace(GL_BACK);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 GraphicsManager::~GraphicsManager() {}
 
+ShaderProgramCache *const &GraphicsManager::getShaderPrograms() const {
+    return shaderPrograms;
+}
+
 ShaderProgram *const &GraphicsManager::getActiveShaderProgram() const {
-    return shaderPrograms.activeProgram;
+    return activeShaderProgram;
 }
 
 void GraphicsManager::setActiveShaderProgram(const std::string &key) {
-    try {
-        auto program = shaderPrograms.cache.find(key);
-
-        if (program == shaderPrograms.cache.end())
-            throw NoSuchEntryException(
-                "Key: '" + key + "' not found in 'shaderPrograms.cache'");
-
-        shaderPrograms.activeProgram = program->second;
-    } catch (const NoSuchEntryException &e) {
-        LOG_ERROR(e);
-        RETHROW;
-    }
+    activeShaderProgram = shaderPrograms->get(key);
 }
 
 ShaderProgram *const &GraphicsManager::getShaderProgram(const std::string &key) const  {
-    auto program = shaderPrograms.cache.find(key);
+    return shaderPrograms->get(key);
+}
 
-    try {
-        if (program == shaderPrograms.cache.end())
-            throw NoSuchEntryException(
-                "Key: '" + key + "' not found in 'shaderPrograms.cache'");
-    } catch (const NoSuchEntryException &e) {
-        LOG_ERROR(e);
-        RETHROW;
-    }
+MeshCache *const &GraphicsManager::getMeshes() const {
+    return meshes;
+}
 
-    return program->second;
+void GraphicsManager::setMeshes(MeshCache *const &meshes) {
+    this->meshes = meshes;
 }
 
 Mesh *const &GraphicsManager::getMesh(const std::string &key) const {
-    auto mesh = meshes.cache.find(key);
+    return meshes->get(key);
+}
 
-    try {
-        if (mesh == meshes.cache.end())
-            throw NoSuchEntryException(
-                "Key: '" + key + "' not found in 'meshes.cache'");
-    } catch (const NoSuchEntryException &e) {
-        LOG_ERROR(e);
-        RETHROW;
-    }
+TextureCache *const &GraphicsManager::getTextures() const {
+    return textures;
+}
 
-    return mesh->second;
+void GraphicsManager::setTextures(TextureCache *const &textures) {
+    this->textures = textures;
+}
+
+Texture *const &GraphicsManager::getTexture(const std::string &key) const {
+    return textures->get(key);
+}
+
+MaterialCache *const &GraphicsManager::getMaterials() const {
+    return materials;
+}
+
+void GraphicsManager::setMaterials(MaterialCache *const &materials) {
+    this->materials = materials;
+}
+
+Material *const &GraphicsManager::getMaterial(const std::string &key) const {
+    return materials->get(key);
+}
+
+Camera *const &GraphicsManager::getCamera() const {
+    return camera;
+}
+
+void GraphicsManager::setCamera(Camera *const &camera) {
+    this->camera = camera;
 }
 
 void GraphicsManager::render(Drawable *const &drawable) const {
     //ASSERT(glfwGetCurrentContext(),
     //       "GL context not set.");
-    ASSERT(camera,
-           "'this->camera' is null.");
-    ASSERT(shaderPrograms.activeProgram,
-           "'this->shaderPrograms.activeProgram' is null.");
-    ASSERT(drawable,
-           "'drawable' is null.");
+    //ASSERT(camera,
+    //       "null pointer.");
+    ASSERT_NOT_NULL(camera);
+    ASSERT_NOT_NULL(activeShaderProgram);
+    ASSERT_NOT_NULL(drawable);
 
     glfwMakeContextCurrent(window);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    shaderPrograms.activeProgram->use();
-    shaderPrograms.activeProgram->setUniform("camera", *camera);
-    shaderPrograms.activeProgram->setUniform("drawable", *drawable);
+    activeShaderProgram->use();
+    activeShaderProgram->setUniform("camera", *camera);
+    activeShaderProgram->setUniform("drawable", *drawable);
     drawable->render();
 
-    glfwSwapBuffers(window);
-
-    /* temporary
-    for (const auto &m : meshes.cache) {
-        m.second->render();
-        //std::cout << m.first << std::endl;
-    }
-    */
+    //glfwSwapBuffers(window);
 }

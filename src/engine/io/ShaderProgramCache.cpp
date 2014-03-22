@@ -1,17 +1,18 @@
 #include "ShaderProgramCache.h"
 
-ShaderProgramCache::ShaderProgramCache(
-    const std::string &path, const std::string &xml) :
-    Cache<ShaderProgram*>(path),
-    parser(xml),
-    activeProgram(nullptr) {
+ShaderProgramCache::ShaderProgramCache(const std::string &folderPath,
+                                       const std::string &xmlPath) :
+    parser(xmlPath) {
 
-    load(path);
+    load(folderPath);
 }
 
-ShaderProgramCache::~ShaderProgramCache() {}
+ShaderProgramCache::~ShaderProgramCache() {
+    //for (const auto &p : cache)
+    //    delete p.second;
+}
 
-void ShaderProgramCache::load(const std::string &path) {
+void ShaderProgramCache::load(const std::string &folderPath) {
     std::set<std::string> shaderFileNames;
     using Shader = std::pair<std::string, GLuint>;
     std::unordered_map<std::string, GLuint> shaders;
@@ -26,7 +27,7 @@ void ShaderProgramCache::load(const std::string &path) {
             programNode = programNode->next_sibling("program")) {
 
         std::string programName = programNode->first_attribute("name")->value();
-        std::string programActive = programNode->first_attribute("active")->value();
+        //std::string programActive = programNode->first_attribute("active")->value();
 
         //std::cout << "Program name: " << programName << " Active? " << programActive << std::endl;
 
@@ -37,7 +38,7 @@ void ShaderProgramCache::load(const std::string &path) {
         for (xml_node<> *shaderNode = programNode->first_node("shader");
                 shaderNode != nullptr;
                 shaderNode = shaderNode->next_sibling("shader")) {
-            std::string shaderName = shaderNode->value();
+            std::string shaderFilePath = folderPath + shaderNode->value();
             std::string shaderType = shaderNode->first_attribute("type")->value();
 
             //std::cout << "  Shader name: " << shaderName << " Type: " << shaderType << std::endl;
@@ -46,14 +47,14 @@ void ShaderProgramCache::load(const std::string &path) {
 
             GLuint shader;
 
-            if (shaderFileNames.insert(shaderName).second) {
+            if (shaderFileNames.insert(shaderFilePath).second) {
                 shader = glCreateShader(type);
-                shaders.emplace(shaderName, shader);
-                loadAndCompileShader(shader, path + shaderName);
+                shaders.emplace(shaderFilePath, shader);
+                loadAndCompileShader(shader, shaderFilePath);
                 //std::cout << shaderNode->next_sibling("shader") << std::endl;
                 //print(std::cout, *document);
             } else {
-                shader = shaders.find(shaderName)->second;
+                shader = shaders.find(shaderFilePath)->second;
             }
 
             program->addShader(shader, type);
@@ -64,11 +65,11 @@ void ShaderProgramCache::load(const std::string &path) {
         //temp
         //std::cout << "program linked correctly." << std::endl;
 
-        if (programActive.compare("true") == 0) {
-            activeProgram = program;
+        //if (programActive.compare("true") == 0) {
+            //activeProgram = program;
             //std::cout << "program active." << std::endl;
-        } if (!activeProgram)
-            activeProgram = program;
+        //} if (!activeProgram)
+        //    activeProgram = program;
     }
 }
 
@@ -94,16 +95,16 @@ GLenum ShaderProgramCache::getShaderType(const std::string &type) {
     return 0;
 }
 
-void ShaderProgramCache::loadAndCompileShader(
-    const GLuint &shader, const std::string &path) {
+void ShaderProgramCache::loadAndCompileShader(const GLuint &shader,
+                                              const std::string &filePath) {
     // GL error-check
     GLint status;
 
     try {
         // open source
-        std::ifstream file(path);
+        std::ifstream file(filePath);
         if (!file)
-            throw IOException(path + " is not a valid file.");
+            throw IOException(filePath + " is not a valid file.");
 
         std::ostringstream buffer;
         buffer << file.rdbuf();
@@ -129,8 +130,4 @@ void ShaderProgramCache::loadAndCompileShader(
         LOG_ERROR(e);
         RETHROW;
     }
-}
-
-void ShaderProgramCache::save(const std::string &path) {
-    // no impelementation
 }

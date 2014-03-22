@@ -7,20 +7,20 @@
 #include "ShaderProgram.h"
 #include "XMLParser.h"
 
-class ShaderProgramCache : public Cache<ShaderProgram*> {
-    friend class GraphicsManager;
+class ShaderProgramCache : public Cache<ShaderProgram> {
 public:
     ShaderProgramCache() = delete;
-    ShaderProgramCache(const std::string &path, const std::string &xml);
+    ShaderProgramCache(const std::string &xmlPath,
+                       const std::string &folderPath);
     ShaderProgramCache(const ShaderProgramCache &src) = delete;
     ShaderProgramCache &operator=(const ShaderProgramCache &src) = delete;
     virtual ~ShaderProgramCache();
 
-    void load(const std::string &path) override;
-    void save(const std::string &path) override;
+public:
+    void load(const std::string &folderPath) override;
+
 private:
     XMLParser parser;
-    ShaderProgram *activeProgram;
 
     GLenum getShaderType(const std::string &type);
     void loadAndCompileShader(const GLuint &shader, const std::string &path);

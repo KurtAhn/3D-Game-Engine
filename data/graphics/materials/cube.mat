@@ -1,0 +1,6 @@
+<material>
+	<shininess value="1"/>
+	<specularity value="1"/>
+	<diffuseness value="1"/>
+	<color r="0.25" g="0.25" b="0.25" a="0.25"/>
+</material>

@@ -41,7 +41,7 @@ public:
      *
      * @param instance - Instance to bound.
      */
-    static void setCurrentInstance(InputManager *const instance);
+    static void setCurrentInstance(InputManager *const &instance);
 
 public:
     /**

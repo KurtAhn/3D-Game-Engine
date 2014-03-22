@@ -11,10 +11,10 @@ private:
 	Game &operator=(const Game &src) = delete;
 public:
 	~Game();
-	
+
 private:
-	Engine engine;
-	
+	//Engine engine;
+
 };
 
 #endif //GAME_H

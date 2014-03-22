@@ -5,7 +5,6 @@ ShaderProgram::ShaderProgram() :
 
 ShaderProgram::~ShaderProgram() {
     glDeleteProgram(program);
-    std::cout << "Program deleted." << std::endl;
     ASSERT(glIsProgram(program) == GL_FALSE,
            "ShaderProgram not deleted properly.");
 }
@@ -91,44 +90,44 @@ void ShaderProgram::link() {
     linked = true;
 }
 
-void ShaderProgram::use() {
+void ShaderProgram::use() const {
     ASSERT(glIsProgram(program) == GL_TRUE,
-           "Shader program is not a program?!");
+           "Shader program is not a program.");
 
     glUseProgram(program);
 }
 
 
 
-void ShaderProgram::setUniform(const std::string &name, const GLint &i) {
+void ShaderProgram::setUniform(const std::string &name, const GLint &i) const {
     glUniform1i(glGetUniformLocation(program, name.c_str()), i);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLuint &u) {
+void ShaderProgram::setUniform(const std::string &name, const GLuint &u) const {
     glUniform1ui(glGetUniformLocation(program, name.c_str()), u);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLfloat &f) {
+void ShaderProgram::setUniform(const std::string &name, const GLfloat &f) const {
     glUniform1f(glGetUniformLocation(program, name.c_str()), f);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLdouble &d) {
+void ShaderProgram::setUniform(const std::string &name, const GLdouble &d) const {
     glUniform1d(glGetUniformLocation(program, name.c_str()), d);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLVector2 &v) {
+void ShaderProgram::setUniform(const std::string &name, const GLVector2 &v) const {
     glUniform2f(glGetUniformLocation(program, name.c_str()), v.x, v.y);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLVector3 &v) {
+void ShaderProgram::setUniform(const std::string &name, const GLVector3 &v) const {
     glUniform3f(glGetUniformLocation(program, name.c_str()), v.x, v.y, v.z);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLVector4 &v) {
+void ShaderProgram::setUniform(const std::string &name, const GLVector4 &v) const {
     glUniform4f(glGetUniformLocation(program, name.c_str()), v.x, v.y, v.z, v.w);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLMatrix3 &m) {
+void ShaderProgram::setUniform(const std::string &name, const GLMatrix3 &m) const {
     GLfloat a[] {
         m[0][0], m[1][0], m[2][0],
         m[0][1], m[1][1], m[2][1],
@@ -141,7 +140,7 @@ void ShaderProgram::setUniform(const std::string &name, const GLMatrix3 &m) {
                 a);
 }
 
-void ShaderProgram::setUniform(const std::string &name, const GLMatrix4 &m) {
+void ShaderProgram::setUniform(const std::string &name, const GLMatrix4 &m) const {
     GLfloat a[] {
         m[0][0], m[1][0], m[2][0], m[3][0],
         m[0][1], m[1][1], m[2][1], m[3][1],
@@ -156,7 +155,7 @@ void ShaderProgram::setUniform(const std::string &name, const GLMatrix4 &m) {
 }
 
 
-void ShaderProgram::setUniform(const std::string &name, const Camera &c) {
+void ShaderProgram::setUniform(const std::string &name, const Camera &c) const {
     setUniform((name + ".zNear").c_str(), c.getZNear());
     setUniform((name + ".zFar").c_str(), c.getZFar());
     setUniform((name + ".fov").c_str(), c.getFov());
@@ -168,15 +167,25 @@ void ShaderProgram::setUniform(const std::string &name, const Camera &c) {
     setUniform((name + ".zAxis").c_str(), c.getZAxis());
 }
 
-void ShaderProgram::setUniform(const std::string &name, const Drawable &d) {
-    setUniform((name + ".transform").c_str(), *(d.getTransform()));
-    setUniform((name + ".material").c_str(), *(d.getMaterial()));
+void ShaderProgram::setUniform(const std::string &name, const Texture &t) const {
+    //setUniform(name, 0); // texture assigned to unit 0
+
+    //glActiveTexture(GL_TEXTURE0);
+    //glBindTexture(GL_TEXTURE_2D, t.getHandle());
+
+    glBindTexture(GL_TEXTURE_2D, t.getHandle());
+
 }
 
-void ShaderProgram::setUniform(const std::string &name, const Material &m) {
-    //sampler
-    //shininess
-    //specularity
-    //diffuseness
-    //color
+void ShaderProgram::setUniform(const std::string &name, const Material &m) const {
+    setUniform((name + ".shininess").c_str(), m.getShininess());
+    setUniform((name + ".specularity").c_str(), m.getSpecularity());
+    setUniform((name + ".diffuseness").c_str(), m.getDiffuseness());
+    setUniform((name + ".color").c_str(), m.getColor());
+}
+
+void ShaderProgram::setUniform(const std::string &name, const Drawable &d) const {
+    setUniform((name + ".transform").c_str(), *(d.getTransform()));
+    setUniform((name + ".sampler").c_str(), *(d.getTexture()));
+    setUniform((name + ".material").c_str(), *(d.getMaterial()));
 }

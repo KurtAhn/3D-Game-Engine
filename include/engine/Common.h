@@ -6,14 +6,24 @@
     #define ASSERT(c, m)\
         if (!(c)) {\
             std::cerr << "FAILED ASSERTION" << std::endl\
-                      << "Condition: " << (#c) << std::endl\
-                      << "File: " << __FILE__ << std::endl\
-                      << "Line: " << __LINE__ << std::endl\
-                      << "Details: " << (m) << std::endl;\
+                      << "\tCondition: " << (#c) << std::endl\
+                      << "\tFile: " << __FILE__ << std::endl\
+                      << "\tLine: " << __LINE__ << std::endl\
+                      << "\tDetails: " << (m) << std::endl;\
+            exit(EXIT_FAILURE);\
+        }
+
+    #define ASSERT_NOT_NULL(p)\
+        if (!(p)) {\
+            std::cerr << "FAILED ASSERTION" << std::endl\
+                      << "\tPointer " << (#p) << " is null." << std::endl\
+                      << "\tFile: " << __FILE__ << std::endl\
+                      << "\tLine: " << __LINE__ << std::endl;\
             exit(EXIT_FAILURE);\
         }
 #else
     #define ASSERT(c, m)
+    #define ASSERT_NOT_NULL(v)
 #endif
 /*
 #include <cstdlib>

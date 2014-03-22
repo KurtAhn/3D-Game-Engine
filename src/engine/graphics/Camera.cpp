@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-const GLVector3 Camera::ORIGIN = GLVector3(0.0f, 0.0f, 10.0f);
+const GLVector3 Camera::ORIGIN = GLVector3(0.0f, 0.0f, 5.0f);
 const GLVector3 Camera::X_STD = GLVector3(1.0f, 0.0f, 0.0f);
 const GLVector3 Camera::Y_STD = GLVector3(0.0f, 1.0f, 0.0f);
 const GLVector3 Camera::Z_STD = GLVector3(0.0f, 0.0f, 1.0f);
@@ -15,8 +15,12 @@ Camera::Camera(const float &zNear,
                const float &zFar,
                const float &fov,
                const float &aspect) :
-    Camera(zNear, zFar, fov, aspect,
-           GLVector3(0.0f, 0.0f, -5.0f),
+    Camera(zNear,
+           zFar,
+           fov,
+           aspect,
+           1.0f,
+           GLVector3(0.0f, 0.0f, 0.0f),
            GLVector3(1.0f, 0.0f, 0.0f),
            GLVector3(0.0f, 1.0f, 0.0f),
            GLVector3(0.0f, 0.0f, 1.0f)) {}
@@ -25,6 +29,7 @@ Camera::Camera(const float &zNear,
                const float &zFar,
                const float &fov,
                const float &aspect,
+               const float &scale,
                const GLVector3 &position,
                const GLVector3 &xAxis,
                const GLVector3 &yAxis,
@@ -33,20 +38,29 @@ Camera::Camera(const float &zNear,
     zFar(zFar),
     fov(fov),
     aspect(aspect),
+    scale(scale),
     position(position),
     xAxis(xAxis),
     yAxis(yAxis),
     zAxis(zAxis) {}
 
 Camera::Camera(const Camera &src) :
-    Camera(src.zNear, src.zFar, src.fov, src.aspect,
-           src.position, src.xAxis, src.yAxis, src.zAxis) {}
+    Camera(src.zNear,
+           src.zFar,
+           src.fov,
+           src.aspect,
+           src.scale,
+           src.position,
+           src.xAxis,
+           src.yAxis,
+           src.zAxis) {}
 
 Camera &Camera::operator=(const Camera &src) {
     zNear = src.zNear;
     zFar = src.zFar;
     fov = src.fov;
     aspect = src.aspect;
+    scale = src.scale;
     position = src.position;
     xAxis = src.xAxis;
     yAxis = src.yAxis;
@@ -202,11 +216,18 @@ void Camera::zoom(const float &amount) {
     setScale(scale + amount);
 }
 
-#ifdef DEBUG
+#define NDEBUG
+#ifndef NDEBUG
 std::ostream &operator<<(std::ostream &os, const Camera &camera) {
-    os << "LAT: <" << camera.lateral.x << ", " << camera.lateral.y << ", " << camera.lateral.z << ">" << std::endl
-       << "NOR: <" << camera.normal.x << ", " << camera.normal.y << ", " << camera.normal.z << ">" << std::endl
-       << "LON: <" << camera.longitudinal.x << ", " << camera.longitudinal.y << ", " << camera.longitudinal.z << ">" << std::endl;
+    /*os << "POS: <" << camera.position.x << ", " << camera.position.y << ", " << camera.position.z << ">" << std::endl
+       << "LAT: <" << camera.xAxis.x << ", " << camera.xAxis.y << ", " << camera.xAxis.z << ">" << std::endl
+       << "NOR: <" << camera.yAxis.x << ", " << camera.yAxis.y << ", " << camera.yAxis.z << ">" << std::endl
+       << "LON: <" << camera.zAxis.x << ", " << camera.zAxis.y << ", " << camera.zAxis.z << ">" << std::endl;*/
+    os << "FAR:     " << camera.zFar
+       << "NEAR:    " << camera.zNear
+       << "FOV:     " << camera.fov
+       << "ASPECT:  " << camera.aspect;
     return os;
 }
 #endif
+#undef NDEBUG

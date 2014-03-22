@@ -14,24 +14,27 @@ public:
     ShaderProgram &operator=(const ShaderProgram &p) = delete;
     virtual ~ShaderProgram();
 
+public:
     bool isLinked() const;
 
     void addShader(GLuint shader, GLenum type);
     void link();
-    void use();
+    void use() const;
 
-    void setUniform(const std::string &name, const GLint &i);
-    void setUniform(const std::string &name, const GLuint &u);
-    void setUniform(const std::string &name, const GLfloat &f);
-    void setUniform(const std::string &name, const GLdouble &d);
-    void setUniform(const std::string &name, const GLVector2 &v);
-    void setUniform(const std::string &name, const GLVector3 &v);
-    void setUniform(const std::string &name, const GLVector4 &v);
-    void setUniform(const std::string &name, const GLMatrix3 &m);
-    void setUniform(const std::string &name, const GLMatrix4 &m);
-    void setUniform(const std::string &name, const Camera &c);
-    void setUniform(const std::string &name, const Drawable &d);
-    void setUniform(const std::string &name, const Material &m);
+public:
+    void setUniform(const std::string &name, const GLint &i) const;
+    void setUniform(const std::string &name, const GLuint &u) const;
+    void setUniform(const std::string &name, const GLfloat &f) const;
+    void setUniform(const std::string &name, const GLdouble &d) const;
+    void setUniform(const std::string &name, const GLVector2 &v) const;
+    void setUniform(const std::string &name, const GLVector3 &v) const;
+    void setUniform(const std::string &name, const GLVector4 &v) const;
+    void setUniform(const std::string &name, const GLMatrix3 &m) const;
+    void setUniform(const std::string &name, const GLMatrix4 &m) const;
+    void setUniform(const std::string &name, const Camera &c) const;
+    void setUniform(const std::string &name, const Texture &t) const;
+    void setUniform(const std::string &name, const Material &m) const;
+    void setUniform(const std::string &name, const Drawable &d) const;
 
 protected:
     bool linked;

@@ -3,7 +3,7 @@
 
 #include "FileIO.h"
 
-class TextureCache : public Cache<Texture *> {
+class TextureCache : public Cache<Texture> {
 public:
     TextureCache() = delete;
     explicit TextureCache(const std::string &path);
@@ -12,11 +12,7 @@ public:
     virtual ~TextureCache();
 
 public:
-    void load(const std::string &path) override;
-    void save(const std::string &path) override;
-
-private:
-    void loadImage(const std::string &img);
+    void load(const std::string &folderPath) override;
 };
 
 #endif // TEXTURECACHE_H

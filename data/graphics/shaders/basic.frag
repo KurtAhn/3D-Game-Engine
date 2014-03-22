@@ -4,6 +4,8 @@
  * Default lighting constants used when no values are specified by
  * the main application.
  */
+#define DEFAULT_LIGHTING 
+
 #ifdef DEFAULT_LIGHTING
 	#define MAX_POINT_LIGHTS 5
 	#define MAX_SPOT_LIGHTS 5
@@ -38,16 +40,17 @@ uniform struct SpotLight {
 	float cutoff;
 } spotLights[MAX_SPOT_LIGHTS];
 
+struct Material {
+	float shininess;
+	float specularity;
+	float diffuseness;
+	vec4 color;
+};
+
 uniform struct Drawable {
 	mat4 transform;
-	
-	struct Material {
-		sampler2D sampler;
-		float shininess;
-		float specularity;
-		float diffuseness;
-		vec3 color;
-	} material;
+	sampler2D sampler;
+	Material material;
 } drawable;
 
 uniform struct Camera {
@@ -71,6 +74,8 @@ in Fragment {
 
 void main() {
 	//fColor = vColor;
-	gl_FragColor = vec4(clamp(mod(f.position, 1), 0, 1), 1);
+	
+	gl_FragColor = vec4(mod(fragment.position, 1), 1);
+	//gl_FragColor = texture(drawable.sampler, fragment.texCoord);
 	//gl_FragColor = vec4(1, 1, 1, 1);
 }

@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-std=c++11" />
 					<Add option="-g" />
@@ -26,10 +27,12 @@
 					<Add directory="include/engine/input" />
 					<Add directory="include/devil" />
 					<Add directory="include/engine/exceptions" />
+					<Add directory="include/test" />
 				</Compiler>
 				<Linker>
-					<Add option="-lglew32s -lglfw3 -lopengl32 -lbullet -lglm" />
 					<Add option="-lboost_system -lboost_filesystem" />
+					<Add option="-lglew32s -lglfw3 -lopengl32 -lbullet -lglm" />
+					<Add option="-lDevIL" />
 					<Add directory="lib" />
 				</Linker>
 			</Target>
@@ -74,17 +77,13 @@
 		<Unit filename="include/engine/graphics/ShaderProgram.h" />
 		<Unit filename="include/engine/graphics/Texture.h" />
 		<Unit filename="include/engine/graphics/Vertex.h" />
-		<Unit filename="include/engine/input/Actor.h" />
-		<Unit filename="include/engine/input/Context.h" />
 		<Unit filename="include/engine/input/Event.h" />
 		<Unit filename="include/engine/input/EventListener.h" />
 		<Unit filename="include/engine/input/Input.h" />
 		<Unit filename="include/engine/input/InputCommon.h" />
 		<Unit filename="include/engine/input/InputManager.h" />
-		<Unit filename="include/engine/input/Interactable.h" />
 		<Unit filename="include/engine/input/KeyListener.h" />
 		<Unit filename="include/engine/input/MouseListener.h" />
-		<Unit filename="include/engine/input/Reaction.h" />
 		<Unit filename="include/engine/input/WindowListener.h" />
 		<Unit filename="include/engine/io/Cache.h" />
 		<Unit filename="include/engine/io/FileIO.h" />
@@ -94,7 +93,9 @@
 		<Unit filename="include/engine/io/ShaderProgramCache.h" />
 		<Unit filename="include/engine/io/TextureCache.h" />
 		<Unit filename="include/engine/io/XMLParser.h" />
-		<Unit filename="include/engine/physics/Physics.h" />
+		<Unit filename="include/engine/physics/Physical.h" />
+		<Unit filename="include/engine/physics/PhysicsCommon.h" />
+		<Unit filename="include/engine/physics/PhysicsManager.h" />
 		<Unit filename="include/test/Game.h" />
 		<Unit filename="src/engine/Engine.cpp" />
 		<Unit filename="src/engine/exceptions/GLEWException.cpp" />
@@ -114,15 +115,11 @@
 		<Unit filename="src/engine/graphics/ShaderProgram.cpp" />
 		<Unit filename="src/engine/graphics/Texture.cpp" />
 		<Unit filename="src/engine/graphics/Vertex.cpp" />
-		<Unit filename="src/engine/input/Actor.cpp" />
-		<Unit filename="src/engine/input/Context.cpp" />
 		<Unit filename="src/engine/input/Event.cpp" />
 		<Unit filename="src/engine/input/EventListener.cpp" />
 		<Unit filename="src/engine/input/InputManager.cpp" />
-		<Unit filename="src/engine/input/Interactable.cpp" />
 		<Unit filename="src/engine/input/KeyListener.cpp" />
 		<Unit filename="src/engine/input/MouseListener.cpp" />
-		<Unit filename="src/engine/input/Reaction.cpp" />
 		<Unit filename="src/engine/input/WindowListener.cpp" />
 		<Unit filename="src/engine/io/Cache.cpp" />
 		<Unit filename="src/engine/io/MaterialCache.cpp" />
@@ -130,7 +127,8 @@
 		<Unit filename="src/engine/io/ShaderProgramCache.cpp" />
 		<Unit filename="src/engine/io/TextureCache.cpp" />
 		<Unit filename="src/engine/io/XMLParser.cpp" />
-		<Unit filename="src/engine/physics/Physics.cpp" />
+		<Unit filename="src/engine/physics/Physical.cpp" />
+		<Unit filename="src/engine/physics/PhysicsManager.cpp" />
 		<Unit filename="src/test/Game.cpp" />
 		<Unit filename="src/test/main.cpp" />
 		<Extensions>

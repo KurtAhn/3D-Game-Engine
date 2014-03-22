@@ -1,27 +1,38 @@
 #version 400 core
 
+/**
+ * Default lighting constants used when no values are specified by
+ * the main application.
+ */
+#define DEFAULT_LIGHTING
+ 
+#ifdef DEFAULT_LIGHTING
+	#define MAX_POINT_LIGHTS 5
+	#define MAX_SPOT_LIGHTS 5
+#endif
 
 
 layout (location = 0) in vec3 position;
 layout (location = 1) in vec3 normal;
 layout (location = 2) in vec2 texCoord;
 
+struct Material {
+	float shininess;
+	float specularity;
+	float diffuseness;
+	vec4 color;
+};
+
 uniform struct Drawable {
 	mat4 transform;
-	
-	struct Material {
-		sampler2D sampler;
-		float shininess;
-		float specularity;
-		float diffuseness;
-		vec3 color;
-	} material;
+	sampler2D sampler;
+	Material material;
 } drawable;
 
 uniform struct Camera {
 	float zNear;
 	float zFar;
-	float  fov;
+	float fov;
 	float aspect;
 	float scale;
 	vec3 position;
@@ -52,10 +63,10 @@ mat4 cameraMatrix() {
 	);
 	
 	mat4 p = mat4(
-		1.0 / tan(radians(c.fov / 2)) * c.scale * c.aspect, 0, 0, 0,
-		0, 1.0 / tan(radians(c.fov / 2)) * c.scale, 0, 0,
-		0, 0, (-c.zFar - c.zNear) / (c.zFar - c.zNear), -1,
-		0, 0, -2 * c.zFar * c.zNear / (c.zFar - c.zNear), 0
+		1.0 / tan(radians(camera.fov / 2)) * camera.scale * camera.aspect, 0, 0, 0,
+		0, 1.0 / tan(radians(camera.fov / 2)) * camera.scale, 0, 0,
+		0, 0, (-camera.zFar - camera.zNear) / (camera.zFar - camera.zNear), -1,
+		0, 0, -2 * camera.zFar * camera.zNear / (camera.zFar - camera.zNear), 0
 	);
 	
 	return p * r * t;
@@ -66,4 +77,6 @@ void main() {
 	fragment.position = position;
 	fragment.normal = normal;
 	fragment.texCoord = texCoord;
+	
+	//gl_Position = vec4(position.xy, 0, 1);
 }

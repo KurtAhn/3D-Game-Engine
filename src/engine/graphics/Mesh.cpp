@@ -3,19 +3,27 @@
 #define BUFFER_OFFSET(x) (void *)(x)
 
 Mesh::Mesh() {
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ibo);
+    try {
+        glGenVertexArrays(1, &vao);
+        glGenBuffers(1, &vbo);
+        glGenBuffers(1, &ibo);
+
+        if (!vao)
+            throw GLException("Failed to generate VAO for mesh.");
+
+        if (!vbo)
+            throw GLException("Failed to generate VBO for mesh.");
+
+        if (!ibo)
+            throw GLException("Failed to generate IBO for mesh.");
+
+    } catch (GLException &e) {
+        LOG_ERROR(e);
+    }
 }
 
-Mesh::Mesh(const Mesh &m) {
-    *this = m;
-}
-
-Mesh &Mesh::operator=(const Mesh &m) {
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ibo);
+Mesh::Mesh(const Mesh &src) :
+    Mesh() {
 
     glBindVertexArray(vao);
 
@@ -24,15 +32,41 @@ Mesh &Mesh::operator=(const Mesh &m) {
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 
-    glBindBuffer(GL_COPY_READ_BUFFER, m.getVbo());
+    glBindBuffer(GL_COPY_READ_BUFFER, src.vbo);
     data = glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * m.getVertexCount(),
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * src.vertexCount,
                  data, GL_STATIC_DRAW);
 
 
-    glBindBuffer(GL_COPY_READ_BUFFER, m.getIbo());
+    glBindBuffer(GL_COPY_READ_BUFFER, src.ibo);
     data = glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * m.getIndexCount(),
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * src.indexCount,
+                 data, GL_STATIC_DRAW);
+
+    glBindVertexArray(0);
+}
+
+Mesh &Mesh::operator=(const Mesh &src) {
+    //glGenVertexArrays(1, &vao);
+    //glGenBuffers(1, &vbo);
+    //glGenBuffers(1, &ibo);
+
+    glBindVertexArray(vao);
+
+    void *data = nullptr;
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+    glBindBuffer(GL_COPY_READ_BUFFER, src.vbo);
+    data = glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * src.vertexCount,
+                 data, GL_STATIC_DRAW);
+
+
+    glBindBuffer(GL_COPY_READ_BUFFER, src.ibo);
+    data = glMapBuffer(GL_COPY_READ_BUFFER, GL_READ_ONLY);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * src.indexCount,
                  data, GL_STATIC_DRAW);
 
     glBindVertexArray(0);
@@ -126,15 +160,15 @@ void Mesh::render() const {
     glBindVertexArray(0);
 }
 
-const GLuint &Mesh::getVao() const {
+const GLuint &Mesh::getVAO() const {
     return vao;
 }
 
-const GLuint &Mesh::getVbo() const {
+const GLuint &Mesh::getVBO() const {
     return vbo;
 }
 
-const GLuint &Mesh::getIbo() const {
+const GLuint &Mesh::getIBO() const {
     return ibo;
 }
 

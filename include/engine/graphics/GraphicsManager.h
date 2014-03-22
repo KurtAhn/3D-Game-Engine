@@ -6,6 +6,10 @@
 #include "ShaderProgramCache.h"
 #include "Mesh.h"
 #include "MeshCache.h"
+#include "Texture.h"
+#include "TextureCache.h"
+#include "Material.h"
+#include "MaterialCache.h"
 #include "Drawable.h"
 
 class GraphicsManager {
@@ -24,13 +28,23 @@ public:
     /**
      *
      */
-    static void setCurrentInstance(GraphicsManager *const instance);
+    static void setCurrentInstance(GraphicsManager *const &instance);
 
 public:
     /**
      *
      */
     GraphicsManager(GLFWwindow *const &window);
+
+    /**
+     *
+     */
+    GraphicsManager(GLFWwindow *const &window,
+                    ShaderProgramCache *const &shaderPrograms,
+                    MeshCache *const &meshes,
+                    TextureCache *const &textures,
+                    MaterialCache *const &materials,
+                    Camera *const &camera);
 
     /**
      *
@@ -57,12 +71,27 @@ private:
     /**
      *
      */
-    ShaderProgramCache shaderPrograms;
+    ShaderProgramCache *shaderPrograms;
 
     /**
      *
      */
-    MeshCache meshes;
+    ShaderProgram *activeShaderProgram;
+
+    /**
+     *
+     */
+    MeshCache *meshes;
+
+    /**
+     *
+     */
+    TextureCache *textures;
+
+    /**
+     *
+     */
+    MaterialCache *materials;
 
     /**
      *
@@ -70,6 +99,16 @@ private:
     Camera *camera;
 
 public:
+    /**
+     *
+     */
+    ShaderProgramCache *const &getShaderPrograms() const;
+
+    /**
+     *
+     */
+    void setShaderPrograms(ShaderProgramCache *const &programs);
+
     /**
      *
      */
@@ -88,7 +127,47 @@ public:
     /**
      *
      */
+    MeshCache *const &getMeshes() const;
+
+    /**
+     *
+     */
+    void setMeshes(MeshCache *const &meshes);
+
+    /**
+     *
+     */
     Mesh *const &getMesh(const std::string &key) const;
+
+    /**
+     *
+     */
+    TextureCache *const &getTextures() const;
+
+    /**
+     *
+     */
+    void setTextures(TextureCache *const &textures);
+
+    /**
+     *
+     */
+    Texture *const &getTexture(const std::string &key) const;
+
+    /**
+     *
+     */
+    MaterialCache *const &getMaterials() const;
+
+    /**
+     *
+     */
+    void setMaterials(MaterialCache *const &materials);
+
+    /**
+     *
+     */
+    Material *const &getMaterial(const std::string &key) const;
 
     /**
      *

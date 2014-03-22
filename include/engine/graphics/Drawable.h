@@ -3,6 +3,7 @@
 
 #include "GraphicsCommon.h"
 #include "Mesh.h"
+#include "Texture.h"
 #include "Material.h"
 
 class Drawable {
@@ -17,7 +18,20 @@ public:
      *
      */
     Drawable(Mesh *const &mesh,
-             Material *const &material);
+             Texture *const &texture,
+             Material *const &material,
+             GLMatrix4 *const &transform);
+
+    /**
+     *
+     */
+    Drawable(const Drawable &src);
+
+    /**
+     *
+     */
+    Drawable &operator=(const Drawable &src);
+
 
     /**
      *
@@ -30,6 +44,11 @@ private:
      *
      */
     Mesh *mesh;
+
+    /**
+     *
+     */
+    Texture *texture;
 
     /**
      *
@@ -56,6 +75,16 @@ public:
     /**
      *
      */
+    Texture *const &getTexture() const;
+
+    /**
+     *
+     */
+    void setTexture(Texture *const &texture);
+
+    /**
+     *
+     */
     Material *const &getMaterial() const;
 
     /**
@@ -78,7 +107,7 @@ public:
     /**
      *
      */
-    void render() const;
+    virtual void render() const = 0;
 };
 
 #endif // DRAWABLE_H

@@ -11,7 +11,7 @@ InputManager *InputManager::getCurrentInstance() {
     return currentInstance;
 }
 
-void InputManager::setCurrentInstance(InputManager *const instance) {
+void InputManager::setCurrentInstance(InputManager *const &instance) {
     currentInstance = instance;
 }
 

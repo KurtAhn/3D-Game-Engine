@@ -4,23 +4,21 @@
 #include "FileIOCommon.h"
 #include "Cache.h"
 #include "Material.h"
+#include "XMLParser.h"
 
-class MaterialCache : public Cache<Material *> {
-    friend class GraphicsManager;
+class MaterialCache : public Cache<Material> {
 public:
     MaterialCache() = delete;
-    explicit MaterialCache(const std::string &path);
+    explicit MaterialCache(const std::string &folderPath);
     MaterialCache(const MaterialCache &src) = delete;
     MaterialCache &operator=(const MaterialCache &src) = delete;
     virtual ~MaterialCache();
 
-    void load(const std::string &path) override;
-    void save(const std::string &path) override;
+public:
+    void load(const std::string &folderPath) override;
 
 private:
-    void loadMTL(const std::string &mtl);
-    //void loadPNG(const std::string &png);
-    //void loadJPG(const std::string &jpg);
+    Material *loadMTL(const boost::filesystem::path &filePath);
 };
 
 #endif // MATERIALCACHE_H
