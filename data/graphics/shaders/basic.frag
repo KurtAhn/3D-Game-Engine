@@ -73,9 +73,8 @@ in Fragment {
 
 
 void main() {
-	//fColor = vColor;
-	
-	gl_FragColor = vec4(mod(fragment.position, 1), 1);
-	//gl_FragColor = texture(drawable.sampler, fragment.texCoord);
-	//gl_FragColor = vec4(1, 1, 1, 1);
+	//gl_FragColor = vec4(mod(fragment.position, 1), 1);
+	gl_FragColor = texture2D(drawable.sampler, fragment.texCoord);
+	//gl_FragColor = vec4(fragment.texCoord.x, fragment.texCoord.y, 0, 1);
+	//gl_FragColor = vec4(fragment.normal.x, fragment.normal.y, fragment.normal.z, 1);
 }

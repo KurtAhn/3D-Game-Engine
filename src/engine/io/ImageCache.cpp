@@ -1,15 +1,15 @@
-#include "TextureCache.h"
+#include "ImageCache.h"
 
-TextureCache::TextureCache(const std::string &folderPath) {
+ImageCache::ImageCache(const std::string &folderPath) {
     load(folderPath);
 }
 
-TextureCache::~TextureCache() {
+ImageCache::~ImageCache() {
     //for (const auto &t : cache)
         //delete t.second;
 }
 
-void TextureCache::load(const std::string &folderPath) {
+void ImageCache::load(const std::string &folderPath) {
    namespace fs = boost::filesystem;
 
     try {
@@ -22,8 +22,8 @@ void TextureCache::load(const std::string &folderPath) {
             if (fs::is_regular_file(it->status())) {
                 auto filePath = it->path();
 
-                Cache<Texture>::put(filePath.filename().string(),
-                                    new Texture(filePath.string()));
+                Cache<Image>::put(filePath.filename().string(),
+                                    new Image(filePath.string()));
 
                 std::cout << filePath.filename().string()
                           << " loaded." << std::endl;

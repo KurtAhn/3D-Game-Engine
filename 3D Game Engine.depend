@@ -4883,10 +4883,12 @@
 	"ShaderProgram.h"
 	"XMLParser.h"
 
-1395374311 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\cache.h
+1395524798 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\cache.h
 	"FileIOCommon.h"
 	"Mesh.h"
 	"ShaderProgram.h"
+	"Image.h"
+	"Material.h"
 
 1392900788 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\directories.h
 
@@ -4959,10 +4961,10 @@
 1395455247 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\mesh.cpp
 	"Mesh.h"
 
-1395485880 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogram.cpp
+1395632723 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogram.cpp
 	"ShaderProgram.h"
 
-1394977124 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\vertex.cpp
+1395615842 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\vertex.cpp
 	"Vertex.h"
 
 1394946806 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\actor.cpp
@@ -4977,10 +4979,10 @@
 1394976064 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\reaction.cpp
 	"Reaction.h"
 
-1395482297 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\cache.cpp
+1395524775 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\cache.cpp
 	"Cache.h"
 
-1395483797 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\meshcache.cpp
+1395615862 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\meshcache.cpp
 	"MeshCache.h"
 
 1395386378 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\shaderprogramcache.cpp
@@ -5017,10 +5019,12 @@
 1394678415 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physics.cpp
 	"Physics.h"
 
-1395485899 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\main.cpp
+1395657794 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\main.cpp
 	"Common.h"
 	"Logger.h"
 	"Game.h"
+	"Actor.h"
+	"Entity.h"
 
 1394976051 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\event.cpp
 	"Event.h"
@@ -5104,8 +5108,9 @@
 1395385258 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\material.h
 	"GraphicsCommon.h"
 
-1395183824 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\texture.h
+1395632782 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\texture.h
 	"GraphicsCommon.h"
+	"Image.h"
 
 1395380320 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\drawable.h
 	"GraphicsCommon.h"
@@ -5113,14 +5118,14 @@
 	"Texture.h"
 	"Material.h"
 
-1395482186 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicsmanager.h
+1395525071 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicsmanager.h
 	"GraphicsCommon.h"
 	"ShaderProgram.h"
 	"ShaderProgramCache.h"
 	"Mesh.h"
 	"MeshCache.h"
 	"Texture.h"
-	"TextureCache.h"
+	"ImageCache.h"
 	"Material.h"
 	"MaterialCache.h"
 	"Drawable.h"
@@ -5133,7 +5138,7 @@
 1395380404 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\drawable.cpp
 	"Drawable.h"
 
-1395484602 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphicsmanager.cpp
+1395657647 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphicsmanager.cpp
 	"GraphicsManager.h"
 
 1395385244 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\material.cpp
@@ -5170,7 +5175,7 @@
 	"rapidxml/rapidxml.hpp"
 	"rapidxml/rapidxml_print.hpp"
 
-1395355729 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\texture.cpp
+1395657566 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\texture.cpp
 	"Texture.h"
 
 1395386345 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\materialcache.cpp
@@ -5188,14 +5193,14 @@
 1395379153 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\texturecache.h
 	"FileIO.h"
 
-1394976298 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\fileio.h
+1395524908 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\fileio.h
 	"FileIOCommon.h"
 	"XMLParser.h"
 	"Cache.h"
 	"MaterialCache.h"
 	"MeshCache.h"
 	"ShaderProgramCache.h"
-	"TextureCache.h"
+	"ImageCache.h"
 
 1395125943 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\logexception.h
 	"ExceptionCommon.h"
@@ -5294,4 +5299,29 @@
 1236016377 c:\users\kurt ahn\documents\github\3d-game-engine\include\devil\il\ilut_config.h
 
 1395209782 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\windowconfiguration.h
+
+1395636099 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\image.h
+	"GraphicsCommon.h"
+
+1395525160 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\imagecache.h
+	"FileIO.h"
+
+1395636180 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\image.cpp
+	"Image.h"
+
+1395524899 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\imagecache.cpp
+	"ImageCache.h"
+
+1395657076 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\actor.cpp
+	"Actor.h"
+
+1395657219 c:\users\kurt ahn\documents\github\3d-game-engine\include\test\actor.h
+	"Input.h"
+	"Graphics.h"
+
+1395656589 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\entity.cpp
+	"Entity.h"
+
+1395656948 c:\users\kurt ahn\documents\github\3d-game-engine\include\test\entity.h
+	"Graphics.h"
 

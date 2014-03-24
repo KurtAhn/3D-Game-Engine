@@ -7,6 +7,6 @@
 #include "MaterialCache.h"
 #include "MeshCache.h"
 #include "ShaderProgramCache.h"
-#include "TextureCache.h"
+#include "ImageCache.h"
 
 #endif // FILEIO_H

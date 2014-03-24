@@ -4,6 +4,8 @@
 #include "FileIOCommon.h"
 #include "Mesh.h"
 #include "ShaderProgram.h"
+#include "Image.h"
+#include "Material.h"
 
 template <class T> class Cache {
 public:

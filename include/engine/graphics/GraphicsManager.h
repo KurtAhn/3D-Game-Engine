@@ -7,7 +7,7 @@
 #include "Mesh.h"
 #include "MeshCache.h"
 #include "Texture.h"
-#include "TextureCache.h"
+#include "ImageCache.h"
 #include "Material.h"
 #include "MaterialCache.h"
 #include "Drawable.h"
@@ -42,7 +42,7 @@ public:
     GraphicsManager(GLFWwindow *const &window,
                     ShaderProgramCache *const &shaderPrograms,
                     MeshCache *const &meshes,
-                    TextureCache *const &textures,
+                    ImageCache *const &images,
                     MaterialCache *const &materials,
                     Camera *const &camera);
 
@@ -86,7 +86,7 @@ private:
     /**
      *
      */
-    TextureCache *textures;
+    ImageCache *images;
 
     /**
      *
@@ -142,17 +142,17 @@ public:
     /**
      *
      */
-    TextureCache *const &getTextures() const;
+    ImageCache *const &getImages() const;
 
     /**
      *
      */
-    void setTextures(TextureCache *const &textures);
+    void setImages(ImageCache *const &images);
 
     /**
      *
      */
-    Texture *const &getTexture(const std::string &key) const;
+    Image *const &getImage(const std::string &key) const;
 
     /**
      *

@@ -42,6 +42,6 @@ const GLVector2 &Vertex::getTexCoord() const {
     return texCoord;
 }
 
-void Vertex::setTexCoord(const GLVector2 &texCorod) {
+void Vertex::setTexCoord(const GLVector2 &texCoord) {
     this->texCoord = texCoord;
 }

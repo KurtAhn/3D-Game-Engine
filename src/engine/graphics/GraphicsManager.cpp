@@ -21,14 +21,14 @@ GraphicsManager::GraphicsManager(GLFWwindow *const &window) :
 GraphicsManager::GraphicsManager(GLFWwindow *const &window,
                                  ShaderProgramCache *const &shaderPrograms,
                                  MeshCache *const &meshes,
-                                 TextureCache *const &textures,
+                                 ImageCache *const &images,
                                  MaterialCache *const &materials,
                                  Camera *const &camera) :
     window(window),
     shaderPrograms(shaderPrograms),
     activeShaderProgram(nullptr),
     meshes(meshes),
-    textures(textures),
+    images(images),
     materials(materials),
     camera(camera) {
 
@@ -37,9 +37,9 @@ GraphicsManager::GraphicsManager(GLFWwindow *const &window,
 
     glClearColor(0, 0, 0, 0);
     glEnable(GL_DEPTH_TEST);
-    //glEnable(GL_CULL_FACE);
-    //glFrontFace(GL_CCW);
-    //glCullFace(GL_BACK);
+    glEnable(GL_CULL_FACE);
+    glFrontFace(GL_CCW);
+    glCullFace(GL_BACK);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
@@ -73,16 +73,16 @@ Mesh *const &GraphicsManager::getMesh(const std::string &key) const {
     return meshes->get(key);
 }
 
-TextureCache *const &GraphicsManager::getTextures() const {
-    return textures;
+ImageCache *const &GraphicsManager::getImages() const {
+    return images;
 }
 
-void GraphicsManager::setTextures(TextureCache *const &textures) {
-    this->textures = textures;
+void GraphicsManager::setImages(ImageCache *const &images) {
+    this->images = images;
 }
 
-Texture *const &GraphicsManager::getTexture(const std::string &key) const {
-    return textures->get(key);
+Image *const &GraphicsManager::getImage(const std::string &key) const {
+    return images->get(key);
 }
 
 MaterialCache *const &GraphicsManager::getMaterials() const {

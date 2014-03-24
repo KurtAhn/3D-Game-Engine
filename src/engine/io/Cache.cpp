@@ -28,6 +28,6 @@ void Cache<T>::put(const std::string &key, T *const &value) {
 }
 
 template class Cache<Mesh>;
-template class Cache<Texture>;
+template class Cache<Image>;
 template class Cache<Material>;
 template class Cache<ShaderProgram>;

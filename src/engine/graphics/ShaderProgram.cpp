@@ -156,36 +156,32 @@ void ShaderProgram::setUniform(const std::string &name, const GLMatrix4 &m) cons
 
 
 void ShaderProgram::setUniform(const std::string &name, const Camera &c) const {
-    setUniform((name + ".zNear").c_str(), c.getZNear());
-    setUniform((name + ".zFar").c_str(), c.getZFar());
-    setUniform((name + ".fov").c_str(), c.getFov());
-    setUniform((name + ".aspect").c_str(), c.getAspect());
-    setUniform((name + ".scale").c_str(), c.getScale());
-    setUniform((name + ".position").c_str(), c.getPosition());
-    setUniform((name + ".xAxis").c_str(), c.getXAxis());
-    setUniform((name + ".yAxis").c_str(), c.getYAxis());
-    setUniform((name + ".zAxis").c_str(), c.getZAxis());
+    setUniform(name + ".zNear", c.getZNear());
+    setUniform(name + ".zFar", c.getZFar());
+    setUniform(name + ".fov", c.getFov());
+    setUniform(name + ".aspect", c.getAspect());
+    setUniform(name + ".scale", c.getScale());
+    setUniform(name + ".position", c.getPosition());
+    setUniform(name + ".xAxis", c.getXAxis());
+    setUniform(name + ".yAxis", c.getYAxis());
+    setUniform(name + ".zAxis", c.getZAxis());
 }
 
 void ShaderProgram::setUniform(const std::string &name, const Texture &t) const {
-    //setUniform(name, 0); // texture assigned to unit 0
-
-    //glActiveTexture(GL_TEXTURE0);
-    //glBindTexture(GL_TEXTURE_2D, t.getHandle());
-
-    glBindTexture(GL_TEXTURE_2D, t.getHandle());
-
+    setUniform(name, 0);
+    glActiveTexture(GL_TEXTURE0);
+    t.bind();
 }
 
 void ShaderProgram::setUniform(const std::string &name, const Material &m) const {
-    setUniform((name + ".shininess").c_str(), m.getShininess());
-    setUniform((name + ".specularity").c_str(), m.getSpecularity());
-    setUniform((name + ".diffuseness").c_str(), m.getDiffuseness());
-    setUniform((name + ".color").c_str(), m.getColor());
+    setUniform(name + ".shininess", m.getShininess());
+    setUniform(name + ".specularity", m.getSpecularity());
+    setUniform(name + ".diffuseness", m.getDiffuseness());
+    setUniform(name + ".color", m.getColor());
 }
 
 void ShaderProgram::setUniform(const std::string &name, const Drawable &d) const {
-    setUniform((name + ".transform").c_str(), *(d.getTransform()));
-    setUniform((name + ".sampler").c_str(), *(d.getTexture()));
-    setUniform((name + ".material").c_str(), *(d.getMaterial()));
+    setUniform(name + ".transform", *(d.getTransform()));
+    setUniform(name + ".sampler", *(d.getTexture()));
+    setUniform(name + ".material", *(d.getMaterial()));
 }
