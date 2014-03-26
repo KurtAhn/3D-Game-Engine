@@ -3,15 +3,6 @@
 
 #include "InputCommon.h"
 
-/*
-enum EventType {
-    KEY_EVENT,
-    MOUSE_BUTTON_EVENT,
-    MOUSE_MOTION_EVENT,
-    MOUSE_WHEEL_EVENT,
-    WINDOW_EVENT
-};
-*/
 /**
  * Base Event class. Event objects are generated when
  * user inputs are registered.
@@ -164,55 +155,4 @@ struct FrameBufferResizeEvent : public Event {
     ~FrameBufferResizeEvent();
 };
 
-
-/*
-namespace std {
-	template<>
-	struct hash<Event *> {
-	    size_t operator()(Event *const &e) const {
-            //std::cout << e->type << std::endl;
-
-            switch (e->type) {
-            case KEY_EVENT:
-                //std::cout << operator()(static_cast<KeyEvent *const>(e)) << std::endl;
-                return operator()(static_cast<KeyEvent *const>(e));
-            case MOUSE_BUTTON_EVENT:
-                return operator()(static_cast<MouseButtonEvent *const>(e));
-            case MOUSE_MOTION_EVENT:
-                //return operator()(static_cast<MouseMotionEvent *const>(e));
-                return MOUSE_MOTION_EVENT;
-            case MOUSE_WHEEL_EVENT:
-                return MOUSE_WHEEL_EVENT;
-
-            default: return 0;
-            }
-	    }
-
-		size_t operator()(KeyEvent *const &e) const {
-			return hash<int>()(e->key + e->action);
-		}
-
-		size_t operator()(MouseButtonEvent *const &e) const {
-            return hash<int>()(e->button + e->action);
-		}
-
-		size_t operator()(MouseMotionEvent *const &e) const {
-            return MOUSE_MOTION_EVENT;
-		}
-
-		size_t operator()(MouseWheelEvent *const &e) const {
-            return MOUSE_WHEEL_EVENT;
-		}
-
-		size_t operator()(WindowEvent *const &e) const {
-            return WINDOW_EVENT;
-		}
-	};
-
-	template<>
-	struct equal_to<Event *> {
-        bool operator() (Event *const &x, Event *const &y) const {return *x == *y;}
-	};
-}
-*/
 #endif // EVENT_H

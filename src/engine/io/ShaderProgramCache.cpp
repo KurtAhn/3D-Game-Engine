@@ -1,48 +1,51 @@
 #include "ShaderProgramCache.h"
 
-ShaderProgramCache::ShaderProgramCache(const std::string &folderPath,
-                                       const std::string &xmlPath) :
-    parser(xmlPath) {
-
-    load(folderPath);
+ShaderProgramCache::ShaderProgramCache(XMLNode *const &node) :
+    parser(node->first_node("ShaderList")->value()) {
+    load(node->first_node("Directory")->value());
 }
 
-ShaderProgramCache::~ShaderProgramCache() {
-    //for (const auto &p : cache)
-    //    delete p.second;
-}
+ShaderProgramCache::~ShaderProgramCache() {}
 
 void ShaderProgramCache::load(const std::string &folderPath) {
+
+//#define LOAD_SHADERS_DEBUG
     std::set<std::string> shaderFileNames;
     using Shader = std::pair<std::string, GLuint>;
     std::unordered_map<std::string, GLuint> shaders;
 
     xml_document<> *document = parser.getDocument();
-    //print(std::cout, *document);
 
+    ASSERT_NOT_NULL(document);
+#ifdef LOAD_SHADERS_DEBUG
+    print(std::cout, *document);
+#endif // LOAD_SHADERS_DEBUG
     xml_node<> *programsNode = document->first_node("programs");
 
+    ASSERT_NOT_NULL(programsNode);
+
     for (xml_node<> *programNode = programsNode->first_node("program");
-            programNode != nullptr;
-            programNode = programNode->next_sibling("program")) {
+         programNode != nullptr;
+         programNode = programNode->next_sibling("program")) {
 
         std::string programName = programNode->first_attribute("name")->value();
-        //std::string programActive = programNode->first_attribute("active")->value();
 
-        //std::cout << "Program name: " << programName << " Active? " << programActive << std::endl;
+    #ifdef LOAD_SHADERS_DEBUG
+        std::cout << "Program name: " << programName << std::endl;
+    #endif // LOAD_SHADERS_DEBUG
 
         ShaderProgram *program = new ShaderProgram;
         cache.emplace(programName, program);
 
-        //xml_node<> *shaderNode;
         for (xml_node<> *shaderNode = programNode->first_node("shader");
                 shaderNode != nullptr;
                 shaderNode = shaderNode->next_sibling("shader")) {
+
             std::string shaderFilePath = folderPath + shaderNode->value();
             std::string shaderType = shaderNode->first_attribute("type")->value();
-
-            //std::cout << "  Shader name: " << shaderName << " Type: " << shaderType << std::endl;
-
+        #ifdef LOAD_SHADERS_DEBUG
+            std::cout << "  Shader name: " << shaderFilePath << " Type: " << shaderType << std::endl;
+        #endif // LOAD_SHADERS_DEBUG
             auto type = getShaderType(shaderType);
 
             GLuint shader;
@@ -51,8 +54,10 @@ void ShaderProgramCache::load(const std::string &folderPath) {
                 shader = glCreateShader(type);
                 shaders.emplace(shaderFilePath, shader);
                 loadAndCompileShader(shader, shaderFilePath);
-                //std::cout << shaderNode->next_sibling("shader") << std::endl;
-                //print(std::cout, *document);
+            #ifdef LOAD_SHADERS_DEBUG
+                std::cout << shaderNode->next_sibling("shader") << std::endl;
+                print(std::cout, *document);
+            #endif // LOAD_SHADERS_DEBUG
             } else {
                 shader = shaders.find(shaderFilePath)->second;
             }
@@ -62,15 +67,11 @@ void ShaderProgramCache::load(const std::string &folderPath) {
         }
 
         program->link();
-        //temp
-        //std::cout << "program linked correctly." << std::endl;
-
-        //if (programActive.compare("true") == 0) {
-            //activeProgram = program;
-            //std::cout << "program active." << std::endl;
-        //} if (!activeProgram)
-        //    activeProgram = program;
     }
+
+#ifdef LOAD_SHADERS_DEBUG
+#undef LOAD_SHADERS_DEBUG
+#endif // LOAD_SHADERS_DEBUG
 }
 
 GLenum ShaderProgramCache::getShaderType(const std::string &type) {

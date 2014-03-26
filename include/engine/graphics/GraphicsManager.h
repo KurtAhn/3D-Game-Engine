@@ -13,38 +13,14 @@
 #include "Drawable.h"
 
 class GraphicsManager {
-private:
-    /**
-     *
-     */
+protected:
     static GraphicsManager *currentInstance;
 
-public:
+protected:
     /**
      *
      */
-    static GraphicsManager *getCurrentInstance();
-
-    /**
-     *
-     */
-    static void setCurrentInstance(GraphicsManager *const &instance);
-
-public:
-    /**
-     *
-     */
-    GraphicsManager(GLFWwindow *const &window);
-
-    /**
-     *
-     */
-    GraphicsManager(GLFWwindow *const &window,
-                    ShaderProgramCache *const &shaderPrograms,
-                    MeshCache *const &meshes,
-                    ImageCache *const &images,
-                    MaterialCache *const &materials,
-                    Camera *const &camera);
+    GraphicsManager() = default;
 
     /**
      *
@@ -56,7 +32,7 @@ public:
      */
     GraphicsManager &operator=(const GraphicsManager &src) = delete;
 
-
+public:
     /**
      *
      */
@@ -66,125 +42,89 @@ private:
     /**
      *
      */
-    GLFWwindow *window;
+     Window *window = nullptr;
 
     /**
      *
      */
-    ShaderProgramCache *shaderPrograms;
+     ShaderProgramCache *shaderPrograms = nullptr;
 
     /**
      *
      */
-    ShaderProgram *activeShaderProgram;
+     ShaderProgram *activeShaderProgram = nullptr;
 
     /**
      *
      */
-    MeshCache *meshes;
+     MeshCache *meshes = nullptr;
 
     /**
      *
      */
-    ImageCache *images;
+     ImageCache *images = nullptr;
 
     /**
      *
      */
-    MaterialCache *materials;
+     MaterialCache *materials = nullptr;
 
     /**
      *
      */
-    Camera *camera;
+     Camera *camera = nullptr;
 
 public:
     /**
      *
      */
-    ShaderProgramCache *const &getShaderPrograms() const;
+     ShaderProgram *const &getActiveShaderProgram() const;
 
     /**
      *
      */
-    void setShaderPrograms(ShaderProgramCache *const &programs);
+     void setActiveShaderProgram(const std::string &key);
 
     /**
      *
      */
-    ShaderProgram *const &getActiveShaderProgram() const;
+     ShaderProgram *const &getShaderProgram(const std::string &key) const;
 
     /**
      *
      */
-    void setActiveShaderProgram(const std::string &key);
+     Mesh *const &getMesh(const std::string &key) const;
 
     /**
      *
      */
-    ShaderProgram *const &getShaderProgram(const std::string &key) const;
+     Image *const &getImage(const std::string &key) const;
 
     /**
      *
      */
-    MeshCache *const &getMeshes() const;
+     Material *const &getMaterial(const std::string &key) const;
 
     /**
      *
      */
-    void setMeshes(MeshCache *const &meshes);
+     Camera *const &getCamera() const;
 
     /**
      *
      */
-    Mesh *const &getMesh(const std::string &key) const;
+     void setCamera(Camera *const &camera);
 
-    /**
-     *
-     */
-    ImageCache *const &getImages() const;
-
-    /**
-     *
-     */
-    void setImages(ImageCache *const &images);
-
-    /**
-     *
-     */
-    Image *const &getImage(const std::string &key) const;
-
-    /**
-     *
-     */
-    MaterialCache *const &getMaterials() const;
-
-    /**
-     *
-     */
-    void setMaterials(MaterialCache *const &materials);
-
-    /**
-     *
-     */
-    Material *const &getMaterial(const std::string &key) const;
-
-    /**
-     *
-     */
-    Camera *const &getCamera() const;
-
-    /**
-     *
-     */
-    void setCamera(Camera *const &camera);
+protected:
+    virtual void init(Window *const &window,
+                      XMLNode *const &node);
 
 public:
 
     /**
      *
      */
-    void render(Drawable *const &drawable) const;
+     virtual void render(Drawable *const &drawable) const;
 };
 
 #endif // GRAPHICSMANAGER_H

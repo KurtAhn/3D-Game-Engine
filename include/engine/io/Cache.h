@@ -8,8 +8,10 @@
 #include "Material.h"
 
 template <class T> class Cache {
-public:
+protected:
     Cache() = default;
+
+public:
     virtual ~Cache();
 
 public:

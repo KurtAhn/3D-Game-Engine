@@ -1,13 +1,10 @@
 #include "MaterialCache.h"
 
-MaterialCache::MaterialCache(const std::string &folderPath) {
-    load(folderPath);
+MaterialCache::MaterialCache(XMLNode *const &node) {
+    load(node->first_node("Directory")->value());
 }
 
-MaterialCache::~MaterialCache() {
-    //for (const auto &m : cache)
-    //    delete m.second;
-}
+MaterialCache::~MaterialCache() {}
 
 void MaterialCache::load(const std::string &folderPath) {
     namespace fs = boost::filesystem;

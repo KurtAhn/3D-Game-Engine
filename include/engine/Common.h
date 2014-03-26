@@ -1,7 +1,6 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-
 #ifndef NDEBUG
     #define ASSERT(c, m)\
         if (!(c)) {\
@@ -24,32 +23,31 @@
 #else
     #define ASSERT(c, m)
     #define ASSERT_NOT_NULL(v)
-#endif
-/*
-#include <cstdlib>
-#include <stdexcept>
-#include <initializer_list>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <set>
-//#include <queue>
-#include <deque>
+#endif // NDEBUG
 
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
+
 #include "glm/glm.hpp"
 #include "glm/gtx/quaternion.hpp"
-#include "boost/lexical_cast.hpp"
-#include "boost/filesystem.hpp"
+
 #include "rapidxml/rapidxml.hpp"
 //#include "rapidxml/rapidxml_iterators.hpp"
 #include "rapidxml/rapidxml_print.hpp"
 //#include "rapidxml/rapidxml_utils.hpp"
-#include "btBulletCollisionCommon.h"
-#include "btBulletDynamicsCommon.h"
-*/
+
+using Window = GLFWwindow;
+using Monitor = GLFWmonitor;
+
+using XMLDocument = rapidxml::xml_document<char>;
+using XMLNode = rapidxml::xml_node<char>;
+
+using GLVector2 = glm::vec2;
+using GLVector3 = glm::vec3;
+using GLVector4 = glm::vec4;
+using GLQuaternion = glm::quat;
+using GLMatrix2 = glm::mat2;
+using GLMatrix3 = glm::mat3;
+using GLMatrix4 = glm::mat4;
+
 #endif // COMMON_H

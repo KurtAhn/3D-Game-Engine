@@ -1,41 +1,25 @@
 #include "Engine.h"
 
-Engine *Engine::currentInstance = nullptr;
+Engine *Engine::instance = nullptr;
 
-Engine *Engine::getCurrentInstance() {
-    return currentInstance;
+Engine *const &Engine::getInstance() {
+    return instance;
 }
 
-void Engine::setCurrentInstance(Engine *const &instance) {
-    currentInstance = instance;
-    glfwMakeContextCurrent(instance->window);
-    InputManager::setCurrentInstance(instance->inputManager);
-    GraphicsManager::setCurrentInstance(instance->graphicsManager);
+Engine *const &Engine::createInstance(const std::string &configFilePath) {
+    instance = new Engine(configFilePath);
+    return instance;
 }
 
-Engine::Engine(const int &width,
-               const int &height,
-               const char *const &title,
-               GLFWmonitor *const &monitor,
-               GLFWwindow *const &share) :
-    Engine(width,
-           height,
-           title,
-           monitor,
-           share,
-           nullptr,
-           nullptr) {}
+void Engine::destroy() {
+    delete instance;
+    glfwTerminate();
+}
 
-Engine::Engine(const int &width,
-               const int &height,
-               const char *const &title,
-               GLFWmonitor *const &monitor,
-               GLFWwindow *const &share,
-               InputManager *const &inputManager,
-               GraphicsManager *const &graphicsManager) :
-    window(nullptr),
-    inputManager(inputManager),
-    graphicsManager(graphicsManager) {
+Engine::Engine(const std::string &configFilePath) :
+    Engine(XMLParser(configFilePath).getDocument()->first_node("Engine")) {}
+
+Engine::Engine(XMLNode *const &node) {
 
     try {
         ilInit();
@@ -43,11 +27,30 @@ Engine::Engine(const int &width,
         if (glfwInit() == GL_FALSE)
             throw GLFWException("GLFW initialization failed.");
 
-        window = glfwCreateWindow(width, height, title, monitor, share);
-        setCurrentInstance(this);
+        XMLNode *windowNode = node->first_node("Window");
+
+        window = glfwCreateWindow(boost::lexical_cast<int>(
+                                    windowNode->first_node("Width")->value()),
+                                  boost::lexical_cast<int>(
+                                    windowNode->first_node("Height")->value()),
+                                  windowNode->first_node("Title")->value(),
+                                  nullptr,
+                                  nullptr);
+
+        glfwMakeContextCurrent(window);
 
         if (glewInit() != GLEW_OK)
             throw GLEWException("GLEW initialization failed.");
+
+        InputManager::currentInstance = this;
+        InputManager::init(window, node->first_node("InputManager"));
+
+        GraphicsManager::currentInstance = this;
+        GraphicsManager::init(window, node->first_node("GraphicsManager"));
+
+        glfwIconifyWindow(window);
+        glfwRestoreWindow(window);
+
     } catch (std::runtime_error &e) {
         LOG_ERROR(e);
         RETHROW;
@@ -58,29 +61,14 @@ Engine::~Engine() {
     glfwDestroyWindow(window);
 }
 
-GLFWwindow *const &Engine::getWindow() const {
-    return window;
+bool Engine::isCloseRequested() const {
+    return glfwWindowShouldClose(window);
 }
 
-void Engine::setWindow(GLFWwindow *const &window) {
-    this->window = window;
-    glfwMakeContextCurrent(window);
+void Engine::setCloseRequested(const bool &closeRequested) {
+    glfwSetWindowShouldClose(window, closeRequested);
 }
 
-InputManager *const &Engine::getInputManager() const {
-    return inputManager;
-}
-
-void Engine::setInputManager(InputManager *const &inputManager) {
-    this->inputManager = inputManager;
-    if (currentInstance == this) setCurrentInstance(this);
-}
-
-GraphicsManager *const &Engine::getGraphicsManager() const {
-    return graphicsManager;
-}
-
-void Engine::setGraphicsManager(GraphicsManager *const &graphicsManager) {
-    this->graphicsManager = graphicsManager;
-    if (currentInstance == this) setCurrentInstance(this);
+void Engine::update() const {
+    glfwSwapBuffers(window);
 }

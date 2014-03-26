@@ -11,13 +11,13 @@
 	#define MAX_SPOT_LIGHTS 5
 #endif
 
-uniform struct Light {
+uniform struct AmbientLight {
 	float intensity;
 	vec3 color;
 } ambientLight;
 
 uniform struct DirectionalLight {
-	Light base;
+	AmbientLight base;
 	vec3 direction;
 } directionalLight;
 
@@ -28,14 +28,14 @@ struct Attenuation {
 };
 
 uniform struct PointLight {
-	Light base;
+	AmbientLight base;
 	Attenuation attenuation;
 	vec3 position;
 	float range;
 } pointLights[MAX_POINT_LIGHTS];
 
 uniform struct SpotLight {
-	PointLight pointLight;
+	PointLight base;
 	vec3 direction;
 	float cutoff;
 } spotLights[MAX_SPOT_LIGHTS];

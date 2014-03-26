@@ -1,7 +1,10 @@
 #include "ShaderProgram.h"
 
 ShaderProgram::ShaderProgram() :
-    program(glCreateProgram()) {}
+    program(glCreateProgram()) {
+    ASSERT(glIsProgram(program) == GL_TRUE,
+           "ShaderProgram not created properly.");
+}
 
 ShaderProgram::~ShaderProgram() {
     glDeleteProgram(program);
@@ -184,4 +187,33 @@ void ShaderProgram::setUniform(const std::string &name, const Drawable &d) const
     setUniform(name + ".transform", *(d.getTransform()));
     setUniform(name + ".sampler", *(d.getTexture()));
     setUniform(name + ".material", *(d.getMaterial()));
+}
+
+void ShaderProgram::setUniform(const std::string &name, const Attenuation &a) const {
+    setUniform(name + ".constant", a.constant);
+    setUniform(name + ".linear", a.linear);
+    setUniform(name + ".quadratic", a.quadratic);
+}
+
+void ShaderProgram::setUniform(const std::string &name, const AmbientLight &l) const {
+    setUniform(name + ".intensity", l.getIntensity());
+    setUniform(name + ".color", l.getColor());
+}
+
+void ShaderProgram::setUniform(const std::string &name, const DirectionalLight &l) const {
+    setUniform(name + ".base", static_cast<AmbientLight>(l));
+    setUniform(name + ".direction", l.getDirection());
+}
+
+void ShaderProgram::setUniform(const std::string &name, const PointLight &l) const {
+    setUniform(name + ".base", static_cast<AmbientLight>(l));
+    setUniform(name + ".attenuation", l.getAttenuation());
+    setUniform(name + ".position", l.getPosition());
+    setUniform(name + ".range", l.getRange());
+}
+
+void ShaderProgram::setUniform(const std::string &name, const SpotLight &l) const {
+    setUniform(name + ".base", static_cast<PointLight>(l));
+    setUniform(name + ".direction", l.getDirection());
+    setUniform(name + ".cutoff", l.getCutoff());
 }

@@ -2,8 +2,8 @@
 
 XMLParser::XMLParser() {}
 
-XMLParser::XMLParser(const std::string &path) {
-    loadDocument(path);
+XMLParser::XMLParser(const std::string &filePath) {
+    loadDocument(filePath);
 }
 
 XMLParser::~XMLParser() {
@@ -14,18 +14,27 @@ xml_document<> *const &XMLParser::getDocument() const {
     return document;
 }
 
-xml_document<> *const &XMLParser::loadDocument(const std::string &path) {
-    std::ifstream file(path);
-    std::ostringstream buffer;
-    buffer << file.rdbuf();// << std::endl;
-    //std::vector<char> bufferCopy(buffer.str().begin(), buffer.str().end());
-    //bufferCopy.push_back('\0');
-    source = buffer.str();
+xml_document<> *const &XMLParser::loadDocument(const std::string &filePath) {
+    try {
+        std::ifstream file(filePath);
 
-    document = new xml_document<>;
-    //document->parse<0>(csource.c_str());
-    document->parse<0>(const_cast<char*>(source.c_str()));
-    file.close();
+        if (!file)
+            throw IOException("Failed to load: " + filePath);
+
+        std::ostringstream buffer;
+        buffer << file.rdbuf();// << std::endl;
+        //std::vector<char> bufferCopy(buffer.str().begin(), buffer.str().end());
+        //bufferCopy.push_back('\0');
+        source = buffer.str();
+
+        document = new xml_document<>;
+        //document->parse<0>(csource.c_str());
+        document->parse<0>(const_cast<char*>(source.c_str()));
+        file.close();
+    } catch (std::runtime_error &e) {
+        LOG_ERROR(e);
+        document = nullptr;
+    }
 
     return document;
 /*

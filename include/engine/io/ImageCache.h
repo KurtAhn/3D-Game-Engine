@@ -4,11 +4,14 @@
 #include "FileIO.h"
 
 class ImageCache : public Cache<Image> {
-public:
+    friend class GraphicsManager;
+private:
     ImageCache() = delete;
-    explicit ImageCache(const std::string &path);
+    explicit ImageCache(XMLNode *const &node);
     ImageCache(const ImageCache &src) = delete;
     ImageCache &operator=(const ImageCache &src) = delete;
+
+public:
     virtual ~ImageCache();
 
 public:

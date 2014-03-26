@@ -7,11 +7,14 @@
 #include "XMLParser.h"
 
 class MaterialCache : public Cache<Material> {
-public:
+    friend class GraphicsManager;
+private:
     MaterialCache() = delete;
-    explicit MaterialCache(const std::string &folderPath);
+    explicit MaterialCache(XMLNode *const &node);
     MaterialCache(const MaterialCache &src) = delete;
     MaterialCache &operator=(const MaterialCache &src) = delete;
+
+public:
     virtual ~MaterialCache();
 
 public:

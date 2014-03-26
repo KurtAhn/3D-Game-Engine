@@ -1,46 +1,44 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "Common.h"
 #include "Input.h"
 #include "Graphics.h"
 
-class Engine {
+class Engine : public InputManager,
+               public GraphicsManager {
 private:
-    static Engine *currentInstance;
+    static Engine *instance;
 
 public:
-    static Engine *getCurrentInstance();
-    static void setCurrentInstance(Engine *const &instance);
-
-public:
-    Engine(const int &width,
-           const int &height,
-           const char *const &title,
-           GLFWmonitor *const &monitor,
-           GLFWwindow *const &share);
-    Engine(const int &width,
-           const int &height,
-           const char *const &title,
-           GLFWmonitor *const &monitor,
-           GLFWwindow *const &share,
-           InputManager *const &inputManager,
-           GraphicsManager *const &graphicsManager);
-    ~Engine();
+    static Engine *const &getInstance();
+    static Engine *const &createInstance(const std::string &configFilePath);
+    static void destroy();
 
 private:
-    GLFWwindow *window;
-    InputManager *inputManager;
-    GraphicsManager *graphicsManager;
-    //AudioManager *audioManager;
-    //PhysicsManager *physicsManager;
+    Engine() = default;
+    explicit Engine(const std::string &configFilePath);
+    explicit Engine(XMLNode *const &node);
 
 public:
-    GLFWwindow *const &getWindow() const;
-    void setWindow(GLFWwindow *const &window);
-    InputManager *const &getInputManager() const;
-    void setInputManager(InputManager *const &inputManager);
-    GraphicsManager *const &getGraphicsManager() const;
-    void setGraphicsManager(GraphicsManager *const &graphicsManager);
+    virtual ~Engine();
+
+private:
+    Window *window;
+
+//public:
+//    GLFWwindow *const &getWindow() const;
+//    void setWindow(GLFWwindow *const &window);
+
+public:
+    bool isCloseRequested() const;
+    void setCloseRequested(const bool &closeRequested);
+
+    unsigned getFrameRate() const;
+    void setFrameRate(const unsigned &frameRate);
+
+public:
+    void update() const;
 
 };
 

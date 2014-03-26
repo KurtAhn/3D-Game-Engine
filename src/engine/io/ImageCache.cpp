@@ -1,13 +1,10 @@
 #include "ImageCache.h"
 
-ImageCache::ImageCache(const std::string &folderPath) {
-    load(folderPath);
+ImageCache::ImageCache(XMLNode *const &node) {
+    load(node->first_node("Directory")->value());
 }
 
-ImageCache::~ImageCache() {
-    //for (const auto &t : cache)
-        //delete t.second;
-}
+ImageCache::~ImageCache() {}
 
 void ImageCache::load(const std::string &folderPath) {
    namespace fs = boost::filesystem;

@@ -28,6 +28,7 @@
 					<Add directory="include/devil" />
 					<Add directory="include/engine/exceptions" />
 					<Add directory="include/test" />
+					<Add directory="include/engine/graphics/lighting" />
 				</Compiler>
 				<Linker>
 					<Add option="-lboost_system -lboost_filesystem" />
@@ -72,11 +73,18 @@
 		<Unit filename="include/engine/graphics/Graphics.h" />
 		<Unit filename="include/engine/graphics/GraphicsCommon.h" />
 		<Unit filename="include/engine/graphics/GraphicsManager.h" />
+		<Unit filename="include/engine/graphics/Image.h" />
 		<Unit filename="include/engine/graphics/Material.h" />
 		<Unit filename="include/engine/graphics/Mesh.h" />
 		<Unit filename="include/engine/graphics/ShaderProgram.h" />
 		<Unit filename="include/engine/graphics/Texture.h" />
 		<Unit filename="include/engine/graphics/Vertex.h" />
+		<Unit filename="include/engine/graphics/lighting/AmbientLight.h" />
+		<Unit filename="include/engine/graphics/lighting/Attenuation.h" />
+		<Unit filename="include/engine/graphics/lighting/DirectionalLight.h" />
+		<Unit filename="include/engine/graphics/lighting/Lighting.h" />
+		<Unit filename="include/engine/graphics/lighting/PointLight.h" />
+		<Unit filename="include/engine/graphics/lighting/SpotLight.h" />
 		<Unit filename="include/engine/input/Event.h" />
 		<Unit filename="include/engine/input/EventListener.h" />
 		<Unit filename="include/engine/input/Input.h" />
@@ -88,14 +96,17 @@
 		<Unit filename="include/engine/io/Cache.h" />
 		<Unit filename="include/engine/io/FileIO.h" />
 		<Unit filename="include/engine/io/FileIOCommon.h" />
+		<Unit filename="include/engine/io/ImageCache.h" />
 		<Unit filename="include/engine/io/MaterialCache.h" />
 		<Unit filename="include/engine/io/MeshCache.h" />
 		<Unit filename="include/engine/io/ShaderProgramCache.h" />
-		<Unit filename="include/engine/io/TextureCache.h" />
 		<Unit filename="include/engine/io/XMLParser.h" />
+		<Unit filename="include/engine/physics/Model.h" />
 		<Unit filename="include/engine/physics/Physical.h" />
 		<Unit filename="include/engine/physics/PhysicsCommon.h" />
 		<Unit filename="include/engine/physics/PhysicsManager.h" />
+		<Unit filename="include/test/Actor.h" />
+		<Unit filename="include/test/Entity.h" />
 		<Unit filename="include/test/Game.h" />
 		<Unit filename="src/engine/Engine.cpp" />
 		<Unit filename="src/engine/exceptions/GLEWException.cpp" />
@@ -110,11 +121,16 @@
 		<Unit filename="src/engine/graphics/Camera.cpp" />
 		<Unit filename="src/engine/graphics/Drawable.cpp" />
 		<Unit filename="src/engine/graphics/GraphicsManager.cpp" />
+		<Unit filename="src/engine/graphics/Image.cpp" />
 		<Unit filename="src/engine/graphics/Material.cpp" />
 		<Unit filename="src/engine/graphics/Mesh.cpp" />
 		<Unit filename="src/engine/graphics/ShaderProgram.cpp" />
 		<Unit filename="src/engine/graphics/Texture.cpp" />
 		<Unit filename="src/engine/graphics/Vertex.cpp" />
+		<Unit filename="src/engine/graphics/lighting/AmbientLight.cpp" />
+		<Unit filename="src/engine/graphics/lighting/DirectionalLight.cpp" />
+		<Unit filename="src/engine/graphics/lighting/PointLight.cpp" />
+		<Unit filename="src/engine/graphics/lighting/SpotLight.cpp" />
 		<Unit filename="src/engine/input/Event.cpp" />
 		<Unit filename="src/engine/input/EventListener.cpp" />
 		<Unit filename="src/engine/input/InputManager.cpp" />
@@ -122,13 +138,16 @@
 		<Unit filename="src/engine/input/MouseListener.cpp" />
 		<Unit filename="src/engine/input/WindowListener.cpp" />
 		<Unit filename="src/engine/io/Cache.cpp" />
+		<Unit filename="src/engine/io/ImageCache.cpp" />
 		<Unit filename="src/engine/io/MaterialCache.cpp" />
 		<Unit filename="src/engine/io/MeshCache.cpp" />
 		<Unit filename="src/engine/io/ShaderProgramCache.cpp" />
-		<Unit filename="src/engine/io/TextureCache.cpp" />
 		<Unit filename="src/engine/io/XMLParser.cpp" />
+		<Unit filename="src/engine/physics/Model.cpp" />
 		<Unit filename="src/engine/physics/Physical.cpp" />
 		<Unit filename="src/engine/physics/PhysicsManager.cpp" />
+		<Unit filename="src/test/Actor.cpp" />
+		<Unit filename="src/test/Entity.cpp" />
 		<Unit filename="src/test/Game.cpp" />
 		<Unit filename="src/test/main.cpp" />
 		<Extensions>

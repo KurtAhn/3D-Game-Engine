@@ -8,15 +8,15 @@ using namespace rapidxml;
 class XMLParser {
 public:
     XMLParser();
-    XMLParser(const std::string &path);
+    XMLParser(const std::string &filePath);
     XMLParser(const XMLParser &src) = delete;
     XMLParser &operator=(const XMLParser &src) = delete;
     virtual ~XMLParser();
 
     xml_document<> *const &getDocument() const;
 
-    xml_document<> *const &loadDocument(const std::string &path);
-    void saveDocument(const std::string &path);
+    xml_document<> *const &loadDocument(const std::string &filePath);
+    void saveDocument(const std::string &filePath);
 
 private:
     xml_document<> *document;

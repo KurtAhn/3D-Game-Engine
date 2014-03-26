@@ -5,28 +5,13 @@
 1394016284 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exception.h
 	"Common.h"
 
-1395385896 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\common.h
-	<cstdlib>
-	<stdexcept>
-	<initializer_list>
-	<iostream>
-	<fstream>
-	<sstream>
-	<string>
-	<vector>
-	<unordered_map>
-	<set>
-	<deque>
+1395814790 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\common.h
 	"GL/glew.h"
 	"GLFW/glfw3.h"
 	"glm/glm.hpp"
 	"glm/gtx/quaternion.hpp"
-	"boost/lexical_cast.hpp"
-	"boost/filesystem.hpp"
 	"rapidxml/rapidxml.hpp"
 	"rapidxml/rapidxml_print.hpp"
-	"btBulletCollisionCommon.h"
-	"btBulletDynamicsCommon.h"
 
 1374506000 c:\users\kurt ahn\documents\github\3d-game-engine\include\gl\glew.h
 	<stddef.h>
@@ -4859,7 +4844,7 @@
 1394414382 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphics.cpp
 	"Graphics.h"
 
-1394785336 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphics.h
+1395719961 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphics.h
 	"GraphicsCommon.h"
 	"Vertex.h"
 	"Mesh.h"
@@ -4868,22 +4853,24 @@
 	"Camera.h"
 	"ShaderProgram.h"
 	"GraphicsManager.h"
+	"Lighting.h"
 
-1395183782 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\shaderprogram.h
+1395721403 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\shaderprogram.h
 	"GraphicsCommon.h"
 	"Exception.h"
 	"Camera.h"
 	"Material.h"
 	"Drawable.h"
+	"Lighting.h"
 
-1395379141 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\shaderprogramcache.h
+1395811810 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\shaderprogramcache.h
 	"Common.h"
 	"Exception.h"
 	"Cache.h"
 	"ShaderProgram.h"
 	"XMLParser.h"
 
-1395524798 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\cache.h
+1395811156 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\cache.h
 	"FileIOCommon.h"
 	"Mesh.h"
 	"ShaderProgram.h"
@@ -4906,7 +4893,7 @@
 
 1394512865 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputdeclaration.h
 
-1395482152 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputmanager.h
+1395821527 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputmanager.h
 	"InputCommon.h"
 	"Event.h"
 	"EventListener.h"
@@ -4914,10 +4901,10 @@
 	"MouseListener.h"
 	"WindowListener.h"
 
-1394976398 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\xmlparser.h
+1395819690 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\xmlparser.h
 	"FileIOCommon.h"
 
-1394931373 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\event.h
+1395812296 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\event.h
 	"InputCommon.h"
 
 1394931561 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\interactable.h
@@ -4938,7 +4925,7 @@
 	"Reaction.h"
 	"Interactable.h"
 
-1395384590 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\meshcache.h
+1395811640 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\meshcache.h
 	"Common.h"
 	"Exception.h"
 	"Cache.h"
@@ -4961,7 +4948,7 @@
 1395455247 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\mesh.cpp
 	"Mesh.h"
 
-1395632723 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogram.cpp
+1395820746 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\shaderprogram.cpp
 	"ShaderProgram.h"
 
 1395615842 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\vertex.cpp
@@ -4982,13 +4969,13 @@
 1395524775 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\cache.cpp
 	"Cache.h"
 
-1395615862 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\meshcache.cpp
+1395819495 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\meshcache.cpp
 	"MeshCache.h"
 
-1395386378 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\shaderprogramcache.cpp
+1395821938 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\shaderprogramcache.cpp
 	"ShaderProgramCache.h"
 
-1393437373 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\xmlparser.cpp
+1395819793 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\xmlparser.cpp
 	"XMLParser.h"
 
 1392631224 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\logger.cpp
@@ -5019,7 +5006,7 @@
 1394678415 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physics.cpp
 	"Physics.h"
 
-1395657794 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\main.cpp
+1395822297 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\main.cpp
 	"Common.h"
 	"Logger.h"
 	"Game.h"
@@ -5029,7 +5016,7 @@
 1394976051 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\event.cpp
 	"Event.h"
 
-1395482159 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\inputmanager.cpp
+1395821445 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\input\inputmanager.cpp
 	"InputManager.h"
 
 1395015231 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\eventlistener.h
@@ -5073,12 +5060,9 @@
 1394768640 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\nullpointerexception.h
 	"ExceptionCommon.h"
 
-1395130213 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicscommon.h
+1395814790 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicscommon.h
 	<string>
-	"GL/glew.h"
-	"GLFW/glfw3.h"
-	"glm/glm.hpp"
-	"glm/gtx/quaternion.hpp"
+	"Common.h"
 	"IL/il.h"
 	"IL/ilu.h"
 	"IL/ilut.h"
@@ -5118,7 +5102,7 @@
 	"Texture.h"
 	"Material.h"
 
-1395525071 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicsmanager.h
+1395821330 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\graphicsmanager.h
 	"GraphicsCommon.h"
 	"ShaderProgram.h"
 	"ShaderProgramCache.h"
@@ -5138,7 +5122,7 @@
 1395380404 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\drawable.cpp
 	"Drawable.h"
 
-1395657647 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphicsmanager.cpp
+1395822472 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\graphicsmanager.cpp
 	"GraphicsManager.h"
 
 1395385244 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\material.cpp
@@ -5157,13 +5141,11 @@
 1395125347 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\exceptions\logger.cpp
 	"Logger.h"
 
-1394932129 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputcommon.h
+1395814551 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\input\inputcommon.h
 	"Common.h"
-	"GL/glew.h"
-	"GLFW/glfw3.h"
 	"Exception.h"
 
-1394976274 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\fileiocommon.h
+1395819835 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\fileiocommon.h
 	"Common.h"
 	<string>
 	<unordered_map>
@@ -5172,16 +5154,15 @@
 	<fstream>
 	"boost/lexical_cast.hpp"
 	"boost/filesystem.hpp"
-	"rapidxml/rapidxml.hpp"
-	"rapidxml/rapidxml_print.hpp"
+	"Exception.h"
 
-1395657566 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\texture.cpp
+1395658164 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\texture.cpp
 	"Texture.h"
 
-1395386345 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\materialcache.cpp
+1395811578 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\materialcache.cpp
 	"MaterialCache.h"
 
-1395385723 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\materialcache.h
+1395811640 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\materialcache.h
 	"FileIOCommon.h"
 	"Cache.h"
 	"Material.h"
@@ -5205,10 +5186,11 @@
 1395125943 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\exceptions\logexception.h
 	"ExceptionCommon.h"
 
-1395482068 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\engine.cpp
+1395822335 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\engine.cpp
 	"Engine.h"
 
-1395370382 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\engine.h
+1395817127 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\engine.h
+	"Common.h"
 	"Input.h"
 	"Graphics.h"
 
@@ -5245,10 +5227,12 @@
 1395126942 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\physical.cpp
 	"Physical.h"
 
-1395126973 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physical.h
+1395817344 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physical.h
 	"PhysicsCommon.h"
+	"Model.h"
 
-1395127005 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physicscommon.h
+1395734212 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\physicscommon.h
+	"glm/glm.hpp"
 	"btBulletCollisionCommon.h"
 	"btBulletDynamicsCommon.h"
 
@@ -5303,25 +5287,67 @@
 1395636099 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\image.h
 	"GraphicsCommon.h"
 
-1395525160 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\imagecache.h
+1395811198 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\io\imagecache.h
 	"FileIO.h"
 
 1395636180 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\image.cpp
 	"Image.h"
 
-1395524899 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\imagecache.cpp
+1395811578 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\io\imagecache.cpp
 	"ImageCache.h"
 
-1395657076 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\actor.cpp
+1395822570 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\actor.cpp
 	"Actor.h"
 
-1395657219 c:\users\kurt ahn\documents\github\3d-game-engine\include\test\actor.h
-	"Input.h"
-	"Graphics.h"
+1395817970 c:\users\kurt ahn\documents\github\3d-game-engine\include\test\actor.h
+	"Engine.h"
 
 1395656589 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\test\entity.cpp
 	"Entity.h"
 
 1395656948 c:\users\kurt ahn\documents\github\3d-game-engine\include\test\entity.h
 	"Graphics.h"
+
+1395720192 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\lighting\lighting.h
+	"Attenuation.h"
+	"AmbientLight.h"
+	"DirectionalLight.h"
+	"PointLight.h"
+	"SpotLight.h"
+
+1395720211 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\lighting\attenuation.h
+
+1395721977 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\lighting\ambientlight.h
+	"GraphicsCommon.h"
+
+1395721997 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\lighting\directionallight.h
+	"GraphicsCommon.h"
+	"AmbientLight.h"
+
+1395722010 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\lighting\pointlight.h
+	"GraphicsCommon.h"
+	"AmbientLight.h"
+	"Attenuation.h"
+
+1395722018 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\graphics\lighting\spotlight.h
+	"GraphicsCommon.h"
+	"PointLight.h"
+
+1395722089 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\lighting\ambientlight.cpp
+	"AmbientLight.h"
+
+1395722126 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\lighting\directionallight.cpp
+	"DirectionalLight.h"
+
+1395722140 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\lighting\pointlight.cpp
+	"PointLight.h"
+
+1395722207 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\graphics\lighting\spotlight.cpp
+	"SpotLight.h"
+
+1395815086 c:\users\kurt ahn\documents\github\3d-game-engine\include\engine\physics\model.h
+	"PhysicsCommon.h"
+
+1395734146 source:c:\users\kurt ahn\documents\github\3d-game-engine\src\engine\physics\model.cpp
+	"Model.h"
 

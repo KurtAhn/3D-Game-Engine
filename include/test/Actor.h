@@ -1,8 +1,7 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-#include "Input.h"
-#include "Graphics.h"
+#include "Engine.h"
 
 /**
  * An interactable game object that "acts" upon other
@@ -13,7 +12,8 @@
  * InputManager::activities before they can be used.
  */
 
-class Actor : public KeyListener,
+class Actor : public Camera,
+                     KeyListener,
                      MouseListener,
                      WindowListener {
 public:
@@ -21,8 +21,6 @@ public:
     virtual ~Actor();
 
 private:
-    Camera *camera;
-
     bool movingForward = false;
     bool movingBackward = false;
     bool movingLeft = false;
@@ -44,10 +42,6 @@ private:
         int width = 0;
         int height = 0;
     } window;
-
-public:
-    Camera *const &getCamera() const;
-    void setCamera(Camera *const &camera);
 
 public:
     void update();

@@ -10,9 +10,8 @@
 #include <fstream>
 #include "boost/lexical_cast.hpp"
 #include "boost/filesystem.hpp"
-#include "rapidxml/rapidxml.hpp"
-//#include "rapidxml/rapidxml_iterators.hpp"
-#include "rapidxml/rapidxml_print.hpp"
-//#include "rapidxml/rapidxml_utils.hpp"
+
+#include "Exception.h"
+
 
 #endif // FILEIOCOMMON_H

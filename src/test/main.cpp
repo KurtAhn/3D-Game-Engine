@@ -10,6 +10,35 @@ int main() {
     Logger *logger = Logger::createInstance();
     logger->open("saves/test/logs/log.log");
 
+    //Engine engine("data/configurations/engine.xml");
+
+    Engine *engine = Engine::createInstance("data/configurations/engine.xml");
+
+    Entity *entity = new Entity(engine->getMesh("sphere.obj"),
+                                new Texture(
+                                    engine->getImage("metal.jpg")), /// implement TextureCache
+                                engine->getMaterial("cube.mat"),
+                                new GLMatrix4{1, 0, 0, 0,
+                                              0, 1, 0, 0,
+                                              0, 0, 1, 0,
+                                              0, 0, 0, 1});
+
+    Actor *actor = new Actor();
+
+    engine->setCamera(actor);
+
+    engine->setActiveShaderProgram("basic");
+
+    while (!engine->isCloseRequested()) {
+        engine->pollEvents();
+        engine->render(entity);
+        actor->update();
+        engine->update();
+    }
+
+    Engine::destroy();
+    Logger::destroy();
+/*
     Engine *engine = new Engine(800, 800, "Demo", nullptr, nullptr);
     GLFWwindow *window = engine->getWindow();
 
@@ -103,6 +132,6 @@ int main() {
     Logger::destroy();
 
     glfwTerminate();
-
+*/
     return 0;
 }

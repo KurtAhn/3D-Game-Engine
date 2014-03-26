@@ -1,0 +1,45 @@
+<Engine>
+		<Window>
+			<Fullscreen>false</Fullscreen>
+			<Width>800</Width>
+			<Height>800</Height>
+			<Title>Demo</Title>
+		</Window>
+		
+		<InputManager>
+			<InputMap>data\input\input_map.imap</InputMap>
+		</InputManager>
+		
+		<GraphicsManager>
+			<Shaders>
+				<Directory>data\graphics\shaders\</Diretory>
+				<ShaderList>data\graphics\shaders\programs.xml</ShaderList>
+			</Shaders>
+			
+			<Meshes>
+				<Directory>data\graphics\meshes\</Directory>
+			</Meshes>
+			
+			<Images>
+				<Directory>data\graphics\images\</Directory>
+			</Images>
+			
+			<Materials>
+				<Directory>data\graphics\materials\</Directory>
+			</Materials>
+			
+			<Lighting>
+				<Directory>data\graphics\lighting\</Directory>
+			</Lighting>
+		</GraphicsManager>
+		
+		<PhysicsManager>
+			<Models>
+				<Directory>data\physics\models\</Directory>
+			</Models>
+		</PhysicsManager>
+		
+		<AudioManager>
+		
+		</AudioManager>
+</Engine>

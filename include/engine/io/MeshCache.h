@@ -7,11 +7,14 @@
 #include "Mesh.h"
 
 class MeshCache : public Cache<Mesh> {
-public:
+    friend class GraphicsManager;
+private:
     MeshCache() = delete;
-    explicit MeshCache(const std::string &folderPath);
+    explicit MeshCache(XMLNode *const &node);
     MeshCache(const MeshCache &src) = delete;
     MeshCache &operator=(const MeshCache &src) = delete;
+
+public:
     virtual ~MeshCache();
 
 public:

@@ -9,5 +9,6 @@
 #include "Camera.h"
 #include "ShaderProgram.h"
 #include "GraphicsManager.h"
+#include "Lighting.h"
 
 #endif // GRAPHICS_H

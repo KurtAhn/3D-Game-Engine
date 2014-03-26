@@ -7,14 +7,6 @@ COPYRIGHT NOTICE
 
 InputManager *InputManager::currentInstance = nullptr;
 
-InputManager *InputManager::getCurrentInstance() {
-    return currentInstance;
-}
-
-void InputManager::setCurrentInstance(InputManager *const &instance) {
-    currentInstance = instance;
-}
-
 void InputManager::fireKeyEvent(GLFWwindow *window,
                                 int key,
                                 int action,
@@ -122,25 +114,6 @@ void InputManager::fireFrameBufferResizeEvent(GLFWwindow *window,
                                    height));
 }
 
-
-InputManager::InputManager(GLFWwindow *const &window) :
-    window(window) {
-
-    glfwSetKeyCallback(window, &fireKeyEvent);
-    glfwSetCharCallback(window, &fireCharEvent);
-    glfwSetMouseButtonCallback(window, &fireMouseButtonEvent);
-    glfwSetCursorPosCallback(window, &fireMouseMotionEvent);
-    glfwSetCursorEnterCallback(window, &fireMouseEnterEvent);
-    glfwSetScrollCallback(window, &fireMouseScrollEvent);
-    glfwSetWindowPosCallback(window, &fireWindowMotionEvent);
-    glfwSetWindowSizeCallback(window, &fireWindowResizeEvent);
-    glfwSetWindowCloseCallback(window, &fireWindowCloseEvent);
-    glfwSetWindowRefreshCallback(window, &fireWindowRefreshEvent);
-    glfwSetWindowFocusCallback(window, &fireWindowFocusEvent);
-    glfwSetWindowIconifyCallback(window, &fireWindowIconifyEvent);
-    glfwSetFramebufferSizeCallback(window, &fireFrameBufferResizeEvent);
-}
-
 InputManager::~InputManager() {}
 
 void InputManager::addKeyListener(KeyListener *const &l) {
@@ -185,7 +158,26 @@ void InputManager::removeWindowListener(WindowListener *const &l) {
     }
 }
 
-void InputManager::process() {
+void InputManager::init(Window *const &window,
+                        XMLNode *const &node) {
+    this->window = window;
+
+    glfwSetKeyCallback(window, &fireKeyEvent);
+    glfwSetCharCallback(window, &fireCharEvent);
+    glfwSetMouseButtonCallback(window, &fireMouseButtonEvent);
+    glfwSetCursorPosCallback(window, &fireMouseMotionEvent);
+    glfwSetCursorEnterCallback(window, &fireMouseEnterEvent);
+    glfwSetScrollCallback(window, &fireMouseScrollEvent);
+    glfwSetWindowPosCallback(window, &fireWindowMotionEvent);
+    glfwSetWindowSizeCallback(window, &fireWindowResizeEvent);
+    glfwSetWindowCloseCallback(window, &fireWindowCloseEvent);
+    glfwSetWindowRefreshCallback(window, &fireWindowRefreshEvent);
+    glfwSetWindowFocusCallback(window, &fireWindowFocusEvent);
+    glfwSetWindowIconifyCallback(window, &fireWindowIconifyEvent);
+    glfwSetFramebufferSizeCallback(window, &fireFrameBufferResizeEvent);
+}
+
+void InputManager::pollEvents() {
     glfwPollEvents();
 
 #define PROCESS_REQUESTS(requests, listeners, method)\

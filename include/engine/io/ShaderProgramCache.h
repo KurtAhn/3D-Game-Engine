@@ -8,12 +8,13 @@
 #include "XMLParser.h"
 
 class ShaderProgramCache : public Cache<ShaderProgram> {
-public:
+    friend class GraphicsManager;
+private:
     ShaderProgramCache() = delete;
-    ShaderProgramCache(const std::string &xmlPath,
-                       const std::string &folderPath);
+    ShaderProgramCache(XMLNode *const &node);
     ShaderProgramCache(const ShaderProgramCache &src) = delete;
     ShaderProgramCache &operator=(const ShaderProgramCache &src) = delete;
+public:
     virtual ~ShaderProgramCache();
 
 public:
